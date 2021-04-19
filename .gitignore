@@ -19,3 +19,5 @@ functions
 node_modules
 public
 resources
+
+.directory
