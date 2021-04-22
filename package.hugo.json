@@ -1,5 +1,5 @@
 {
-  "name": "frontline-doc",
+  "name": "gatling-docs-theme",
   "version": "1.0.0-SNAPSHOT",
   "hugo-bin": {
     "buildTags": "extended"
