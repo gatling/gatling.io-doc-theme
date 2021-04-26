@@ -21,3 +21,7 @@ public
 resources
 
 .directory
+
+# Example Site
+
+package-lock.json

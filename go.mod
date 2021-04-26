@@ -1,3 +1,3 @@
-module github.com/gatling/gatling-docs-theme
+module github.com/gatling/gatling.io-doc-theme
 
 go 1.16

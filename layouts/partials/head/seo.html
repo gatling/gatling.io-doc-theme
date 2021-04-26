@@ -10,12 +10,7 @@
   {{ end -}}
 {{ end -}}
 
-{{ if .IsHome -}}
-  <title>Redirecting to {{ .Site.Params.redirectTo }}</title>
-  <meta http-equiv="refresh" content="0; URL={{ .Site.BaseURL }}{{ .Site.Params.redirectTo }}">
-{{ else -}}
-  <title>{{ .Title }} {{ .Site.Params.titleSeparator }} {{ .Site.Params.title }}</title>
-{{ end -}}
+<title>{{ .Title }} {{ .Site.Params.titleSeparator }} {{ .Site.Params.title }}</title>
 
 {{ with .Description -}}
   <meta name="description" content="{{ . }}">

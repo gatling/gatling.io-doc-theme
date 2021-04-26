@@ -4,9 +4,8 @@ description: ""
 lead: ""
 date: {{ .Date }}
 lastmod: {{ .Date }}
-draft: true
 images: []
-menu: 
+menu:
   docs:
     parent: ""
 weight: 999
