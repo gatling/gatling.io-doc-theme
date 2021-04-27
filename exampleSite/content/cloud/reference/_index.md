@@ -1,3 +1,4 @@
 ---
-  title: References
+title: References
+menu: cloud
 ---
