@@ -1,28 +1,27 @@
-# FrontLine Documentation
+# gatling.io/docs Theme
 
-Node.js dependencies:
+## Dev mode
 
-```
-npm install
-```
+### Quick (docker-compose)
 
-Running a local server:
-
-```
-npm run server
+```console
+docker-compose up
 ```
 
-Then, connect to http://localhost:1313
+Then, go to [http://localhost:1313](http://localhost:1313)
 
-Create a new page:
 
+### Local
+
+```console
+hugo mod npm pack
+cd exampleSite
+hugo server --buildDrafts
 ```
-npm run create docs/user/test/test.md
-```
 
-Make sure you have draft set to false in the page metadata, otherwise the page you created won't be displayed.
+Then, go to [http://localhost:1313](http://localhost:1313)
 
-### Page weight
+## Page weight
 
 The weight indicates which page comes first in the sidebar. We use this system: SBXX0 where:
 - S: corresponds to the sidenav section number (begins at 1)
