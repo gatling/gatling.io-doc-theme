@@ -1,12 +1,10 @@
 {{ define "main" }}
 <div class="row flex-xl-nowrap">
-  {{ if isset .Params "menuname" }}
-    <div class="col-lg-5 col-xl-4 docs-sidebar">
-      <nav class="docs-links" aria-label="Main navigation">
-        {{ partial "sidebar/docs-menu.html" (dict "context" . "menu" .Params.menuName) }}
-      </nav>
-    </div>
-  {{ end }}
+  <div class="col-lg-5 col-xl-4 docs-sidebar">
+    <nav class="docs-links" aria-label="Main navigation">
+      {{ partial "sidebar/docs-menu.html" . }}
+    </nav>
+  </div>
 
   {{ if ne .Params.toc false -}}
   <nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">

@@ -1,24 +1,39 @@
 {{ if or .Prev .Next -}}
-	<div class="docs-navigation d-flex justify-content-between">
-	<!-- https://www.feliciano.tech/blog/custom-sort-hugo-single-pages/ -->
-	{{ $pages := where site.RegularPages "Section" .Section -}}
-	{{ with $pages.Next . -}}
-		<a href="{{ .Permalink }}">
-			<div class="card my-1">
-				<div class="card-body py-2">
-					&larr; {{ .Title }}
-				</div>
-			</div>
-		</a>
-	{{ end -}}
-	{{ with $pages.Prev . -}}
-		<a class="ms-auto" href="{{ .Permalink }}">
-			<div class="card my-1">
-				<div class="card-body py-2">
-					{{ .Title }} &rarr;
-				</div>
-			</div>
-		</a>
-	{{ end -}}
-	</div>
+
+  <!-- Menu name is directory path, without slashes, and reference is remove in favor of a dash (e.g: oss-3.3) -->
+  {{ $menu := .Parent.File.Dir }}
+  {{ $menu = replace $menu "reference/" "" }}
+  {{ $menu = trim $menu "/" }}
+  {{ $menu = replace $menu "/" "-"}}
+
+  {{ $category := (printf ".Params.menu.%s.parent" $menu) }}
+
+  isset {{ (printf ".Params.menu.%s" $menu) }} "parent"
+
+  {{ if and (and (isset .Params "menu") (isset .Params.menu $menu)) (isset (printf ".Params.menu.%s" $menu) "parent") }}
+    Category: {{ index . $category }}
+    <div class="docs-navigation d-flex justify-content-between">
+      <!-- https://www.feliciano.tech/blog/custom-sort-hugo-single-pages/ -->
+      {{ $pages := where site.RegularPages "Parent.Dir" .Parent.Dir | group $category -}}
+      {{ with $pages.Next . -}}
+      {{ .Parent.File }}
+      <a href="{{ .Permalink }}">
+        <div class="card my-1">
+          <div class="card-body py-2">
+            &larr; {{ .Title }}
+          </div>
+        </div>
+      </a>
+      {{ end -}}
+      {{ with $pages.Prev . -}}
+      <a class="ms-auto" href="{{ .Permalink }}">
+        <div class="card my-1">
+          <div class="card-body py-2">
+            {{ .Title }} &rarr;
+          </div>
+        </div>
+      </a>
+      {{ end -}}
+    </div>
+  {{ end }}
 {{ end -}}
