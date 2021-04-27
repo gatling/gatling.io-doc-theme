@@ -1,7 +1,7 @@
 <h1 class="text-center">{{ .Title }}</h1>
 <div class="text-center">{{ .Content }}</div>
 <div class="card-list">
-  {{ range .Sections }}
+  {{ range .Pages }}
   <div class="card my-3">
     <div class="card-body">
       <a class="stretched-link" href="{{ .Permalink }}">

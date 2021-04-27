@@ -23,8 +23,8 @@
         {{ range .Site.Menus.main -}}
           {{- $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) -}}
           {{- $active = or $active (eq .Name $current.Title) -}}
-          {{- $active = or $active (and (eq .Name "Docs") (eq $current.Section "docs")) -}}
-          {{- $active = or $active (and (eq .Name "Tutorials") (eq $current.Section "tutorials")) -}}
+          {{- $active = or $active (and (eq .Name "Gatling") (eq $current.Section "oss")) -}}
+          {{- $active = or $active (and (eq .Name "Cloud") (eq $current.Section "cloud")) -}}
           <li class="nav-item{{ if $active }} active{{ end }}">
             <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>
           </li>
