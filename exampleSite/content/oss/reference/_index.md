@@ -1,4 +1,4 @@
 ---
-  title: Gatling versions
-  versioning: true
+title: Gatling versions
+versioning: true
 ---

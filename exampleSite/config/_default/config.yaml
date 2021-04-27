@@ -1,4 +1,4 @@
-baseurl: /
+baseurl: http://app-00262f56-bd68-43b9-a726-a8a6a1915590.cleverapps.io/docs
 
 theme: "gatling.io-doc-theme"
 themesDir: "../.."

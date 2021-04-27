@@ -1,11 +1,9 @@
 {{ $currentPage := . -}}
 
-<!-- Menu name is directory path, without slashes, and reference is remove in favor of a dash (e.g: oss-3.3) -->
-{{ $parent := .Parent }}
-{{ $parent.Dir }}
+{{- $path := split .CurrentSection.Dir "/" -}}
+{{- $menu := printf "%s" (delimit (first 2 $path) "-") -}}
 
-{{ if isset $parent.Params "menu" }}
-  {{ $menu := (index $parent.Params "menu") }}
+{{ if isset .Site.Menus $menu -}}
   {{ range (index .Site.Menus $menu) -}}
     <h3>{{ .Name }}</h3>
       {{ if .HasChildren -}}
@@ -18,4 +16,4 @@
       </ul>
     {{ end -}}
   {{ end -}}
-{{ end }}
+{{ end -}}
