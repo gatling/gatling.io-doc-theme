@@ -1,6 +1,6 @@
 {{ $currentPage := . -}}
 
-{{- $path := split .CurrentSection.Dir "/" -}}
+{{- $path := split .CurrentSection.File.Dir "/" -}}
 {{- $menu := printf "%s" (delimit (first 2 $path) "-") -}}
 
 {{ if isset .Site.Menus $menu -}}
