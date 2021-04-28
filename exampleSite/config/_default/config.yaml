@@ -58,9 +58,6 @@ sitemap:
   filename: sitemap.xml
   priority: 0.5
 
-permalinks:
-  tutorials: '/tutorials/:slug/'
-
 module:
   noProxy: none
   noVendor: ''
