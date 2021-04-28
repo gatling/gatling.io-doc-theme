@@ -1,6 +1,6 @@
 baseurl: /
 
-theme: "gatling.io-doc-theme"
+theme: "gatling-io-doc-theme"
 themesDir: "../.."
 resourceDir: "../resources"
 

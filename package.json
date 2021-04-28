@@ -1,0 +1,81 @@
+{
+ "browserslist": [
+  "defaults"
+ ],
+ "comments": {
+  "dependencies": {},
+  "devDependencies": {
+   "@babel/cli": "project",
+   "@babel/core": "project",
+   "@babel/preset-env": "project",
+   "@fortawesome/fontawesome-free": "project",
+   "@fullhuman/postcss-purgecss": "project",
+   "autoprefixer": "project",
+   "bootstrap": "project",
+   "clipboard": "project",
+   "eslint": "project",
+   "flexsearch": "project",
+   "hugo-bin": "project",
+   "instant.page": "project",
+   "lazysizes": "project",
+   "markdownlint-cli": "project",
+   "postcss": "project",
+   "postcss-cli": "project",
+   "purgecss-whitelister": "project",
+   "rimraf": "project",
+   "standard-version": "project",
+   "stylelint": "project",
+   "stylelint-config-standard": "project"
+  }
+ },
+ "dependencies": {},
+ "devDependencies": {
+  "@babel/cli": "^7.13",
+  "@babel/core": "^7.13",
+  "@babel/preset-env": "^7.13",
+  "@fortawesome/fontawesome-free": "^5.15.2",
+  "@fullhuman/postcss-purgecss": "^4.0",
+  "autoprefixer": "^10.2",
+  "bootstrap": "^5.0.0-beta2",
+  "clipboard": "^2.0",
+  "eslint": "^7.21",
+  "flexsearch": "^0.6",
+  "hugo-bin": "^0.69",
+  "instant.page": "^5.1",
+  "lazysizes": "^5.3",
+  "markdownlint-cli": "^0.27.1",
+  "postcss": "^8.2",
+  "postcss-cli": "^8.3",
+  "purgecss-whitelister": "^2.4",
+  "rimraf": "^3.0",
+  "standard-version": "^9.1",
+  "stylelint": "^13.11",
+  "stylelint-config-standard": "^20.0"
+ },
+ "hugo-bin": {
+  "buildTags": "extended"
+ },
+ "name": "gatling.io-doc-theme",
+ "scripts": {
+  "build": "hugo --gc --minify",
+  "build:preview": "npm run build -D -F",
+  "check": "hugo version",
+  "clean": "rimraf public resources",
+  "create": "hugo new",
+  "env": "env",
+  "init": "rimraf .git && git init -b main",
+  "lint": "npm run -s lint:scripts && npm run -s lint:styles && npm run -s lint:markdown",
+  "lint:markdown": "markdownlint *.md content/**/*.md",
+  "lint:scripts": "eslint assets/js config",
+  "lint:styles": "stylelint \"assets/scss/**/*.{css,sass,scss,sss,less}\"",
+  "prebuild": "npm run clean",
+  "precheck": "npm version",
+  "prestart": "npm run clean",
+  "release": "standard-version",
+  "release:dry-run": "standard-version --dry-run",
+  "server": "hugo server",
+  "start": "hugo server --disableFastRender",
+  "test": "npm run -s lint"
+ },
+ "version": "1.0.0-SNAPSHOT"
+}

@@ -1,5 +1,5 @@
 {
-  "name": "gatling.io-doc-theme",
+  "name": "gatling-io-doc-theme",
   "version": "1.0.0-SNAPSHOT",
   "hugo-bin": {
     "buildTags": "extended"
