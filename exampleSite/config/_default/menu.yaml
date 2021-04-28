@@ -1,5 +1,5 @@
 main:
-  - name: Gatling
+  - name: OSS
     url: /oss/
     weight: 10
   - name: Cloud

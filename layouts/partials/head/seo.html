@@ -31,8 +31,6 @@
     {{ if .Paginator.HasNext -}}
       <link rel="next" href="{{ .Paginator.Next.URL | absURL }}">
     {{ end -}}
-  {{ else if .IsHome -}}
-    <link rel="canonical" href="{{ .Site.BaseURL }}{{ .Site.Params.redirectTo }}">
   {{ else -}}
     <link rel="canonical" href="{{ .Permalink }}">
   {{ end -}}
