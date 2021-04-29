@@ -3,7 +3,7 @@
 	<!-- https://www.feliciano.tech/blog/custom-sort-hugo-single-pages/ -->
 
 	{{ $sectionPages := where site.RegularPages "Section" .Section -}}
-  {{ $pages :=  where $sectionPages ".Parent.File.Dir" "eq" .Parent.File.Dir }}
+  {{ $pages :=  where $sectionPages ".Parent.Parent.File.Dir" "eq" .Parent.Parent.File.Dir }}
 
 	{{ with $pages.Next . -}}
 		<a href="{{ .Permalink }}">

@@ -7,19 +7,6 @@ main:
     identifier: cloud
     url: /cloud/
 
-oss-reference:
-  - identifier: category-1
-    name: Category 1
-    weight: 20
-  - identifier: part-1
-    parent: category-1
-    name: Part 1
-    url: /
-    weight: 20
-  - identifier: category-2
-    name: Category 2
-    weight: 10
-
 social:
   - name: Twitter
     pre: >-
