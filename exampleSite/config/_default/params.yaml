@@ -42,7 +42,6 @@ alert: false
 alertText: ""
 
 # Edit Page
-docsRepo: "https://github.com/gatling/frontline-cloud-doc"
 editPage: true
 
 options:
