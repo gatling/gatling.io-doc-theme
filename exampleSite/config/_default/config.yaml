@@ -1,4 +1,4 @@
-baseurl: /
+baseurl: http://localhost:1313
 
 theme: "gatling.io-doc-theme"
 themesDir: "../.."

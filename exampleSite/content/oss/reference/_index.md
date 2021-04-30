@@ -1,4 +1,4 @@
 ---
-title: Gatling versions
+title: References
 versioning: true
 ---

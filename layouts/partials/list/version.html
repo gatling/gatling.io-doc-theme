@@ -1,12 +1,14 @@
 <div class="card-list">
   {{ range .Pages }}
-  <div class="card my-3">
-    <div class="card-body">
-      <a class="stretched-link" href="{{ .Permalink }}">
-        {{ .Params.version }}
-        &rarr;
-      </a>
-    </div>
-  </div>
+    {{ if isset .Params "version" }}
+      <div class="card my-3">
+        <div class="card-body">
+          <a class="stretched-link" href="{{ .Permalink }}">
+            {{ .Params.version }}
+            &rarr;
+          </a>
+        </div>
+      </div>
+    {{ end }}
   {{ end }}
 </div>
