@@ -1,0 +1,6 @@
+{{ if and (isset .Params "version") (not (and (isset .Params "latest") .Params.latest)) }}
+<div class="alert alert-danger" role="alert">
+  You are browsing the documentation of version {{ .Params.version }}, go to
+  <a href="{{ replace .Permalink .Params.version "current" }}">current documentation</a>
+</div>
+{{ end }}

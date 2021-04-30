@@ -1,4 +1,5 @@
 {{ define "main" }}
+
 	<div class="row flex-xl-nowrap">
 		<div class="col-lg-5 col-xl-4 docs-sidebar">
 			<nav class="docs-links" aria-label="Main navigation">
@@ -25,6 +26,7 @@
 				</nav>
 			{{ end }}
 			<h1>{{ .Title }}</h1>
+      {{ partial "version/deprecation-warning" . }}
 			<p class="lead">{{ .Params.lead | safeHTML }}</p>
 			{{ partial "main/headline-hash.html" .Content }}
 			{{ if .Site.Params.editPage -}}

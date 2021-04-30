@@ -1,6 +1,6 @@
 <div class="card-list">
   {{ range .Pages }}
-    {{ if isset .Params "version" }}
+    {{ if not (in .File.Dir "reference/current") }}
       <div class="card my-3">
         <div class="card-body">
           <a class="stretched-link" href="{{ .Permalink }}">
