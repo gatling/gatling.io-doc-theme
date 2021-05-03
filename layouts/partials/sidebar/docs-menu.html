@@ -3,17 +3,36 @@
 {{- $path := split .CurrentSection.File.Dir "/" -}}
 {{- $menu := printf "%s" (delimit (first 2 $path) "-") -}}
 
-{{ if isset .Site.Menus $menu -}}
-  {{ range (index .Site.Menus $menu) -}}
-    <h3>{{ .Name }}</h3>
-      {{ if .HasChildren -}}
-      <ul class="list-unstyled">
-        {{ range .Children -}}
-          {{- $active := or ($currentPage.IsMenuCurrent $menu .) ($currentPage.HasMenuCurrent $menu .) -}}
-          {{- $active = or $active (eq $currentPage.Section .Identifier) -}}
-          <li><a class="docs-link{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}">{{ .Name }}</a></li>
-        {{ end -}}
-      </ul>
+{{ $nestedCategoryEntries := eq (len .Parent.Sections) 0 }}
+{{ $sectionPages := where site.RegularPages "Section" .Section -}}
+
+{{ $pages := slice }}
+{{ if $nestedCategoryEntries }}
+  {{ $pages = where $sectionPages ".Parent.Parent.File.Dir" "eq" .Parent.Parent.File.Dir }}
+  {{ $pages = append $pages (where $sectionPages ".Parent.File.Dir" "eq" .Parent.Parent.File.Dir) }}
+{{ else }}
+  {{ $pages = where $sectionPages ".Parent.Parent.File.Dir" "eq" .Parent.File.Dir }}
+  {{ $pages = append $pages (where $sectionPages ".Parent.File.Dir" "eq" .Parent.File.Dir) }}
+{{ end }}
+
+{{ $menu := newScratch }}
+{{ $menuEntries := newScratch }}
+{{ range $pages }}
+  {{ $menu.Add .Parent.Title (slice .) }}
+  {{ $menuEntries.SetInMap "entries" .Parent.Title .Parent.URL }}
+{{ end }}
+
+{{ $entries := $menuEntries.Get "entries" }}
+{{ range $key, $value := $entries }}
+  <h3>
+    <a href="{{ $value | absURL }}">{{ $key }}</a>
+  </h3>
+  <ul class="list-unstyled">
+    {{ range $menu.Get $key }}
+      {{ $active := eq $currentPage . }}
+      <li>
+        <a class="docs-link{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}">{{ .Name }}</a>
+      </li>
     {{ end -}}
-  {{ end -}}
-{{ end -}}
+  </ul>
+{{ end }}

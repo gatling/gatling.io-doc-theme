@@ -1,27 +1,35 @@
 {{ if or .Prev .Next -}}
 	<div class="docs-navigation d-flex justify-content-between">
-	<!-- https://www.feliciano.tech/blog/custom-sort-hugo-single-pages/ -->
 
-	{{ $sectionPages := where site.RegularPages "Section" .Section -}}
-  {{ $pages :=  where $sectionPages ".Parent.Parent.File.Dir" "eq" .Parent.Parent.File.Dir }}
+  {{ $nestedCategoryEntries := eq (len .Parent.Sections) 0 }}
+  {{ $sectionPages := where site.RegularPages "Section" .Section -}}
 
-	{{ with $pages.Next . -}}
-		<a href="{{ .Permalink }}">
-			<div class="card my-1">
-				<div class="card-body py-2">
-					&larr; {{ .Title }}
-				</div>
-			</div>
-		</a>
-	{{ end -}}
-	{{ with $pages.Prev . -}}
-		<a class="ms-auto" href="{{ .Permalink }}">
-			<div class="card my-1">
-				<div class="card-body py-2">
-					{{ .Title }} &rarr;
-				</div>
-			</div>
-		</a>
-	{{ end -}}
+  {{ $pages := slice }}
+  {{ if $nestedCategoryEntries }}
+    {{ $pages = where $sectionPages ".Parent.Parent.File.Dir" "eq" .Parent.Parent.File.Dir }}
+    {{ $pages = append $pages (where $sectionPages ".Parent.File.Dir" "eq" .Parent.Parent.File.Dir) }}
+  {{ else }}
+    {{ $pages = where $sectionPages ".Parent.Parent.File.Dir" "eq" .Parent.File.Dir }}
+    {{ $pages = append $pages (where $sectionPages ".Parent.File.Dir" "eq" .Parent.File.Dir) }}
+  {{ end }}
+
+  {{ with $pages.Next . -}}
+    <a href="{{ .Permalink }}">
+      <div class="card my-1">
+        <div class="card-body py-2">
+          &larr; {{ .Title }}
+        </div>
+      </div>
+    </a>
+  {{ end -}}
+  {{ with $pages.Prev . -}}
+    <a class="ms-auto" href="{{ .Permalink }}">
+      <div class="card my-1">
+        <div class="card-body py-2">
+          {{ .Title }} &rarr;
+        </div>
+      </div>
+    </a>
+  {{ end -}}
 	</div>
 {{ end -}}
