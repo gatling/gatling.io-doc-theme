@@ -1,0 +1,28 @@
+{{- range .functions -}}
+<div class="Cheat-Sheet--function">
+  {{- $keyword := .keyword -}}
+  <code>{{ $keyword }}</code>
+  {{- if eq .new true }}&nbsp;<span class="badge alert-info pull-right">New!</span>{{ end -}}
+  {{- if eq .frontline true }}&nbsp;<span class="badge alert-primary pull-right">Gatling FrontLine only</span>{{ end -}}
+  {{- if eq .required true }}&nbsp;<span class="badge alert-danger pull-right">Required</span>{{ end -}}
+  {{ if .description }}<p>{{ .description| safeHTML }}</p>{{ end }}
+  {{ if .example -}}
+    <div class="Cheat-Sheet--example">
+      <p>Example:</p>
+      {{- highlight .example "scala" "" -}}
+    </div>
+  {{- end }}
+  {{- range .syntax -}}
+    <div class="Cheat-Sheet--syntax">
+      {{ if .signature }}{{ highlight (printf "%s%s" $keyword .signature ) "scala" "" }}{{ end }}
+      <p>{{ .description | safeHTML }}</p>
+      {{ if .example -}}
+        <div class="Cheat-Sheet--example">
+          <p>Example:</p>
+          {{- highlight .example "scala" "" -}}
+        </div>
+      {{- end }}
+    </div>
+  {{- end -}}
+</div>
+{{- end -}}
