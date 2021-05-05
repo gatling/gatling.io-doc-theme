@@ -1,3 +1,0 @@
----
-title: Category 2
----
