@@ -26,5 +26,13 @@
       {{ partial "footer/alert.html" . }}
     {{ end }}
     {{ partial "footer/script-footer.html" . }}
+
+    <script>
+      window.updateSearchVersion(
+        {{ .Section }},
+        {{ cond (isset .Params "version") (printf "\"%s\"" .Params.version) ("undefined" | safeJS) }},
+        {{ cond (isset .Params "latest") .Params.latest ("undefined" | safeJS) }}
+      )
+    </script>
   </body>
 </html>
