@@ -89,14 +89,15 @@ let searchConfiguration: SearchConfiguration = {
 }
 const updateSearchOptions = (section: string, version?: string, latest?: boolean): void => {
   searchConfiguration = {
+    section,
     version,
     latest: `${latest === undefined ? version === undefined : latest}` // Filter on latest when version isn't set
   }
 }
 
-const whileResultsInferiorSearchLimit = (fallback: () => Promise<FrontMatter[]>) => (results: FrontMatter[]): Promise<FrontMatter[]> =>
+const whileResultsInferiorSearchLimit = (fallback: (limit: number) => Promise<FrontMatter[]>) => (results: FrontMatter[]): Promise<FrontMatter[]> =>
   results.length < searchLimit ?
-    fallback().then(newResults => [...results, ...newResults.slice(0, searchLimit - results.length)]) :
+    fallback(searchLimit - results.length).then(newResults => [...results, ...newResults.slice(0, searchLimit - results.length)]) :
     Promise.resolve(results);
 
 type SearchQuery = SearchOptions & {query: string};
@@ -109,15 +110,18 @@ const searchOptionsQueryFields = (query: string,): SearchQuery[] =>
 
 const search = (query: string): Promise<FrontMatter[]> => {
   if (searchConfiguration.version) {
+    console.log(searchConfiguration)
     return index.search({
       query,
+      limit: searchLimit,
       where: {
         section: searchConfiguration.section,
         version: searchConfiguration.version
       }
-    }).then(whileResultsInferiorSearchLimit(() =>
+    }).then(whileResultsInferiorSearchLimit((limit) =>
       index.search({
         query: "only provides live feedback",
+        limit,
         where: {
           version: "null"
         }
@@ -172,7 +176,7 @@ function initializeSearch(suggestions: HTMLElement, userinput: HTMLInputElement)
         const focusableSuggestions = suggestions.querySelectorAll('a') || [];
         const index: number = Array.from(focusableSuggestions).indexOf(document.activeElement as HTMLAnchorElement)
 
-        const offset = e.keyCode === KeyCodes.up ? 1 : -1;
+        const offset = e.keyCode === KeyCodes.up ? -1 : 1;
         const nextIndex = Math.max(Math.min(index + offset, focusableSuggestions.length), 0)
         focusableSuggestions[nextIndex].focus();
         break;
@@ -208,35 +212,12 @@ function initializeSearch(suggestions: HTMLElement, userinput: HTMLInputElement)
   suggestions.addEventListener('click', () => suggestions.childNodes.forEach(suggestions.removeChild), true);
 }
 
-{{ $pages := slice -}}
-
-// Keep only current URL's on indexing
-{{ $latestPages := where .Site.Pages ".Params.latest" true -}}
-{{ range $latestPages }}
-  {{ if (in .Permalink "current") -}}
-    {{ $pages = $pages | append . -}}
-  {{ end -}}
-{{ end -}}
-
-{{ $pages = $pages | append (where .Site.Pages ".Params.latest" "ne" true) }}
-
-const docs = [
-  {{ range $index, $page := $pages -}}
-  {
-    id: {{ $index }},
-    href: "{{ .Permalink | absURL }}",
-    title: {{ .Title | jsonify }},
-    description:  {{ (cond (isset .Params "description") (.Params.description) (.Plain | truncate 100)) | jsonify }},
-    content: {{ .Content | plainify | jsonify }},
-    version: "{{ .Params.version | jsonify }}",
-    latest: "{{ cond (isset .Params "version") (.Params.latest) (true | jsonify) }}",
-    section: {{ .Section | jsonify }},
-  },
-  {{ end -}}
-];
-
-// @ts-ignore
-index.add(docs)
+fetch("/search/index.json")
+  .then(response => response.json())
+  .then(search => {
+      if (search.exported) index.import(search.indexes)
+      else index.add(search.indexes)
+  })
 
 // FIXME: js.Build import all dependencies inside concatenated file, in a self-called function preventing the export
 window.updateSearchVersion = (section: string, version?: string, latest?: boolean): void => {
