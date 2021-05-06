@@ -1,6 +1,5 @@
 ---
 title: "Realtime monitoring"
-description: ""
 lead: ""
 date: 2021-04-20T18:30:56+02:00
 lastmod: 2021-04-20T18:30:56+02:00
@@ -69,7 +68,7 @@ Add the below to the Graphite section of `/etc/influxdb/influxdb.conf`
 [[graphite]]
   enabled = true
   database = "gatlingdb"
-    
+
   templates = [
     "gatling.*.*.*.* measurement.simulation.request.status.field",
     "gatling.*.users.*.* measurement.simulation.measurement.request.field"

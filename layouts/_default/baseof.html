@@ -30,8 +30,8 @@
     <script>
       window.updateSearchVersion(
         {{ .Section }},
-        {{ cond (isset .Params "version") (printf "\"%s\"" .Params.version) ("undefined" | safeJS) }},
-        {{ cond (isset .Params "latest") .Params.latest ("undefined" | safeJS) }}
+        {{ cond (isset .Params "version") (printf "\"%s\"" .Params.version) ("null" | safeJS) }},
+        {{ cond (isset .Params "version") .Params.latest ("true" | safeJS) }}
       )
     </script>
   </body>

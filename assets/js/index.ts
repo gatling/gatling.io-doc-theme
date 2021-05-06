@@ -1,4 +1,4 @@
-import FlexSearch, { Index, SearchOptions } from "flexsearch";
+import FlexSearch, {CreateOptions, Index, SearchOptions} from "flexsearch";
 
 const suggestions = document.getElementById('suggestions');
 const userinput = document.getElementById('userinput');
@@ -24,16 +24,22 @@ const KeyCodes = {
   escape: 27
 }
 
-const index = FlexSearch.create<FrontMatter>({
+const searchLimit = 10;
+const indexOptions: CreateOptions = {
+  filter: false,
   cache: true,
   async: true,
   encode: "extra",
+  tokenize: "strict",
   doc: {
     id: 'id',
     field: [
       'title',
       'description',
-      'content'
+      'content',
+      'section',
+      'version',
+      'latest'
     ],
     // @ts-ignore https://github.com/nextapps-de/flexsearch/issues/152
     store: [
@@ -43,10 +49,10 @@ const index = FlexSearch.create<FrontMatter>({
       'version',
       'latest',
       'section',
-      'content'
     ]
   },
-});
+}
+const index = FlexSearch.create<FrontMatter>(indexOptions);
 
 
 const createSearchEntryElement = (frontMatter: FrontMatter): HTMLDivElement => {
@@ -88,41 +94,58 @@ const updateSearchOptions = (section: string, version?: string, latest?: boolean
   }
 }
 
+const whileResultsInferiorSearchLimit = (fallback: () => Promise<FrontMatter[]>) => (results: FrontMatter[]): Promise<FrontMatter[]> =>
+  results.length < searchLimit ?
+    fallback().then(newResults => [...results, ...newResults.slice(0, searchLimit - results.length)]) :
+    Promise.resolve(results);
+
+type SearchQuery = SearchOptions & {query: string};
+const searchOptionsQueryFields = (query: string,): SearchQuery[] =>
+  indexOptions.doc?.field.map((field: string): SearchQuery => ({
+    field,
+    query,
+    bool: "or"
+  }))
+
 const search = (query: string): Promise<FrontMatter[]> => {
-  const options: SearchOptions = {};
-  // [{
-  //   query,
-  //   where: {
-  //     section: searchConfiguration.section,
-  //     version: searchConfiguration.version, // si y'en a pas, c'est latest true
-  //     latest: `${searchConfiguration.version === undefined}`
-  //   },
-  //   bool: "and"
-  // }, {
-  //   query,
-  //   where: {
-  //     section: !== searchConfiguration.section,
-  //     latest: "false"
-  //   },
-  //   bool: "not"
-  // }]
-
   if (searchConfiguration.version) {
-    options.where = {
-      version: searchConfiguration.version
-    }
+    return index.search({
+      query,
+      where: {
+        section: searchConfiguration.section,
+        version: searchConfiguration.version
+      }
+    }).then(whileResultsInferiorSearchLimit(() =>
+      index.search({
+        query: "only provides live feedback",
+        where: {
+          version: "null"
+        }
+      })
+    )).then(whileResultsInferiorSearchLimit(() =>
+      // @ts-ignore
+      index.search([
+        ...searchOptionsQueryFields(query),
+        {
+          field: "latest",
+          query: "false",
+          bool: "not" // boolean condition must be inverse for it to work
+        },
+        {
+          field: "section",
+          query: "oss",
+          bool: "not"
+        }
+      ])
+    ))
+  } else {
+    return index.search({
+      query,
+      where: {
+        latest: "true"
+      }
+    });
   }
-
-  console.log("options:")
-  console.log({
-    query,
-    ...options
-  });
-
-  return index.search({
-    query,
-    ...options
-  });
 }
 
 function initializeSearch(suggestions: HTMLElement, userinput: HTMLInputElement): void {
@@ -171,12 +194,13 @@ function initializeSearch(suggestions: HTMLElement, userinput: HTMLInputElement)
     const results = search(value);
 
     suggestions.classList.remove('d-none');
-    suggestions.childNodes.forEach(suggestions.removeChild)
+    const previousChildsLength = suggestions.childNodes.length
 
     results.then((frontMatters) => {
-      console.log("results:")
-      console.log(frontMatters)
-      suggestions.append(...frontMatters.map(createSearchEntryElement))
+      suggestions.append(...frontMatters.map(createSearchEntryElement));
+      for (let i = 0; i < previousChildsLength; i++) {
+        suggestions.firstChild && suggestions.removeChild(suggestions.firstChild)
+      }
     })
   }, true);
 
@@ -184,25 +208,35 @@ function initializeSearch(suggestions: HTMLElement, userinput: HTMLInputElement)
   suggestions.addEventListener('click', () => suggestions.childNodes.forEach(suggestions.removeChild), true);
 }
 
-const docs = [
-  {{ range $index, $page := .Site.Pages -}}
-{
-  id: {{ $index }},
-  href: "{{ .Permalink | absURL }}",
-    title: {{ .Title | jsonify }},
-  description: {{ .Params.description | jsonify }},
-  content: {{ .Content | plainify | jsonify }},
-  version: "{{ .Params.version }}",
-  latest: "{{ .Params.latest }}",
-  section: "{{ .Section }}",
-},
+{{ $pages := slice -}}
+
+// Keep only current URL's on indexing
+{{ $latestPages := where .Site.Pages ".Params.latest" true -}}
+{{ range $latestPages }}
+  {{ if (in .Permalink "current") -}}
+    {{ $pages = $pages | append . -}}
+  {{ end -}}
 {{ end -}}
+
+{{ $pages = $pages | append (where .Site.Pages ".Params.latest" "ne" true) }}
+
+const docs = [
+  {{ range $index, $page := $pages -}}
+  {
+    id: {{ $index }},
+    href: "{{ .Permalink | absURL }}",
+    title: {{ .Title | jsonify }},
+    description:  {{ (cond (isset .Params "description") (.Params.description) (.Plain | truncate 100)) | jsonify }},
+    content: {{ .Content | plainify | jsonify }},
+    version: "{{ .Params.version | jsonify }}",
+    latest: "{{ cond (isset .Params "version") (.Params.latest) (true | jsonify) }}",
+    section: {{ .Section | jsonify }},
+  },
+  {{ end -}}
 ];
 
 // @ts-ignore
 index.add(docs)
-console.log(index.export())
-
 
 // FIXME: js.Build import all dependencies inside concatenated file, in a self-called function preventing the export
 window.updateSearchVersion = (section: string, version?: string, latest?: boolean): void => {
