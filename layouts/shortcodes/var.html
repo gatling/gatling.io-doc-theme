@@ -1,1 +1,11 @@
-{{ index .Site.Data.variables (.Get 0) -}}
+{{- if isset .Page.Params "variables" -}}
+  {{- $variable := lower (.Get 0) -}}
+  {{- $variables := index .Page.Params "variables" -}}
+  {{- if isset $variables $variable -}}
+    {{- index $variables $variable -}}
+  {{- else -}}
+    {{- errorf "%s: variable %s not found in page params" .Position $variable }}
+  {{- end -}}
+{{- else -}}
+  {{- errorf "%s: variables are not set in this hierarchy" .Position }}
+{{- end -}}
