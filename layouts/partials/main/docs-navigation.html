@@ -13,7 +13,8 @@
     {{ $pages = append $pages (where $sectionPages ".Parent.File.Dir" "eq" .Parent.File.Dir) }}
   {{ end }}
 
-  {{ with $pages.Next . -}}
+  {{ $sortedPages := (sort (sort $pages ".Parent.Weight") "Weight") }}
+  {{ with $sortedPages.Next . -}}
     <a href="{{ .Permalink }}">
       <div class="card my-1">
         <div class="card-body py-2">
@@ -22,7 +23,7 @@
       </div>
     </a>
   {{ end -}}
-  {{ with $pages.Prev . -}}
+  {{ with $sortedPages.Prev . -}}
     <a class="ms-auto" href="{{ .Permalink }}">
       <div class="card my-1">
         <div class="card-body py-2">
