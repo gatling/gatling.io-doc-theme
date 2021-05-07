@@ -8,6 +8,7 @@
 {{- end -}}
 
 {{- $pages = $pages | append (where .Site.Pages ".Params.latest" "ne" true) -}}
+{{- $pages = where $pages ".Params.search" "ne" false -}}
 
 {{ $indexes := slice }}
 {{- range $index, $page := $pages -}}
