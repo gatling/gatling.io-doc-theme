@@ -1,6 +1,5 @@
 ---
 title: "Cheat-Sheet"
-description: ""
 lead: ""
 date: 2021-04-20T18:30:56+02:00
 lastmod: 2021-04-20T18:30:56+02:00
@@ -10,10 +9,10 @@ content:
   - title: Simulation configuration
     description: Tune your simulation
     sections:
-  
+
       - title: Time
         functions:
-  
+
           - keyword: pauses
             description: Allows to configure pauses. Can also be defined at the scenario level
             syntax:
@@ -27,16 +26,16 @@ content:
                 description: Pauses durations are computed by the provided <i>pauseDur</i>. In this case the filled duration is bypassed
               - signature: (uniformPauses(plusOrMinus))
                 description: Pause durations are on average those filled in the <i>pause(duration)</i> elements and follow an uniform distribution.
-  
+
           - keyword: maxDuration
             description: Set a duration limit on your simulation
             syntax:
               - signature: (maxDuration)
                 description: The maximum duration of the simulation
-  
+
       - title: Throttling
         functions:
-  
+
           - keyword: throttle
             description: >
               Allows to reason in terms of request per second and not in terms of users.
@@ -55,7 +54,7 @@ content:
                   reachRps(100) in (10 seconds),
                   holdFor(10 minute)
                 )
-  
+
   - title: Feeder definition
     description: Inject data in your scenario
     sections:
@@ -98,49 +97,49 @@ content:
   - title: JMS
     description: Define the JMS requests sent in your scenario
     sections:
-  
+
       - title: Start
         functions:
-  
+
           - keyword: jms
             description: Declares an JMS request
             syntax:
               - signature: (requestName)
                 description: Name of the request
-  
+
       - title: Commons
         functions:
-  
+
           - keyword: requestReply
             description: Sets the messaging implementation to request/reply
-  
+
           - keyword: send
             description: Sets the messaging implementation to send
-  
+
           - keyword: queue
             description: Defines a target destination
             syntax:
               - signature: "(name: Expression[String])"
                 description: Where <i>name</i> is the name of the queue
-  
+
           - keyword: destination
             description: Defines a target destination
             syntax:
               - signature: (destination)
                 description: Where <i>destination</i> is an instance of JmsDestination
-  
+
           - keyword: replyQueue
             description: Defines a reply destination
             syntax:
               - signature: "(name: Expression[String])"
                 description: Where <i>name</i> is the name of the queue
-  
+
           - keyword: replyDestination
             description: Defines a reply destination
             syntax:
               - signature: (destination)
                 description: Where <i>destination</i> is an instance of JmsDestination
-  
+
           - keyword: trackerQueue
             description: |
               On default gatling tracks the replies on the <code>replyQueue</code>.
@@ -148,7 +147,7 @@ content:
             syntax:
             - signature: (destination)
               description: Where <i>destination</i> is an instance of JmsDestination
-  
+
           - keyword: trackerDestination
             description: |
               On default gatling tracks the replies on the <code>replyDestination</code>.
@@ -156,144 +155,144 @@ content:
             syntax:
               - signature: (destination)
                 description: Where <i>destination</i> is an instance of JmsDestination
-  
+
           - keyword: noJmsReplyTo
             description: Don't populate JMSReplyTo message field
-  
+
           - keyword: selector
             description: Defines a JMS message selector
             syntax:
               - signature: (selector)
                 description: Where <i>selector</i> is the selector
-  
+
           - keyword: textMessage
             description: Sends a text message
             syntax:
               - signature: (textMessage)
                 description: Where <i>textMessage</i> is a string
-  
+
           - keyword: bytesMessage
             description: Sends a byte message
             syntax:
               - signature: (bytesMessage)
                 description: Where <i>bytesMessage</i> is a byte array
-  
+
           - keyword: mapMessage
             description: Sends a map message
             syntax:
               - signature: (mapMessage)
                 description: Where <i>mapMessage</i> is a map
-  
+
           - keyword: objectMessage
             description: Sends an object message
             syntax:
               - signature: (objectMessage)
                 description: Where <i>objectMessage</i> is an object implementing JSerializable
-  
+
           - keyword: property
             description: Sends additional property
             syntax:
               - signature: (key, value)
                 description: Sets <i>value</i> as an object property <i>key</i>
-  
+
           - keyword: jmsType
             description: Set message's JMS type
             syntax:
               - signature: (value)
                 description: Sets <i>value</i> as a <a href="https://docs.oracle.com/javaee/6/api/javax/jms/Message.html#setJMSType(java.lang.String)">JMSType</a>
-  
+
       - title: Checks
         functions:
-  
+
           - keyword: simpleCheck
             description: Allows to check a message
             syntax:
               - signature: (function)
                 description: Where <i>function</i> takes a Message and returns a Boolean
-  
+
           - keyword: xpath
             description: Allows to check a TextMessage with XPath
             syntax:
               - signature: (expression)
                 description: Where <i>expression</i> is an XPath expression
-  
+
       - title: Protocol Configuration
         functions:
-  
+
           - keyword: jms
             description: Entry point of your JMS configuration
-  
+
         subsections:
-  
+
           - title: Connecting
             functions:
-  
+
               - keyword: connectionFactoryName
                 required: true
                 description: Set the name of the ConnectionFactory to use
                 syntax:
                   - signature: (name)
                     description: where <em>name</em> is a string
-  
+
               - keyword: url
                 required: true
                 description: Set the URL of the queue to connect to.
                 syntax:
                   - signature: (url)
                     description: where <em>url</em> is a string
-  
+
               - keyword: contextFactory
                 required: true
                 description: Set the name of the JNDI ContextFactory to use.
                 syntax:
                   - signature: (contextFactory)
                     description: where <em>contextFactory</em> is a string
-  
+
               - keyword: credentials
                 description: Set the credentials used for the queues JNDI lookup
                 syntax:
                   - signature: (username, password)
                     description: the username and password to use as credentials
-  
+
               - keyword: disableAnonymousConnect
                 description: Use credentials for opening connections too
-  
+
               - keyword: listenerThreadCount
                 description: Number of consumers that will listen to incoming messages on the tracker/reply queue
                 syntax:
                   - signature: (listenerThreadCount)
                     contract: must be > 0
                     description: The number of consumers
-  
+
               - keyword: replyTimeout
                 syntax:
                 - signature: (duration)
                   description: the reply timeout in millis
-  
+
           - title: Delivery modes
             functions:
-  
+
               - keyword: useNonPersistentDeliveryMode
                 description: Use JMS' non-persistent delivery mode (active by default)
-  
+
               - keyword: usePersistentDeliveryMode
                 description: Use JMS' persistent delivery mode
-  
+
           - title: Message matching
             functions:
-  
+
               - keyword: matchByMessageId
                 description: Match request and response using JMS's MessageID
-  
+
               - keyword: matchByCorrelationId
                 description: Match request and response using JMS's CorrelationID
-  
+
               - keyword: messageMatcher
                 description: Match request and response using a custom strategy
                 syntax:
                   - signature: (messageMatcher)
                     description: an implementation of <em>JmsMessageMatcher</em>, specifying how the <em>requestId</em> and <em>responseId</em> are retrieved from the JMS <em>Message</em>
-  
+
   - title: MQTT
     description: Define the MQTT requests sent in your scenario
     frontline: true
