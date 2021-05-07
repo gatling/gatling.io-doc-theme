@@ -1,49 +1,45 @@
-{{ $indexTemplate := resources.Get "js/index.js" -}}
-{{ $index := $indexTemplate | resources.ExecuteAsTemplate "index.js" . -}}
+{{ $indexTemplate := resources.Get "js/index.ts" }}
+{{ $index := $indexTemplate | resources.ExecuteAsTemplate "index.ts" . | babel | js.Build -}}
 
-{{ $bs := resources.Get "js/bootstrap.js" -}}
-{{ $bs := $bs | js.Build -}}
+{{ $bs := resources.Get "js/bootstrap.ts" -}}
+{{ $bs := $bs | babel -}}
 
-{{ $app := resources.Get "js/app.js" -}}
-
+{{ $app := resources.Get "js/app.ts" | babel -}}
 {{ $slice := slice $app -}}
 
+{{ $clipBoard := resources.Get "js/clipboard.ts" | babel -}}
+{{ $slice = $slice | append $clipBoard -}}
+
 {{ if .Site.Params.options.lazySizes -}}
-  {{ $lazySizes := resources.Get "js/lazysizes.js" -}}
-  {{ $lazySizes := $lazySizes | js.Build -}}
+  {{ $lazySizes := resources.Get "js/lazysizes.ts" | babel -}}
   {{ $slice = $slice | append $lazySizes -}}
 {{ end -}}
 
-{{ $clipBoard := resources.Get "js/clipboard.js" -}}
-{{ $clipBoard := $clipBoard | js.Build -}}
-{{ $slice = $slice | append $clipBoard -}}
-
 {{ if .Site.Params.options.instantPage -}}
-  {{ $instantPage := resources.Get "js/instant.page.js" -}}
-  {{ $instantPage := $instantPage | js.Build -}}
+  {{ $instantPage := resources.Get "js/instant.page.ts" | babel -}}
   {{ $slice = $slice | append $instantPage -}}
 {{ end -}}
 
 {{ if .Site.Params.options.flexSearch -}}
   {{ $flexSearch := resources.Get "js/vendor/flexsearch/dist/flexsearch.min.js" -}}
-  {{ $slice = $slice | append $flexSearch -}}
+  {{ $flexSearchTs := slice $flexSearch | resources.Concat "flexsearch.ts" -}}
+  {{ $slice = $slice | append $flexSearchTs -}}
 {{ end -}}
 
 {{ if .Site.Params.options.darkMode -}}
-  {{ $darkMode := resources.Get "js/darkmode.js" -}}
-  {{ $darkMode := $darkMode | js.Build -}}
+  {{ $darkMode := resources.Get "js/darkmode.ts" | babel -}}
   {{ $slice = $slice | append $darkMode -}}
 {{ end -}}
 
-{{ $js := $slice | resources.Concat "main.js" -}}
+{{ $js := $slice | resources.Concat "main.js" | js.Build -}}
 
 {{ if eq (hugo.Environment) "development" -}}
   {{ if .Site.Params.options.bootStrapJs -}}
     <script src="{{ $bs.Permalink }}" defer></script>
   {{ end -}}
-  <script src="{{ $js.Permalink }}" defer></script>
+  <script src="{{ $js.Permalink }}" ></script>
   {{ if .Site.Params.options.flexSearch -}}
-    <script src="{{ $index.Permalink }}" defer></script>
+    <script src="{{ $index.Permalink }}" ></script>
   {{ end -}}
 {{ else -}}
   {{ $js := $js | minify | fingerprint "sha512" -}}
@@ -54,6 +50,6 @@
   {{ end -}}
   <script src="{{ $js.Permalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous" defer></script>
   {{ if .Site.Params.options.flexSearch -}}
-    <script src="{{ $index.Permalink }}" integrity="{{ $index.Data.Integrity }}" crossorigin="anonymous" defer></script>
+    <script src="{{ $index.Permalink }}" integrity="{{ $index.Data.Integrity }}" crossorigin="anonymous"></script>
   {{ end -}}
 {{ end -}}

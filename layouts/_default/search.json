@@ -1,0 +1,27 @@
+{{- $pages := slice -}}
+
+{{- $latestPages := where .Site.Pages ".Params.latest" true -}}
+{{- range $latestPages }}
+  {{- if (in .Permalink "current") -}}
+    {{- $pages = $pages | append . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $pages = $pages | append (where .Site.Pages ".Params.latest" "ne" true) -}}
+
+{{ $indexes := slice }}
+{{- range $index, $page := $pages -}}
+  {{- $entry := dict
+      "id" $index
+      "href" (.Permalink | absURL)
+      "title" .Title
+      "description" (cond (isset .Params "description") (.Params.description) (.Plain | truncate 100))
+      "content" (.Content | plainify)
+      "version" (.Params.version | string)
+      "latest" (cond (isset .Params "version") (.Params.latest | string) ("true"))
+      "section" .Section
+  -}}
+  {{- $indexes = $indexes | append $entry -}}
+{{- end -}}
+
+{{- (dict "exported" false "indexes" $indexes) | jsonify -}}
