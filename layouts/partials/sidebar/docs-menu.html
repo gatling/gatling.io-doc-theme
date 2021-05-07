@@ -16,19 +16,20 @@
 {{ end }}
 
 {{ $menu := newScratch }}
-{{ $menuEntries := newScratch }}
+{{ $menuEntries := slice }}
+
 {{ range $pages }}
-  {{ $menu.Add .Parent.Title (slice .) }}
-  {{ $menuEntries.SetInMap "entries" .Parent.Title .Parent.URL }}
+  {{ $title := .Parent.Title }}
+  {{ $menu.Add $title (slice .) }}
+  {{ $menuEntries = $menuEntries | append (dict "title" $title "weight" .Parent.Weight "url" .Parent.Permalink) }}
 {{ end }}
 
-{{ $entries := $menuEntries.Get "entries" }}
-{{ range $key, $value := $entries }}
+{{ range sort (uniq $menuEntries) "weight" }}
   <h3>
-    <a href="{{ $value | absURL }}">{{ $key }}</a>
+    <a href="{{ .url | absURL }}">{{ .title }}</a>
   </h3>
   <ul class="list-unstyled">
-    {{ range $menu.Get $key }}
+    {{ range ($menu.Get .title).ByWeight }}
       {{ $active := eq $currentPage . }}
       <li>
         <a class="docs-link{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}">{{ .Name }}</a>
