@@ -23,6 +23,6 @@ resources
 .directory
 
 # Example Site
-
 package.json
 package-lock.json
+go.sum
