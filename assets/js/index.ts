@@ -225,7 +225,7 @@ function initializeSearch(suggestions: HTMLElement, userinput: HTMLInputElement)
   suggestions.addEventListener('click', () => suggestions.childNodes.forEach(suggestions.removeChild), true);
 }
 
-fetch("/search/index.json")
+fetch("{{ .Site.BaseURL }}/search/index.json")
   .then(response => response.json())
   .then(({ exported, indexes }) => {
       if (exported) { // @ts-ignore
