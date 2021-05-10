@@ -41,6 +41,28 @@ hugo mod npm pack
 npm install
 ```
 
+Add babel configuration:
+```javascript
+module.exports = {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          browsers: [
+            // Best practice: https://github.com/babel/babel/issues/7789
+            '>=1%',
+            'not ie 11',
+            'not op_mini all',
+          ],
+        },
+      },
+    ],
+    '@babel/preset-typescript',
+  ],
+};
+```
+
 ## Configuration
 
 ### params.yaml
