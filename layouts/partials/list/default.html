@@ -1,16 +1,15 @@
-<h1 class="text-center">{{ .Title }}</h1>
-<div class="text-center">{{ .Content }}</div>
+<h1 class="text-left">{{ .Title }}</h1>
+<div class="text-left">{{ .Content }}</div>
 <div class="card-list">
   {{ partial "version/deprecation-warning" . }}
   {{ range .Pages }}
-  <div class="card my-3">
+  <div class="card my-4">
     <div class="card-body">
       {{ $url := strings.TrimSuffix "/" .Permalink }}
       {{ $versioning := cond (isset .Params "versioning") .Params.versioning false }}
       {{ $url = cond $versioning (printf "%s/current" $url) $url }}
       <a class="stretched-link" href="{{ $url }}">
         {{ .Params.title | title }}
-        &rarr;
       </a>
     </div>
   </div>

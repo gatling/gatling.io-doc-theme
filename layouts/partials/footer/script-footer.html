@@ -33,6 +33,7 @@
 
 {{ $js := $slice | resources.Concat "main.js" | js.Build -}}
 
+
 {{ if eq (hugo.Environment) "development" -}}
   {{ if .Site.Params.options.bootStrapJs -}}
     <script src="{{ $bs.Permalink }}" defer></script>
@@ -53,3 +54,12 @@
     <script src="{{ $index.Permalink }}" integrity="{{ $index.Data.Integrity }}" crossorigin="anonymous"></script>
   {{ end -}}
 {{ end -}}
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  
+{{ range .Site.Params.custom_js -}}
+  <script src="{{ . | absURL }}"></script>
+{{- end }}

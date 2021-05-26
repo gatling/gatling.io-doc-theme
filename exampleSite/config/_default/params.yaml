@@ -54,3 +54,8 @@ analytics:
   globalTrackingId: "G-B5J9F14X56"
   tagManagerTrackingId: "GTM-MJX8KRG"
 
+# Custom CSS
+custom_css: ["css/custom.css"]
+
+# Custom JS
+custom_js: ["js/custom.js"]
