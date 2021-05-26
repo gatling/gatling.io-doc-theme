@@ -24,8 +24,8 @@
      </ol>
     </nav>
     {{ end }}
-    <h1>{{ .Title }}</h1>
     {{ partial "version/deprecation-warning" . }}
+    <h1>{{ .Title }}</h1>
     <p class="lead">{{ .Params.lead | safeHTML }}</p>
     {{ partial "cheat-sheet/main.html" . }}
     {{ if .Site.Params.editPage -}}

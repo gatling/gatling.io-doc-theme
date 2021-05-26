@@ -25,8 +25,8 @@
 					</ol>
 				</nav>
 			{{ end }}
+			{{ partial "version/deprecation-warning" . }}
 			<h1>{{ .Title }}</h1>
-      {{ partial "version/deprecation-warning" . }}
 			<p class="lead">{{ .Params.lead | safeHTML }}</p>
 			{{ partial "main/headline-hash.html" .Content }}
 			{{ if .Site.Params.editPage -}}
