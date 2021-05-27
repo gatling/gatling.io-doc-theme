@@ -3,9 +3,12 @@
 title: "Gatling"
 titleSeparator: "-"
 description: "Documentation"
+logos: 
+  white: "/images/logo-gatling.svg"
+  black: "/images/logo-gatling-noir.svg"
 
 ## Open Graph + Twitter Cards
-images: ["gatling-logo.png"]
+images: ["images/og-gatling.png"]
 twitterSite: "GatlingTool"
 twitterCreator: "GatlingTool"
 facebookAuthor: "GatlingTool"
