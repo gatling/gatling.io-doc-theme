@@ -20,13 +20,55 @@ h1, h2, h3, h4, h5, h6 {
 	color: #fff; 
 }
 
-a, body.dark a, .docs-link:hover, .docs-link.active, .page-links a:hover, a.docs-link:hover, body.dark .docs-link:hover, body.dark .docs-link.active, body.dark .page-links a:hover {
-    color: #F78557;
+
+/* Default */
+
+a, 
+a.docs-link,
+.docs-link:hover, 
+.docs-link.active, 
+.page-links a:hover, 
+a.docs-link:hover, 
+body.dark .docs-link:hover, 
+body.dark .docs-link.active, 
+body.dark .page-links a:hover {
+    color: #646971;
     text-decoration: none;
     transition: all 0.2s ease-out;
 }
-body.dark a:hover, a:hover {
-	color: #F78557;
+
+body.dark a {
+  color: #aaa;
+}
+
+/* OSS */
+
+body.oss a:hover,
+body.oss.dark a:hover,
+body.oss .docs-link:hover, 
+body.oss .docs-link.active, 
+body.oss .page-links a:hover, 
+body.oss a.docs-link:hover, 
+body.oss.dark .docs-link:hover, 
+body.oss.dark .docs-link.active, 
+body.oss.dark .page-links a:hover {
+  color: #F78557;
+  text-decoration: none;
+}
+
+/* Cloud */
+
+body.cloud a:hover,
+body.cloud.dark a:hover,
+body.cloud .docs-link:hover, 
+body.cloud .docs-link.active, 
+body.cloud .page-links a:hover, 
+body.cloud a.docs-link:hover, 
+body.cloud.dark .docs-link:hover, 
+body.cloud.dark .docs-link.active, 
+body.cloud.dark .page-links a:hover {
+  color: #6161D6;
+  text-decoration: none;
 }
 
 /* Menu */
@@ -55,15 +97,23 @@ body.dark a:hover, a:hover {
 
 .navbar .btn-link:hover, body.dark .navbar .btn-link:hover, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .banner .nav a:hover, .banner .nav .navbar-light .navbar-nav a:hover, .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .banner .nav a:focus, .banner .nav .navbar-light .navbar-nav a:focus,
 body.dark .navbar-light .navbar-nav .nav-link:hover, body.dark .navbar-light .navbar-nav .banner .nav a:hover, .banner .nav body.dark .navbar-light .navbar-nav a:hover, body.dark .navbar-light .navbar-nav .nav-link:focus, body.dark .navbar-light .navbar-nav .banner .nav a:focus, .banner .nav body.dark .navbar-light .navbar-nav a:focus {
-	color: #F78557;
+	color: #aaa;
 }
 
-.navbar-light .navbar-nav .active .nav-link, .navbar-light .navbar-nav .active .banner .nav a, .banner .nav .navbar-light .navbar-nav .active a {
+.navbar-light .navbar-nav .active .nav-link, 
+.navbar-light .navbar-nav .active .banner .nav a, 
+.banner .nav .navbar-light .navbar-nav .active a {
     color: #fff;
-    background: #F78557;
+    background: #6161D6;
     border-radius: 20px;
     padding:3px 10px;
     margin-top: 5px;
+}
+.navbar-light .navbar-nav .nav-oss.active .nav-link {
+    background: #F78557;
+}
+.navbar-light .navbar-nav .nav-docs.active .nav-link {
+    background: #24275E;
 }
 
 body.dark .navbar-light .navbar-nav .show > .nav-link, body.dark .navbar-light .navbar-nav .banner .nav .show > a, .banner .nav body.dark .navbar-light .navbar-nav .show > a, body.dark .navbar-light .navbar-nav .active > .nav-link, body.dark .navbar-light .navbar-nav .banner .nav .active > a, .banner .nav body.dark .navbar-light .navbar-nav .active > a, body.dark .navbar-light .navbar-nav .nav-link.show, body.dark .navbar-light .navbar-nav .banner .nav a.show, .banner .nav body.dark .navbar-light .navbar-nav a.show, body.dark .navbar-light .navbar-nav .nav-link.active, body.dark .navbar-light .navbar-nav .banner .nav a.active, .banner .nav body.dark .navbar-light .navbar-nav a.active {
@@ -305,31 +355,36 @@ body.dark .alert-warning {
 
 /* Buttons */
 
+.btn-primary,
 body.dark .btn-primary {
-	background-color: #6161D6;
-    border-color: #6161D6;
-    color: #fff !important;
+	background-color: #24275E;
+  border-color: #24275E;
+  color: #fff !important;
 }
 .btn-check:focus + body.dark .btn-primary, body.dark .btn-primary:focus {
-    color: #fff;
-    background-color: #5050b9;
-    border-color: #5050b9;
-    box-shadow: none;
+  color: #fff;
+  background-color: #5050b9;
+  border-color: #5050b9;
+  box-shadow: none;
 }
+.btn-primary:hover,
 body.dark .btn-primary:hover {
     color: #fff;
-    background-color: #5050b9;
-    border-color: #5050b9;
+    background-color: #1C1E4A;
+    border-color: #1C1E4A;
 }
 
 .highlight .btn-link {
     color: #fff;
-    background: #F78557;
+    background: #6161D6;
     padding: 2px 6px;
     top: 0;
     right: 0;
     border-radius: 0 4px 0 0;
     transition: all 0.2s ease-out;
+}
+body.oss .highlight .btn-link {
+    background: #F78557;
 }
 body.dark .content .btn-link,
 body.dark .content .btn-link:hover {
@@ -368,8 +423,12 @@ body.dark .content .btn-link:hover {
    transition: all 0.2s ease-out;
 }
 .card-list .card:hover:before {
-	color: #F78557;
+	color: #6161D6;
 	opacity: 1;
+}
+body.oss .card-list .card:hover:before {
+  color: #F78557;
+  opacity: 1;
 }
 
 /* Lightbox */
