@@ -1,6 +1,11 @@
 main:
+  - name: Docs
+    url: /
+    identifier: docs
+    weight: 10
   - name: OSS
     url: /oss/
+    identifier: oss
     weight: 10
   - name: Cloud
     weight: 20
