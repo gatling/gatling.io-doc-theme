@@ -14,9 +14,9 @@ Then, go to [http://localhost:1313](http://localhost:1313)
 ### Local
 
 ```console
+cd exampleSite
 hugo mod npm pack
 npm install
-cd exampleSite
 hugo server --buildDrafts
 ```
 
