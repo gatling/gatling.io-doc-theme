@@ -56,6 +56,3 @@ options:
 analytics:
   globalTrackingId: "G-B5J9F14X56"
   tagManagerTrackingId: "GTM-MJX8KRG"
-
-# Custom JS
-custom_js: ["js/custom.js"]
