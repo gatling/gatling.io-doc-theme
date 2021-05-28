@@ -40,6 +40,8 @@
 
 .nav-item {
   margin-left: 1.25rem;
+  min-width: 75px;
+  text-align: center;
 }
 
 @include media-breakpoint-up(md) {
@@ -90,16 +92,6 @@
 @include media-breakpoint-up(md) {
   .navbar-brand {
     margin-right: 1rem !important;
-  }
-
-  .main-nav .nav-item:first-child .nav-link,
-  .social-nav .nav-item:first-child .nav-link {
-    padding-left: 0;
-  }
-
-  .main-nav .nav-item:last-child .nav-link,
-  .social-nav .nav-item:last-child .nav-link {
-    padding-right: 0;
   }
 
   .navbar-form {

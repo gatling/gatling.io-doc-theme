@@ -223,3 +223,26 @@ body {
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
 }
+
+// THEME UPDATE
+
+//@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: #646971;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+body.dark {
+  background: #212529;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #1F2024;
+  font-family: 'DM Sans', sans-serif;
+}
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: #fff;
+}

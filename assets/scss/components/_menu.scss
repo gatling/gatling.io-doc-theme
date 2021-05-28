@@ -1,0 +1,47 @@
+
+.header-bar {
+  border-top: none;
+}
+
+.navbar-brand .logo {
+  max-width: 200px;
+  max-height: 25px;
+}
+.navbar-brand .logo.dark-logo {
+  display: block;
+}
+.navbar-brand .logo.light-logo {
+  display: none;
+}
+.dark .navbar-brand .logo.dark-logo {
+  display: none;
+}
+
+.dark .navbar-brand .logo.light-logo {
+  display: block;
+}
+
+.navbar .btn-link:hover, body.dark .navbar .btn-link:hover, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .banner .nav a:hover, .banner .nav .navbar-light .navbar-nav a:hover, .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .banner .nav a:focus, .banner .nav .navbar-light .navbar-nav a:focus,
+body.dark .navbar-light .navbar-nav .nav-link:hover, body.dark .navbar-light .navbar-nav .banner .nav a:hover, .banner .nav body.dark .navbar-light .navbar-nav a:hover, body.dark .navbar-light .navbar-nav .nav-link:focus, body.dark .navbar-light .navbar-nav .banner .nav a:focus, .banner .nav body.dark .navbar-light .navbar-nav a:focus {
+  color: #aaa;
+}
+
+.navbar-light .navbar-nav .active .nav-link,
+.navbar-light .navbar-nav .active .banner .nav a,
+.banner .nav .navbar-light .navbar-nav .active a {
+  color: #fff;
+  background: #6161D6;
+  border-radius: 20px;
+  padding:3px 10px;
+  margin-top: 5px;
+}
+.navbar-light .navbar-nav .nav-oss.active .nav-link {
+  background: #F78557;
+}
+.navbar-light .navbar-nav .nav-docs.active .nav-link {
+  background: #24275E;
+}
+
+body.dark .navbar-light .navbar-nav .show > .nav-link, body.dark .navbar-light .navbar-nav .banner .nav .show > a, .banner .nav body.dark .navbar-light .navbar-nav .show > a, body.dark .navbar-light .navbar-nav .active > .nav-link, body.dark .navbar-light .navbar-nav .banner .nav .active > a, .banner .nav body.dark .navbar-light .navbar-nav .active > a, body.dark .navbar-light .navbar-nav .nav-link.show, body.dark .navbar-light .navbar-nav .banner .nav a.show, .banner .nav body.dark .navbar-light .navbar-nav a.show, body.dark .navbar-light .navbar-nav .nav-link.active, body.dark .navbar-light .navbar-nav .banner .nav a.active, .banner .nav body.dark .navbar-light .navbar-nav a.active {
+  color: #fff;
+}

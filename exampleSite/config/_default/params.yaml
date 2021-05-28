@@ -3,7 +3,7 @@
 title: "Gatling"
 titleSeparator: "-"
 description: "Documentation"
-logos: 
+logos:
   white: "/images/logo-gatling.svg"
   black: "/images/logo-gatling-noir.svg"
 
@@ -56,9 +56,6 @@ options:
 analytics:
   globalTrackingId: "G-B5J9F14X56"
   tagManagerTrackingId: "GTM-MJX8KRG"
-
-# Custom CSS
-custom_css: ["css/custom.css"]
 
 # Custom JS
 custom_js: ["js/custom.js"]

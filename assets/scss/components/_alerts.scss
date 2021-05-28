@@ -92,3 +92,127 @@ body.dark .alert-warning {
 .alert .alert-link:focus {
   text-decoration: none;
 }
+
+// THEME UPDATE
+
+.alert {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  padding: 1.5rem 1rem 1.5rem 1.5rem;
+  margin:25px 0;
+}
+
+.alert a,
+body.dark .alert a {
+  font-weight: 700;
+  color: inherit;
+}
+
+.alert-icon {
+  margin-right: 0.75rem;
+}
+
+.docs .alert {
+  margin: 2rem -1.5rem;
+}
+
+.alert .alert-link {
+  text-decoration: underline;
+}
+
+.alert-dark {
+  color: white;
+  background-color: #1F2024;
+}
+
+.alert-dark .alert-link {
+  color: white;
+}
+
+.alert-light {
+  color: #646971;
+}
+
+.alert-danger,
+body.dark .alert-danger {
+  border-left: .3em solid #cd3535;
+  background-color: #cd353517;
+  color: inherit;
+}
+
+.alert-danger::before {
+  content: "";
+  position: absolute;
+  left: -0.85rem;
+  top: 1.5rem;
+  z-index: 3;
+  padding: 0.75rem;
+  transform-origin: 50% 50%;
+  border-radius: 50%;
+  background-color: #cd3535;
+  background-image: url(./../images/info.svg);
+  background-size: 12%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  transform: rotate(180deg);
+}
+
+.alert-tip,
+body.dark .alert-tip {
+  border-left: .3em solid #2dcb7f;
+  background-color: #2dcb7f1a;
+  color: inherit;
+}
+
+.alert-tip::before {
+  content: "";
+  position: absolute;
+  left: -0.85rem;
+  top: 1.5rem;
+  z-index: 3;
+  padding: 0.75rem;
+  transform-origin: 50% 50%;
+  border-radius: 50%;
+  background-color: #2dcb7f;
+  background-image: url(./../images/info.svg);
+  background-size: 12%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.alert-warning,
+body.dark .alert-warning {
+  border-left: .3em solid #4479e7;
+  background-color: #4479e71c;
+  color: inherit;
+}
+
+.alert-warning::before {
+  content: "";
+  position: absolute;
+  left: -0.85rem;
+  top: 1.5rem;
+  z-index: 3;
+  padding: 0.75rem;
+  transform-origin: 50% 50%;
+  border-radius: 50%;
+  background-color: #4479e7;
+  background-image: url(./../images/info.svg);
+  background-size: 12%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  transform: rotate(180deg);
+}
+
+.alert-white {
+  background-color: #fafafa;
+}
+
+.alert-primary {
+  color: white;
+  background-color: #fafafa;
+}
+
+.alert-primary .alert-link {
+  color: white;
+}
