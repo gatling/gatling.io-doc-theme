@@ -26,8 +26,8 @@
         {{ range .Site.Menus.main -}}
           {{- $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) -}}
           {{- $active = or $active (eq .Name $current.Title) -}}
-          {{- $active = or $active (and (eq .Name "Docs") (eq $current.Section "docs")) -}}
-          {{- $active = or $active (and (eq .Name "OSS") (eq $current.Section "oss")) -}}
+          {{- $active = or $active (and (eq .Name "Gatling") (eq $current.Section "gatling")) -}}
+          {{- $active = or $active (and (eq .Name "Self-Hosted") (eq $current.Section "self-hosted")) -}}
           {{- $active = or $active (and (eq .Name "Cloud") (eq $current.Section "cloud")) -}}
           <li class="nav-{{ .Identifier }} nav-item{{ if $active }} active{{ end }}">
             <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>

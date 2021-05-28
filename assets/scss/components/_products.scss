@@ -11,23 +11,23 @@ body.dark .docs-link.active,
 body.dark .page-links a:hover {
   color: #646971;
   text-decoration: none;
-  transition: all 0.2s ease-out;
 }
 
 body.dark a {
   color: #aaa;
 }
-/* OSS */
 
-body.oss a:hover,
-body.oss.dark a:hover,
-body.oss .docs-link:hover,
-body.oss .docs-link.active,
-body.oss .page-links a:hover,
-body.oss a.docs-link:hover,
-body.oss.dark .docs-link:hover,
-body.oss.dark .docs-link.active,
-body.oss.dark .page-links a:hover {
+/* Gatling */
+
+body.gatling a:hover,
+body.gatling.dark a:hover,
+body.gatling .docs-link:hover,
+body.gatling .docs-link.active,
+body.gatling .page-links a:hover,
+body.gatling a.docs-link:hover,
+body.gatling.dark .docs-link:hover,
+body.gatling.dark .docs-link.active,
+body.gatling.dark .page-links a:hover {
   color: #F78557;
   text-decoration: none;
 }

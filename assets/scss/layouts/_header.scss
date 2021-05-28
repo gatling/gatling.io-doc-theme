@@ -20,10 +20,6 @@
   color: $body-color;
 }
 
-.navbar-light .navbar-nav .active .nav-link {
-  color: $primary;
-}
-
 @include media-breakpoint-up(md) {
   .navbar-brand {
     font-size: $font-size-xl;
@@ -40,7 +36,6 @@
 
 .nav-item {
   margin-left: 1.25rem;
-  min-width: 75px;
   text-align: center;
 }
 
@@ -69,6 +64,7 @@
 }
 
 .navbar {
+  width: 100vw;
   background-color: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid $gray-200;
   margin-top: 4px;
@@ -78,10 +74,6 @@
   border-top: 4px solid;
   border-image-source: linear-gradient(90deg, $primary, #8ed6fb 50%, #d32e9d);
   border-image-slice: 1;
-}
-
-.home .navbar {
-  border-bottom: 0;
 }
 
 .navbar-form {
@@ -208,7 +200,6 @@
   display: block;
   height: 2px;
   position: relative;
-  transition: background 0.2s ease-out;
   width: 18px;
 }
 
@@ -219,7 +210,6 @@
   display: block;
   height: 100%;
   position: absolute;
-  transition: all 0.2s ease-out;
   width: 100%;
 }
 

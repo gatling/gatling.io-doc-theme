@@ -44,10 +44,6 @@ body.dark .navbar {
   border-bottom: 1px solid $border-dark;
 }
 
-body.dark.home .navbar {
-  border-bottom: 0;
-}
-
 body.dark .navbar-light .navbar-brand {
   color: $navbar-dark-color !important;
 }
@@ -193,40 +189,27 @@ body.dark .footer {
   border-top: 1px solid $border-dark;
 }
 
-body.dark .docs-links,
-body.dark .docs-toc {
-  scrollbar-width: thin;
+body.dark * {
   scrollbar-color: $body-bg-dark $body-bg-dark;
 }
 
-body.dark .docs-links::-webkit-scrollbar,
-body.dark .docs-toc::-webkit-scrollbar {
-  width: 5px;
-}
-
-body.dark .docs-links::-webkit-scrollbar-track,
-body.dark .docs-toc::-webkit-scrollbar-track {
+body.dark *::-webkit-scrollbar-track {
   background: $body-bg-dark;
 }
 
-body.dark .docs-links::-webkit-scrollbar-thumb,
-body.dark .docs-toc::-webkit-scrollbar-thumb {
+body.dark *::-webkit-scrollbar-thumb {
   background: $body-bg-dark;
 }
 
-body.dark .docs-links:hover,
-body.dark .docs-toc:hover {
-  scrollbar-width: thin;
+body.dark *:hover {
   scrollbar-color: $border-dark $body-bg-dark;
 }
 
-body.dark .docs-links:hover::-webkit-scrollbar-thumb,
-body.dark .docs-toc:hover::-webkit-scrollbar-thumb {
+body.dark *:hover::-webkit-scrollbar-thumb {
   background: $border-dark;
 }
 
-body.dark .docs-links::-webkit-scrollbar-thumb:hover,
-body.dark .docs-toc::-webkit-scrollbar-thumb:hover {
+body.dark *::-webkit-scrollbar-thumb:hover {
   background: $border-dark;
 }
 

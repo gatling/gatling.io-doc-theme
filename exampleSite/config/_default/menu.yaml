@@ -1,16 +1,12 @@
 main:
-  - name: Docs
-    url: /
-    identifier: docs
-    weight: 10
-  - name: OSS
-    url: /oss/
-    identifier: oss
+  - name: Gatling
+    url: /gatling/
+    identifier: gatling
     weight: 10
   - name: Cloud
     weight: 20
     identifier: cloud
-    url: /cloud/
+    url: /enterprise/cloud/
 
 social:
   - name: Twitter

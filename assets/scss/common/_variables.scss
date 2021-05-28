@@ -32,7 +32,6 @@ $enable-caret: true;
 $enable-rounded: true;
 $enable-shadows: false;
 $enable-gradients: false;
-$enable-transitions: true;
 $enable-reduced-motion: true;
 $enable-smooth-scroll: true;
 $enable-grid-classes: true;
@@ -137,6 +136,7 @@ $navbar-nav-link-padding-x: 0.5rem;
 $navbar-light-color: $black;
 $navbar-light-hover-color: $primary;
 $navbar-light-active-color: $primary;
+$navbar-height: 4rem;
 
 // Cards
 

@@ -1,3 +1,7 @@
+* {
+  transition: none !important;
+}
+
 .contributors .content,
 .tutorials .content,
 .page .content,
@@ -74,19 +78,6 @@ a.btn:focus {
 .section-sm {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-/*
-.section svg {
-  display: inline-block;
-  width: 2rem;
-  height: 2rem;
-  vertical-align: text-top;
-}
-*/
-
-body {
-  padding-top: 3.5625rem;
 }
 
 .docs-sidebar {
@@ -178,6 +169,11 @@ body {
   }
 }
 
+.navbar {
+  position: fixed;
+  height: $navbar-height;
+}
+
 .navbar a:hover,
 .navbar a:focus {
   text-decoration: none;
@@ -230,6 +226,7 @@ body {
   color: #646971;
   font-size: 15px;
   line-height: 24px;
+  overflow: initial;
 }
 
 body.dark {

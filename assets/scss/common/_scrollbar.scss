@@ -1,0 +1,31 @@
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $white $white;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 6px;
+  padding: 2px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $white;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: $white;
+}
+
+*:hover {
+  scrollbar-width: thin;
+  scrollbar-color: $gray-200 $white;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background: $gray-200;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: $gray-200;
+}
