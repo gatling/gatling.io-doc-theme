@@ -46,7 +46,8 @@
   {{ end -}}
   <script src="{{ $js.Permalink }}" defer></script>
   {{ if .Site.Params.options.flexSearch -}}
-    <script src="{{ $index.Permalink }}" defer></script>
+    <!-- Not defer as used to update search version -->
+    <script src="{{ $index.Permalink }}"></script>
   {{ end -}}
 {{ else -}}
   {{ $js := $js | minify | fingerprint "sha512" -}}
