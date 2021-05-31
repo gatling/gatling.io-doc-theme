@@ -101,6 +101,10 @@ body.dark .alert-warning {
   margin: 25px 0;
 }
 
+.alert code {
+  white-space: nowrap;
+}
+
 .alert a,
 body.dark .alert a {
   font-weight: 700;
