@@ -31,7 +31,6 @@ h6,
 @include media-breakpoint-up(md) {
   body {
     font-size: $font-size-md;
-    padding-top: 4rem !important;
   }
 
   h1,
@@ -227,6 +226,7 @@ body {
   font-size: 15px;
   line-height: 24px;
   overflow: initial;
+  padding-top: 4rem !important;
 }
 
 body.dark {

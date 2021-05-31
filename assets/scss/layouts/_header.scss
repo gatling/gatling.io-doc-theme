@@ -64,6 +64,7 @@
 }
 
 .navbar {
+  height: auto;
   width: 100vw;
   background-color: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid $gray-200;
@@ -74,6 +75,10 @@
   border-top: 4px solid;
   border-image-source: linear-gradient(90deg, $primary, #8ed6fb 50%, #d32e9d);
   border-image-slice: 1;
+}
+
+.main-nav {
+  min-width: 200px;
 }
 
 .navbar-form {
@@ -88,20 +93,20 @@
 
   .navbar-form {
     margin-top: 0;
-    margin-left: 6rem;
+    margin-left: 0;
     margin-right: 1.5rem;
   }
 }
 
 @include media-breakpoint-up(lg) {
   .navbar-form {
-    margin-left: 15rem;
+    margin-left: 5rem;
   }
 }
 
 @include media-breakpoint-up(xl) {
   .navbar-form {
-    margin-left: 30rem;
+    margin-left: 20rem;
   }
 }
 

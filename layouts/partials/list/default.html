@@ -1,5 +1,4 @@
 <h1 class="text-left">{{ .Title }}</h1>
-<div class="text-left">{{ .Content }}</div>
 <div class="card-list">
   {{ partial "version/deprecation-warning" . }}
   {{ range .Pages }}
@@ -15,3 +14,4 @@
   </div>
   {{ end }}
 </div>
+<div class="text-left">{{ .Content }}</div>
