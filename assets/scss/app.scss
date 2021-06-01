@@ -1,3 +1,5 @@
+$baseUrl: "{{ .Site.BaseURL }}";
+
 /** Import Bootstrap functions */
 @import "bootstrap/scss/functions";
 
@@ -8,6 +10,8 @@
 @import "bootstrap/scss/bootstrap";
 
 /** Import Font Awesome */
+$fa-font-path: $baseUrl + "/webfonts";
+
 @import "@fortawesome/fontawesome-free/scss/fontawesome";
 @import "@fortawesome/fontawesome-free/scss/brands";
 @import "@fortawesome/fontawesome-free/scss/regular";

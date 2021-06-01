@@ -4,8 +4,8 @@
     <input class="menu-btn order-0" type="checkbox" id="menu-btn">
     <label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
     <a class="navbar-brand order-1 order-md-0 me-auto" href="{{ .Site.BaseURL | absURL }}">
-      <img class="dark-logo logo" src="{{ .Site.Params.Logos.Black }}" />
-      <img class="light-logo logo" src="{{ .Site.Params.Logos.White }}" />
+      <img class="dark-logo logo" src="{{ .Site.BaseURL }}{{ .Site.Params.Logos.Black }}" />
+      <img class="light-logo logo" src="{{ .Site.BaseURL }}{{ .Site.Params.Logos.White }}" />
     </a>
     {{ if .Site.Params.options.darkMode -}}
     <button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">

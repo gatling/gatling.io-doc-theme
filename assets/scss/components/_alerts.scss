@@ -153,7 +153,7 @@ body.dark .alert-danger {
   transform-origin: 50% 50%;
   border-radius: 50%;
   background-color: #cd3535;
-  background-image: url(./../images/info.svg);
+  background-image: url($baseUrl + "/images/info.svg");
   background-size: 12%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -177,7 +177,7 @@ body.dark .alert-tip {
   transform-origin: 50% 50%;
   border-radius: 50%;
   background-color: #2dcb7f;
-  background-image: url(./../images/info.svg);
+  background-image: url($baseUrl + "/images/info.svg");
   background-size: 12%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -200,7 +200,7 @@ body.dark .alert-warning {
   transform-origin: 50% 50%;
   border-radius: 50%;
   background-color: #4479e7;
-  background-image: url(./../images/info.svg);
+  background-image: url($baseUrl + "/images/info.svg");
   background-size: 12%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
