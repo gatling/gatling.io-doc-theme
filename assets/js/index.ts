@@ -142,7 +142,7 @@ const search = (query: string): Promise<FrontMatter[]> => {
         },
         {
           field: "section",
-          query: "oss",
+          query: searchConfiguration.section,
           bool: "not"
         }
       ])
