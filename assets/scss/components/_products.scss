@@ -1,17 +1,28 @@
+@mixin product($color) {
+  a {
+    color: $gray-700
+  }
+
+  a:hover,
+  .dark a:hover,
+  .docs-link:hover,
+  .docs-link.active,
+  .page-links a:hover,
+  a.docs-link:hover,
+  .dark .docs-link:hover,
+  .dark .docs-link.active,
+  .dark .page-links a:hover {
+    color: $color;
+  }
+
+  .navbar-nav .active a {
+    background: $color;
+  }
+}
+
 /* Default */
 
-a,
-a.docs-link,
-.docs-link:hover,
-.docs-link.active,
-.page-links a:hover,
-a.docs-link:hover,
-body.dark .docs-link:hover,
-body.dark .docs-link.active,
-body.dark .page-links a:hover {
-  color: #646971;
-  text-decoration: none;
-}
+@include product($gray-700)
 
 body.dark a {
   color: #aaa;
@@ -19,30 +30,11 @@ body.dark a {
 
 /* Gatling */
 
-body.gatling a:hover,
-body.gatling.dark a:hover,
-body.gatling .docs-link:hover,
-body.gatling .docs-link.active,
-body.gatling .page-links a:hover,
-body.gatling a.docs-link:hover,
-body.gatling.dark .docs-link:hover,
-body.gatling.dark .docs-link.active,
-body.gatling.dark .page-links a:hover {
-  color: #F78557;
-  text-decoration: none;
-}
-
-/* Cloud */
-
-body.cloud a:hover,
-body.cloud.dark a:hover,
-body.cloud .docs-link:hover,
-body.cloud .docs-link.active,
-body.cloud .page-links a:hover,
-body.cloud a.docs-link:hover,
-body.cloud.dark .docs-link:hover,
-body.cloud.dark .docs-link.active,
-body.cloud.dark .page-links a:hover {
-  color: #6161D6;
-  text-decoration: none;
+body {
+  &.gatling {
+    @include product(#F78557)
+  }
+  &.enterprise {
+    @include product(#6161D6)
+  }
 }

@@ -30,16 +30,9 @@ body.dark .navbar-light .navbar-nav .nav-link:hover, body.dark .navbar-light .na
 .navbar-light .navbar-nav .active .banner .nav a,
 .banner .nav .navbar-light .navbar-nav .active a {
   color: #fff;
-  background: #6161D6;
   border-radius: 20px;
   padding:3px 10px;
   margin-top: 5px;
-}
-.navbar-light .navbar-nav .nav-gatling.active .nav-link {
-  background: #F78557;
-}
-.navbar-light .navbar-nav .nav-docs.active .nav-link {
-  background: #24275E;
 }
 
 body.dark .navbar-light .navbar-nav .show > .nav-link, body.dark .navbar-light .navbar-nav .banner .nav .show > a, .banner .nav body.dark .navbar-light .navbar-nav .show > a, body.dark .navbar-light .navbar-nav .active > .nav-link, body.dark .navbar-light .navbar-nav .banner .nav .active > a, .banner .nav body.dark .navbar-light .navbar-nav .active > a, body.dark .navbar-light .navbar-nav .nav-link.show, body.dark .navbar-light .navbar-nav .banner .nav a.show, .banner .nav body.dark .navbar-light .navbar-nav a.show, body.dark .navbar-light .navbar-nav .nav-link.active, body.dark .navbar-light .navbar-nav .banner .nav a.active, .banner .nav body.dark .navbar-light .navbar-nav a.active {

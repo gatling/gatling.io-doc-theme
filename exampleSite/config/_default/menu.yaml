@@ -1,12 +1,12 @@
 main:
   - name: Gatling
-    url: /gatling/
+    url: gatling/
     identifier: gatling
     weight: 10
   - name: Cloud
     weight: 20
-    identifier: cloud
-    url: /enterprise/cloud/
+    identifier: enterprise
+    url: enterprise/cloud/
 
 social:
   - name: Twitter

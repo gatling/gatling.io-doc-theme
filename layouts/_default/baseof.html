@@ -6,7 +6,13 @@
   {{ else if eq .Kind "404" -}}
     {{ .Scratch.Set "class" "error404" -}}
   {{ else if eq .Kind "page" -}}
-    {{ .Scratch.Set "class" .Type -}}
+    {{- $current := . -}}
+    {{ range .Site.Menus.main -}}
+      {{ if hasPrefix $current.File.Dir .URL -}}
+        {{ $current.Scratch.Set "identifier" .Identifier -}}
+      {{ end }}
+    {{ end }}
+    {{ .Scratch.Set "class" (or (.Scratch.Get "identifier") .Type) -}}
     {{ .Scratch.Add "class" " single" -}}
   {{ else -}}
     {{ .Scratch.Set "class" .Type -}}
