@@ -2,7 +2,7 @@
   {{- $anchor := anchorize .title -}}
   <div class="Cheat-Sheet--chapter">
     <h2 id="{{ $anchor }}">{{ .title }} <a href="#{{ $anchor }}" class="anchor" aria-hidden="true">#</a></h2>
-    {{- if eq .frontline true }}&nbsp;<span class="badge alert-primary pull-right">Gatling FrontLine only</span>{{ end -}}
+    {{- if eq .frontline true }}&nbsp;<span class="badge alert-enterprise pull-right">Gatling Enterprise only</span>{{ end -}}
     {{ if .description }}<p>{{ .description }}</p>{{ end }}
     {{- range .sections -}}
       {{- $sanchor := printf "%s-%s" $anchor (anchorize .title) -}}

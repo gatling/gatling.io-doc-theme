@@ -3,7 +3,7 @@
   {{- $keyword := .keyword -}}
   <code>{{ $keyword }}</code>
   {{- if eq .new true }}&nbsp;<span class="badge alert-info pull-right">New!</span>{{ end -}}
-  {{- if eq .frontline true }}&nbsp;<span class="badge alert-primary pull-right">Gatling FrontLine only</span>{{ end -}}
+  {{- if eq .frontline true }}&nbsp;<span class="badge alert-enterprise pull-right">Gatling Enterprise only</span>{{ end -}}
   {{- if eq .required true }}&nbsp;<span class="badge alert-danger pull-right">Required</span>{{ end -}}
   {{ if .description }}<p>{{ .description| safeHTML }}</p>{{ end }}
   {{ if .example -}}
