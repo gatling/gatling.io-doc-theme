@@ -41,6 +41,16 @@ body.dark a {
   color: #aaa;
 }
 
+/* Home */
+
+.home-section h1 {
+  font-size: 30px;
+  line-height: 40px;
+}
+.home-section .btn-orange {
+  margin-right: 10px;
+}
+
 /* OSS */
 
 body.oss a:hover,
@@ -75,6 +85,10 @@ body.cloud.dark .page-links a:hover {
 
 .header-bar {
     border-top: none;
+}
+
+.navbar {
+  margin-top: 0 !important;
 }
 
 .navbar-brand .logo { 
@@ -372,6 +386,45 @@ body.dark .btn-primary:hover {
     color: #fff;
     background-color: #1C1E4A;
     border-color: #1C1E4A;
+}
+
+.btn-orange,
+body.dark .btn-orange {
+  background-color: #F78557;
+  border-color: #F78557;
+  color: #fff !important;
+}
+.btn-check:focus + body.dark .btn-orange, body.dark .btn-orange:focus {
+  color: #fff;
+  background-color: #cf724c;
+  border-color: #cf724c;
+  box-shadow: none;
+}
+.btn-orange:hover,
+body.dark .btn-orange:hover {
+    color: #fff;
+    background-color: #cf724c;
+    border-color: #cf724c;
+}
+
+
+.btn-purple,
+body.dark .btn-purple {
+  background-color: #6161D6;
+  border-color: #6161D6;
+  color: #fff !important;
+}
+.btn-check:focus + body.dark .btn-purple, body.dark .btn-purple:focus {
+  color: #fff;
+  background-color: #4c4ba9;
+  border-color: #4c4ba9;
+  box-shadow: none;
+}
+.btn-purple:hover,
+body.dark .btn-purple:hover {
+    color: #fff;
+    background-color: #4c4ba9;
+    border-color: #4c4ba9;
 }
 
 .highlight .btn-link {
