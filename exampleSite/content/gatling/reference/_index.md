@@ -1,4 +1,4 @@
 ---
-title: References
+title: Reference
 versioning: true
 ---
