@@ -1,0 +1,52 @@
+.home-section h1 {
+  font-size: 30px;
+  line-height: 40px;
+}
+
+.home-section .btn-orange {
+  margin-right: 10px;
+}
+
+.btn-orange,
+body.dark .btn-orange {
+  background-color: #f78557;
+  border-color: #f78557;
+  color: #fff !important;
+}
+
+.btn-check:focus + body.dark .btn-orange,
+body.dark .btn-orange:focus {
+  background-color: #cf724c;
+  border-color: #cf724c;
+  box-shadow: none;
+  color: #fff;
+}
+
+.btn-orange:hover,
+body.dark .btn-orange:hover {
+  background-color: #cf724c;
+  border-color: #cf724c;
+  color: #fff;
+}
+
+.btn-purple,
+body.dark .btn-purple {
+  background-color: #6161d6;
+  border-color: #6161d6;
+  color: #fff !important;
+}
+
+.btn-check:focus + body.dark .btn-purple,
+body.dark .btn-purple:focus {
+  background-color: #4c4ba9;
+  border-color: #4c4ba9;
+  box-shadow: none;
+  color: #fff;
+}
+
+.btn-purple:hover,
+body.dark .btn-purple:hover {
+  color: #fff;
+  background-color: #4c4ba9;
+  border-color: #4c4ba9;
+}
