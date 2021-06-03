@@ -25,7 +25,7 @@
 @include product($gray-700)
 
 body.dark a {
-  color: #aaa;
+  color: #aaa !important;
 }
 
 /* Gatling */
