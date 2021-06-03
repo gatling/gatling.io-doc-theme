@@ -5,7 +5,7 @@ main:
     weight: 10
   - name: Cloud
     weight: 20
-    identifier: enterprise
+    identifier: cloud
     url: enterprise/cloud/
 
 social:
