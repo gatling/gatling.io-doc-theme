@@ -25,7 +25,11 @@
 @include product($gray-700);
 
 body.dark a {
-  color: #aaa !important;
+  color: #aaa;
+}
+
+body.dark .card-list a {
+  color: #aaa;
 }
 
 /* Gatling */
@@ -33,6 +37,9 @@ body.dark a {
 body {
   &.gatling {
     @include product(#f78557);
+  }
+  &.enterprise {
+    @include product(#6161d6);
   }
   &.self-hosted {
     @include product(#6161d6);

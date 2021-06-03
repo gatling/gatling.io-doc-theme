@@ -15,7 +15,7 @@
     {{ .Scratch.Set "class" (or (.Scratch.Get "identifier") .Type) -}}
     {{ .Scratch.Add "class" " single" -}}
   {{ else -}}
-    {{ .Scratch.Set "class" (or (.Scratch.Get "identifier") .Type) -}}
+    {{ .Scratch.Set "class" .Type -}}
     {{ .Scratch.Add "class" " list" -}}
   {{ end -}}
   <body class="{{ .Scratch.Get "class" }}">
