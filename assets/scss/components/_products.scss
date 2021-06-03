@@ -1,6 +1,6 @@
 @mixin product($color) {
   a {
-    color: $gray-700
+    color: $gray-700;
   }
 
   a:hover,
@@ -22,7 +22,7 @@
 
 /* Default */
 
-@include product($gray-700)
+@include product($gray-700);
 
 body.dark a {
   color: #aaa !important;
@@ -32,12 +32,12 @@ body.dark a {
 
 body {
   &.gatling {
-    @include product(#F78557)
+    @include product(#f78557);
   }
   &.self-hosted {
-    @include product(#6161D6)
+    @include product(#6161d6);
   }
   &.cloud {
-    @include product(#6161D6)
+    @include product(#6161d6);
   }
 }
