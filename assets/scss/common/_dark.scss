@@ -13,9 +13,9 @@ $button-color-dark: $link-color-dark;
 $focus-color-dark: lighten($link-color-dark, 2.5%);
 $selection-color-dark: lighten($link-color-dark, 2.5%);
 
-$navbar-dark-color:                 $body-color-dark;
-$navbar-dark-hover-color:           $link-color-dark;
-$navbar-dark-active-color:          $link-color-dark;
+$navbar-dark-color: $body-color-dark;
+$navbar-dark-hover-color: $link-color-dark;
+$navbar-dark-active-color: $link-color-dark;
 
 /** Theme styles */
 
@@ -70,15 +70,6 @@ body.dark .navbar-light .navbar-nav .nav-link.active {
 
 body.dark .navbar-light .navbar-text {
   color: $navbar-dark-color;
-}
-
-body.dark .alert-primary a {
-  color: $body-bg-dark;
-}
-
-body.dark .alert-warning {
-  background: $body-overlay-dark;
-  color: $body-color-dark;
 }
 
 body.dark .page-links a {
@@ -263,11 +254,6 @@ body.dark .text-muted {
   color: darken($body-color-dark, 7.5%) !important;
 }
 
-body.dark .alert-primary {
-  background: $link-color-dark;
-  color: $body-bg-dark;
-}
-
 body.dark .figure-caption {
   color: $body-color-dark;
 }
@@ -275,3 +261,24 @@ body.dark .figure-caption {
 body.dark table {
   @extend .table-dark;
 }
+
+// Alerts
+
+body.dark .alert a {
+  font-weight: 700;
+  color: inherit;
+}
+
+// body.dark .alert-primary a {
+//   color: $body-bg-dark;
+// }
+
+// body.dark .alert-warning {
+//   background: $body-overlay-dark;
+//   color: $body-color-dark;
+// }
+
+// body.dark .alert-primary {
+//   background: $link-color-dark;
+//   color: $body-bg-dark;
+// }
