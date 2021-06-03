@@ -34,7 +34,10 @@ body {
   &.gatling {
     @include product(#F78557)
   }
-  &.enterprise {
+  &.self-hosted {
+    @include product(#6161D6)
+  }
+  &.cloud {
     @include product(#6161D6)
   }
 }
