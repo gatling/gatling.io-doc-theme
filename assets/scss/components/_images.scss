@@ -1,9 +1,15 @@
 figure {
   margin: 2rem 0;
+
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 .figure-caption {
+  font-weight: bold;
   margin: 0.25rem 0 0.75rem;
+  text-align: center;
 }
 
 figure.wide {

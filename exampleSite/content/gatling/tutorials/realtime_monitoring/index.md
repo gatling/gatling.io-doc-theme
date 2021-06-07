@@ -190,7 +190,7 @@ InfluxDB or Graphite can be set as a datasource as described [here](http://docs.
 There is a ready made [Grafana template](https://github.com/gatling/gatling/tree/master/src/sphinx/realtime_monitoring/code/gatling.json)
 if InfluxDB is used as a datasource. The graphs should look similar to the below when running a simulation:
 
-{{< img src="gatling-grafana.png" alt="gatling-grafana" >}}
+{{< img src="gatling-grafana.png" alt="gatling-grafana" caption="Test caption" >}}
 
 ### Ports
 
