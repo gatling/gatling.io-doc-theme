@@ -3,8 +3,13 @@
   line-height: 40px;
 }
 
-.home-section .btn-orange {
-  margin-right: 10px;
+.home-section .btn-purple {
+  margin-left: 10px;
+}
+
+.home-section .home-cta {
+  display: flex;
+  justify-content: center;
 }
 
 .btn-orange,
