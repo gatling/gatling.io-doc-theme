@@ -4,10 +4,11 @@ theme: "gatling.io-doc-theme"
 themesDir: "../.."
 resourceDir: "../resources"
 
+disableKinds: ["404"]
 disableHugoGeneratorInject: true
 enableEmoji: true
 enableGitInfo: false
-enableRobotsTXT: true
+enableRobotsTXT: false
 languageCode: en-US
 paginate: 7
 rssLimit: 10

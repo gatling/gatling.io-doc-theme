@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="{{ .Site.LanguageCode | default "en" }}">
-  {{ partial "head/head.html" . }}
   {{ if eq .Kind "home" -}}
     {{ .Scratch.Set "class" "home" -}}
   {{ else if eq .Kind "404" -}}
@@ -15,9 +14,17 @@
     {{ .Scratch.Set "class" (or (.Scratch.Get "identifier") .Type) -}}
     {{ .Scratch.Add "class" " single" -}}
   {{ else -}}
+    {{- $current := . -}}
+    {{ range .Site.Menus.main -}}
+      {{ if hasPrefix $current.File.Dir .URL -}}
+        {{ $current.Scratch.Set "identifier" .Identifier -}}
+      {{ end }}
+    {{ end }}
     {{ .Scratch.Set "class" .Type -}}
+    {{ .Scratch.Add "class" (printf " %s" (.Scratch.Get "identifier")) -}}
     {{ .Scratch.Add "class" " list" -}}
   {{ end -}}
+  {{ partial "head/head.html" . }}
   <body class="{{ .Scratch.Get "class" }}">
     {{ partial "header/header.html" . }}
     <div class="wrap container" role="document">

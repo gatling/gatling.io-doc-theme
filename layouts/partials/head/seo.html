@@ -10,7 +10,22 @@
   {{ end -}}
 {{ end -}}
 
-<title>{{ .Title }} {{ .Site.Params.titleSeparator }} {{ .Site.Params.title }}</title>
+{{ if .IsHome -}}
+  <title>{{ .Site.Params.Title }}</title>
+{{ else -}}
+  {{ $section := .Site.GetPage "section" .Section }}
+  {{ if or (eq .Title "") (eq .Title $section.Title) -}}
+    <title>{{ $section.Title }}</title>
+  {{ else -}}
+    {{ $identifier := .Scratch.Get "identifier" -}}
+    {{ $subsection := .Site.GetPage "page" $identifier -}}
+    {{ if eq .Title $subsection.Title -}}
+      <title>{{ .Title }}</title>
+    {{ else -}}
+      <title>{{ $subsection.Title }} {{ .Site.Params.titleSeparator }} {{ .Title }}</title>
+    {{ end -}}
+  {{ end -}}
+{{ end -}}
 
 {{ with .Description -}}
   <meta name="description" content="{{ . }}">
