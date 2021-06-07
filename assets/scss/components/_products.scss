@@ -1,17 +1,15 @@
 @mixin product($color) {
-  a {
-    color: $gray-700;
-  }
-
   a:hover,
-  .dark a:hover,
+  &.dark a:hover,
   .docs-link:hover,
   .docs-link.active,
   .page-links a:hover,
   a.docs-link:hover,
-  .dark .docs-link:hover,
-  .dark .docs-link.active,
-  .dark .page-links a:hover {
+  &.dark .docs-links h3 a,
+  &.dark .docs-link:hover,
+  &.dark .docs-link.active,
+  &.dark .page-links a:hover,
+  .docs-content a {
     color: $color;
   }
 
@@ -22,14 +20,12 @@
 
 /* Default */
 
-@include product($gray-700);
-
-body.dark a {
-  color: #aaa;
+body .card-list a {
+  color: $gray-700 !important;
 }
 
 body.dark .card-list a {
-  color: #aaa;
+  color: #aaa !important;
 }
 
 /* Gatling */
