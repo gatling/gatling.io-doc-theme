@@ -9,6 +9,7 @@
   &.dark .docs-link:hover,
   &.dark .docs-link.active,
   &.dark .page-links a:hover,
+  article a,
   .docs-content a {
     color: $color;
   }
