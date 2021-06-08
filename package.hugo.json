@@ -19,6 +19,7 @@
     "flexsearch": "0.6.32",
     "instant.page": "5.1",
     "jquery": "3.6.0",
+    "js-cookie": "2.2.1",
     "lazysizes": "5.3",
     "markdownlint-cli": "0.27.1",
     "postcss": "8.2",

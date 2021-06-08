@@ -13,6 +13,9 @@
 {{ $clipboard := resources.Get "js/clipboard.ts" | babel -}}
 {{ $slice = $slice | append $clipboard -}}
 
+{{ $cookies := resources.Get "js/cookies.ts" | babel -}}
+{{ $slice = $slice | append $cookies -}}
+
 {{ $lightbox := resources.Get "js/lightbox.ts" | babel -}}
 {{ $slice = $slice | append $lightbox -}}
 
