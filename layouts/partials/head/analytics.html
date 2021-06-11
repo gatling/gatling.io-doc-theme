@@ -1,11 +1,14 @@
-{{- if isset .Site.Params.Analytics "globaltrackingid" -}}
+{{- if isset .Site.Params.Analytics "universaltrackingid" -}}
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5J9F14X56"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.Analytics.UniversalTrackingId }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', "{{- .Site.Params.Analytics.GlobalTrackingId -}}");
+  gtag('config', "{{ .Site.Params.Analytics.UniversalTrackingId }}");
+  {{ if isset .Site.Params.Analytics "globaltrackingid" -}}
+  gtag('config', "{{ .Site.Params.Analytics.GlobalTrackingId }}");
+  {{- end }}
 </script>
 <!-- End Global site tag (gtag.js) - Google Analytics -->
 {{- end -}}
@@ -16,6 +19,6 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer',"{{- .Site.Params.Analytics.TagManagerTrackingId -}}");</script>
+})(window,document,'script','dataLayer',"{{ .Site.Params.Analytics.TagManagerTrackingId }}");</script>
 <!-- End Google Tag Manager -->
 {{- end -}}
