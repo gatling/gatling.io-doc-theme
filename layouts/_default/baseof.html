@@ -7,21 +7,21 @@
   {{ else if eq .Kind "page" -}}
     {{- $current := . -}}
     {{ range .Site.Menus.main -}}
-      {{ if hasPrefix $current.File.Dir .URL -}}
-        {{ $current.Scratch.Set "identifier" .Identifier -}}
+      {{ if hasPrefix $current.File.Dir .ConfiguredURL -}}
+        {{ $current.Scratch.Set "menu" . -}}
       {{ end }}
     {{ end }}
-    {{ .Scratch.Set "class" (or (.Scratch.Get "identifier") .Type) -}}
+    {{ .Scratch.Set "class" (or (.Scratch.Get "menu").Identifier .Type) -}}
     {{ .Scratch.Add "class" " single" -}}
   {{ else -}}
     {{- $current := . -}}
     {{ range .Site.Menus.main -}}
-      {{ if hasPrefix $current.File.Dir .URL -}}
-        {{ $current.Scratch.Set "identifier" .Identifier -}}
+      {{ if hasPrefix $current.File.Dir .ConfiguredURL -}}
+        {{ $current.Scratch.Set "menu" . -}}
       {{ end }}
     {{ end }}
     {{ .Scratch.Set "class" .Type -}}
-    {{ .Scratch.Add "class" (printf " %s" (.Scratch.Get "identifier")) -}}
+    {{ .Scratch.Add "class" (printf " %s" (.Scratch.Get "menu").Identifier ) -}}
     {{ .Scratch.Add "class" " list" -}}
   {{ end -}}
   {{ partial "head/head.html" . }}
