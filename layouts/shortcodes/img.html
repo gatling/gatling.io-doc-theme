@@ -23,7 +23,7 @@
 {{ end -}}
 {{ $imgSrcSet = (delimit $imgSrcSet ",") -}}
 
-<figure{{ with .Get "class" }} class="{{.}}"{{ end }}>
+<figure class="{{- .Get "class" }} text-center">
   <a href="{{ $image.Permalink }}" class="lightbox">
     <img class="img-fluid lazyload blur-up" data-sizes="auto" data-src="{{ $image.Permalink }}" src="{{ $lqip.Permalink }}" data-srcset="{{ $imgSrcSet }}" width="{{ $image.Width }}" height="{{ $image.Height }}" {{ with .Get "alt" }}alt="{{.}}"{{ end }}>
     <noscript><img class="img-fluid" sizes="100vw" srcset="{{ $imgSrcSet }}" src="{{ $image.Permalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" {{ with .Get "alt" }}alt="{{.}}"{{ end }}></noscript>
