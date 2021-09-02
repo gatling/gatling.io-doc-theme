@@ -1,0 +1,14 @@
+.loom-embed {
+  height: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 62.5%;
+  position: relative;
+
+  & > iframe {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
