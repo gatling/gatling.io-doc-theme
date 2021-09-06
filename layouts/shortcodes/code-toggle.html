@@ -1,0 +1,20 @@
+{{- $syntax := .Get 0 -}}
+{{- $code := .Inner | transform.Unmarshal -}}
+{{- $tools := slice "bundle" "gradle" "maven" "sbt" -}}
+<div class="code-toggle">
+  <div class="code-toggle-nav">
+    {{ range $tools }}
+      <button data-toggle-tab="{{ . }}" class="tab-button {{ cond (eq . "bundle") "active" ""}}">
+        {{ . }}
+      </button>
+      &nbsp;
+    {{ end }}
+  </div>
+  <div class="tab-content">
+    {{ range $tools }}
+      <div data-pane="{{ . }}" class="tab-pane {{ cond (eq . "bundle") "active" ""}}">
+        {{- highlight (index $code .) $syntax "" -}}
+      </div>
+    {{ end }}
+  </div>
+</div>

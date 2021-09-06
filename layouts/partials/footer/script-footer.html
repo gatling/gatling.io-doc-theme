@@ -19,6 +19,9 @@
 {{ $lightbox := resources.Get "js/lightbox.ts" | babel -}}
 {{ $slice = $slice | append $lightbox -}}
 
+{{ $tabs := resources.Get "js/tabs.ts" | babel -}}
+{{ $slice = $slice | append $tabs -}}
+
 {{ if .Site.Params.options.lazySizes -}}
   {{ $lazySizes := resources.Get "js/lazysizes.ts" | babel -}}
   {{ $slice = $slice | append $lazySizes -}}

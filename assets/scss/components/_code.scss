@@ -41,3 +41,47 @@ pre code {
     border-radius: 0;
   }
 }
+
+/* Code toggle */
+
+.tab-button {
+  background: transparent;
+  border: none;
+  border-radius: 0.25rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: -1px;
+  outline: none;
+  padding: 0.625rem 0.75rem;
+  position: relative;
+  z-index: 1;
+
+  &.active {
+    background-color: #fbf7f0;
+  }
+}
+
+body.dark .tab-button {
+  color: #dee2e6;
+
+  &.active {
+    background: #1b1f22;
+    border: solid 1px #3c3c3c;
+    border-bottom: solid 1px #1b1f22;
+  }
+}
+
+.tab-content {
+  .tab-pane {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+
+    pre {
+      border-top-left-radius: 0;
+      margin-top: 0;
+    }
+  }
+}
