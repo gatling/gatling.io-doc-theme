@@ -10,7 +10,17 @@
       <a class="stretched-link" href="{{ $url }}">
         {{ .Params.title | title }}
       </a>
-      {{ if isset .Params "lead" }}<small>{{ .Params.lead }}</small>{{ end }}
+      {{ if eq .Params.title "Tutorials" -}}
+        <small>Getting started step-by-step articles</small>
+      {{- else if eq .Params.title "Guides" -}}
+        <small>How-to guides</small>
+      {{- else if eq .Params.title "Reference" -}}
+        <small>Technical material and descriptions</small>
+      {{- else if eq .Params.title "Explanation" -}}
+        <small>Discussions on particuliar topics</small>
+      {{- else if isset .Params "lead" -}}
+        <small>{{ .Params.lead }}</small>
+      {{- end }}
     </div>
   </div>
   {{ end }}
