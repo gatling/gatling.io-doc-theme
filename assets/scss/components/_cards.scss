@@ -1,29 +1,37 @@
-.card-list .card {
-  flex: 1 1 auto;
-  padding: 1rem 1rem;
-  box-shadow: 0px 10px 20px #0000001a;
-  border: none;
-  border-radius: 8px;
-}
-.card-list .card:hover {
-  box-shadow: 0px 5px 5px #0000001a;
-}
+.card-list {
+  .card {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px 10px 20px #0000001a;
+    flex: 1 1 auto;
+    min-height: 80px;
+    padding: 1rem 1rem;
 
-.card-list .card:before {
-  font-family: "Font Awesome 5 Free";
-  content: "\f105";
-  position: absolute;
-  top: 32px;
-  right: 30px;
-  font-weight: 900;
-  font-size: 40px;
-  opacity: 0.6;
-}
-.card-list .card:hover:before {
-  color: #6161D6;
-  opacity: 1;
-}
-body.gatling .card-list .card:hover:before {
-  color: #F78557;
-  opacity: 1;
+    &:before:after {
+      color: #6161d6;
+      opacity: 1;
+    }
+
+    &:before {
+      font-family: "Font Awesome 5 Free";
+      content: "\f105";
+      position: absolute;
+      top: 32px;
+      right: 30px;
+      font-weight: 900;
+      font-size: 40px;
+      opacity: 0.6;
+    }
+
+    &:hover {
+      box-shadow: 0px 5px 5px #0000001a;
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      padding: 0 1rem;
+      justify-content: space-evenly;
+    }
+  }
 }

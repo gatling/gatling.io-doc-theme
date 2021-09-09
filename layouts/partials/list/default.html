@@ -10,6 +10,7 @@
       <a class="stretched-link" href="{{ $url }}">
         {{ .Params.title | title }}
       </a>
+      {{ if isset .Params "lead" }}<small>{{ .Params.lead }}</small>{{ end }}
     </div>
   </div>
   {{ end }}
