@@ -1,10 +1,12 @@
-.loom-embed {
+.youtube-embed {
   height: 0;
   margin-bottom: 1rem;
-  padding-bottom: 62.5%;
+  overflow: hidden;
+  padding-bottom: 56.25%;
   position: relative;
 
   & > iframe {
+    border: 0;
     height: 100%;
     left: 0;
     position: absolute;
