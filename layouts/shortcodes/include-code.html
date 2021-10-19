@@ -1,56 +1,119 @@
-{{- $pathWithAnchorTag := (.Get 0) -}}
-{{- if $pathWithAnchorTag -}}
-  {{- $language := (.Get 1) -}}
-  {{- if $language -}}
-    {{- $path := "" -}}
-    {{- $tag := "" -}}
-    {{- if in $pathWithAnchorTag "#" -}}
-      {{- $split := split $pathWithAnchorTag "#" -}}
-      {{- $path = index $split 0 -}}
-      {{- $tag = index $split 1 -}}
-    {{- else -}}
-      {{- $path = $pathWithAnchorTag -}}
-    {{- end -}}
-    {{- $page := .Page.Resources.GetMatch (printf "**%s" $path) -}}
-    {{- if $page -}}
-      {{- $content := $page.Content -}}
-      {{- if $tag -}}
-        {{- $content = "" -}}
-        {{- range (split $tag ",") -}}
-          {{- $anchor := printf "//#%s" . -}}
-          {{- if in ($page.Content) $anchor -}}
-            {{- $extract := index (split ($page.Content) $anchor) 1 -}}
-            {{- $trimmed := trim $extract "\r\n" -}}
-            {{- if $content -}}
-              {{- $content = printf "%s\n%s" $content $trimmed -}}
-            {{- else -}}
-              {{- $content = $trimmed -}}
-            {{- end -}}
-          {{- else -}}
-            {{- errorf "%s: missing anchor tag %s inside file %s" $.Position $anchor $path -}}
-          {{- end -}}
-        {{- end -}}
-      {{- end -}}
-      {{- $split := split $content "\n" -}}
-      {{- $indent := 100 -}}
-      {{- range $split -}}
-        {{- if gt (len .) 0 -}}
-          {{- $subindent := sub (len .) (len (trim . " ")) -}}
-          {{- $indent = cond (lt $subindent $indent) $subindent $indent -}}
-        {{- end -}}
-      {{- end -}}
-      {{- $reindent := $split -}}
-      {{- if gt $indent 0 -}}
-        {{- $reindent = apply $split "substr" "." $indent -}}
-      {{- end -}}
-      {{- $content = delimit $reindent "\n" -}}
-      {{- highlight $content $language "" -}}
-    {{- else -}}
-      {{- errorf "%s: file %s not found" .Position $path -}}
-    {{- end -}}
-  {{- else -}}
-    {{- errorf "%s: missing highlight language" .Position -}}
+{{- if isset .Site.Params "includecode" -}}
+  {{- if not (isset .Site.Params.includecode "default") -}}
+    {{- errorf "%s: missing parameter includeCode.default, check params.yml" .Position -}}
+  {{- end -}}
+  {{- if not (isset .Site.Params.includecode "labels") -}}
+    {{- errorf "%s: missing parameter includeCode.labels, check params.yml" .Position -}}
   {{- end -}}
 {{- else -}}
+  {{- errorf "%s: missing parameter includeCode, check params.yml" .Position -}}
+{{- end -}}
+
+{{- $pathWithAnchorTag := (.Get 0) -}}
+{{- if not $pathWithAnchorTag -}}
   {{- errorf "%s: missing resource name" .Position -}}
+{{- end -}}
+
+{{- $path := "" -}}
+{{- $tag := "" -}}
+
+{{- if in $pathWithAnchorTag "#" -}}
+  {{- $split := split $pathWithAnchorTag "#" -}}
+  {{- $path = index $split 0 -}}
+  {{- $tag = index $split 1 -}}
+{{- else -}}
+  {{- $path = $pathWithAnchorTag -}}
+{{- end -}}
+
+{{- $languages := slice -}}
+{{- if eq (len .Params) 1 -}}
+  {{- $languages = $languages | append .Site.Params.includecode.default }}
+{{- else -}}
+  {{- if and (in $path ".") (gt (len .Params) 2) -}}
+    {{- warnf "%s: shouldn't specify file extension with multiple languages" .Position -}}
+  {{- end -}}
+  {{- range $element := (after 1 .Params) -}}
+    {{- $languages = $languages | append $element -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $code := dict -}}
+{{- range $languages -}}
+  {{- $page := $.Page.Resources.GetMatch (printf "**%s" $path) -}}
+  {{- if not $page -}}
+    {{- if in $path "." -}}
+      {{- $split := split $path "." -}}
+      {{- $path = index $split 0 -}}
+    {{- end -}}
+    {{- $pathWithExt := printf "**%s.%s" $path . -}}
+    {{- $page = $.Page.Resources.GetMatch $pathWithExt -}}
+    {{- if not $page -}}
+      {{- $tag = $path -}}
+      {{- $page = $.Page.Resources.GetMatch (printf "**.%s" .) -}}
+      {{- if not $page -}}
+        {{- errorf "%s: could not find file %s or any file with extension .%s" $.Position $pathWithExt . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $content := $page.Content -}}
+  {{- if $tag -}}
+    {{- $content = "" -}}
+    {{- range (split $tag ",") -}}
+      {{- $anchor := printf "//#%s" . -}}
+      {{- if in ($page.Content) $anchor -}}
+        {{- $extract := index (split ($page.Content) $anchor) 1 -}}
+        {{- $trimmed := trim $extract "\r\n" -}}
+        {{- if $content -}}
+          {{- $content = printf "%s\n%s" $content $trimmed -}}
+        {{- else -}}
+          {{- $content = $trimmed -}}
+        {{- end -}}
+      {{- else -}}
+        {{- errorf "%s: missing anchor tag %s inside file %s" $.Position $anchor $path -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $split := split $content "\n" -}}
+  {{- $indent := 100 -}}
+  {{- range $split -}}
+    {{- if gt (len .) 0 -}}
+      {{- $subindent := sub (len .) (len (trim . " ")) -}}
+      {{- $indent = cond (lt $subindent $indent) $subindent $indent -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $reindent := $split -}}
+  {{- if gt $indent 0 -}}
+    {{- $reindent = apply $split "substr" "." $indent -}}
+  {{- end -}}
+  {{- $content = delimit $reindent "\n" -}}
+  {{- $code = merge $code (dict . $content) -}}
+{{- end -}}
+
+{{- if eq (len $code) 1 -}}
+{{- range $language, $content := $code -}}
+{{- highlight $content $language "" -}}
+{{- end -}}
+{{- else -}}
+<div class="code-toggle">
+  <div class="code-toggle-nav">
+    {{- range $language, $content := $code -}}
+    <button data-toggle-tab="{{ $language }}" class="tab-button {{ cond (eq $language "scala") "active" ""}}">
+      {{- if isset $.Site.Params.includecode.labels $language -}}
+        {{- index $.Site.Params.includecode.labels $language -}}
+      {{- else -}}
+        {{- $language -}}
+      {{- end -}}
+    </button>
+    &nbsp;
+    {{- end -}}
+  </div>
+  <div class="tab-content">
+    {{- range $language, $content := $code -}}
+    <div data-pane="{{ $language }}" class="tab-pane {{ cond (eq $language "scala") "active" ""}}">
+      {{ highlight $content $language "" }}
+    </div>
+    {{- end -}}
+  </div>
+</div>
 {{- end -}}
