@@ -16,6 +16,80 @@ The Check API is used for 2 things:
 Checks are performed on a request with the `check` method.
 For example, on an HTTP request:
 
+### zero
+
+{{< include-code "CheckSample#status-is-200" >}}
+
+### zero ext
+
+{{< include-code "CheckSample.scala#status-is-200" >}}
+
+### zero no name
+
+{{< include-code "status-is-200" >}}
+
+### one by one
+
+{{< include-code "CheckSample#status-is-200" scala >}}
+
+{{< include-code "CheckSample#status-is-200" java >}}
+
+{{< include-code "CheckSample#status-is-200" kt >}}
+
+{{< include-code "CheckSample#status-is-200" kt >}}
+
+### one by one ext
+
+{{< include-code "CheckSample.scala#status-is-200" scala >}}
+
+{{< include-code "CheckSample.java#status-is-200" java >}}
+
+{{< include-code "CheckSample.kt#status-is-200" kt >}}
+
+{{< include-code "CheckSample.kt#status-is-200" kt >}}
+
+### one by one no name
+
+{{< include-code "status-is-200" scala >}}
+
+{{< include-code "status-is-200" java >}}
+
+{{< include-code "status-is-200" kt >}}
+
+### two by two
+
+{{< include-code "CheckSample#status-is-200" scala java >}}
+
+{{< include-code "CheckSample#status-is-200" scala kt >}}
+
+{{< include-code "CheckSample#status-is-200" java kt >}}
+
+### two by two ext
+
+{{< include-code "CheckSample.scala#status-is-200" scala java >}}
+
+{{< include-code "CheckSample.scala#status-is-200" scala kt >}}
+
+{{< include-code "CheckSample.scala#status-is-200" java kt >}}
+
+### two by two no name
+
+{{< include-code "status-is-200" scala java >}}
+
+{{< include-code "status-is-200" scala kt >}}
+
+{{< include-code "status-is-200" java kt >}}
+
+### three
+
+{{< include-code "CheckSample#status-is-200" scala java kt >}}
+
+### three no name
+
+{{< include-code "status-is-200" scala java kt >}}
+
+### original
+
 {{< include-code "CheckSample.scala#status-is-200" scala >}}
 
 One can of course perform multiple checks:

@@ -53,6 +53,13 @@ options:
   bootStrapJs: false
   breadCrumb: false
 
+includeCode:
+  default: scala
+  labels:
+    java: Java
+    kt: Kotlin
+    scala: Scala
+
 analytics:
   universalTrackingId: "UA-53375088-1"
   globalTrackingId: "G-B5J9F14X56"
