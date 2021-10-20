@@ -32,7 +32,7 @@ Add the module theme to your hugo project configuration:
 ```yaml
 module:
   imports:
-      - path: github.com/gatling/gatling.io-doc-theme
+    - path: github.com/gatling/gatling.io-doc-theme
 ```
 Retrieve the node dependencies:
 ```console
@@ -102,22 +102,22 @@ portraitPhotoWidths: [800, 700, 600, 500]
 lqipWidth: "20x"
 
 # Alert
-alert: false	# show alert text
-alertText: ""	# alert text displayed before footer
+alert: false  # show alert text
+alertText: "" # alert text displayed before footer
 
 # Footer
 footer: "Powered by Hugo, and fork from Doks theme"
 
 # Edit Page
-editPage: true	# add Github edition links (see editPage requirement)
+editPage: true # add Github edition links (see editPage requirement)
 
 options:
-  lazySizes: true 		# enable https://github.com/aFarkas/lazysizes
-  instantPage: true 	# enable https://instant.page/
-  flexSearch: true 		# enable search (see search requirement)
-  darkMode: true		# toggle dark mode
-  bootStrapJs: false	# activate Bootstrap JS
-  breadCrumb: false		# add bread crumb
+  lazySizes: true    # enable https://github.com/aFarkas/lazysizes
+  instantPage: true  # enable https://instant.page/
+  flexSearch: true   # enable search (see search requirement)
+  darkMode: true     # toggle dark mode
+  bootStrapJs: false # activate Bootstrap JS
+  breadCrumb: false  # add bread crumb
 
 includeCode:
   default: scala
@@ -148,8 +148,8 @@ noindex: true
 #### Edit page
 
 Enabling edit page require a page parameters `docsRepo` with values:
-* **url**:  the URL to the content folder of your documentation
-* **rel**:  prefix to truncate on the file path
+* **url**: the URL to the content folder of your documentation
+* **rel**: prefix to truncate on the file path
 
 ### menu.yaml
 
@@ -210,6 +210,6 @@ content
     └── 1.0.0
 ```
 
-If so, in reference  `_index.md` set the parameter `versionning` to `true`.
+If so, in reference `_index.md` set the parameter `versionning` to `true`.
 Each version folder should cascade a `version` to their childs through their root `_index.md`.
 Latest version must set `latest` to `true` and reflect the `current` folder
