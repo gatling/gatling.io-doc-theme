@@ -118,6 +118,18 @@ options:
   darkMode: true		# toggle dark mode
   bootStrapJs: false	# activate Bootstrap JS
   breadCrumb: false		# add bread crumb
+
+includeCode:
+  default: scala
+  labels:
+    java: Java
+    kt: Kotlin
+    scala: Scala
+
+analytics:
+  universalTrackingId: "UA-XXXXXXXX-X"
+  globalTrackingId: "G-XXXXXXXXX"
+  tagManagerTrackingId: "GTM-XXXXXXX"
 ```
 
 #### Search
