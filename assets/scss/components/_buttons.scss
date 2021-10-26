@@ -56,10 +56,12 @@ body.dark .toggle-dark {
 
 @include media-breakpoint-up(md) {
   .btn-clipboard {
-    display: block;
     position: absolute;
     right: 0.25rem;
     top: 0.25rem;
+  }
+  .highlight:hover .btn-clipboard {
+    display: block;
   }
 }
 
