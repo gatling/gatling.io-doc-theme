@@ -10,6 +10,7 @@ for (let i = 0, len = $blocks.length; i < len; i++) {
     const wrap = document.createElement("div");
     wrap.classList.add("highlight");
     pre.parentNode.insertBefore(wrap, pre);
+    pre.classList.add("chroma");
     wrap.appendChild(pre);
   }
 }
