@@ -79,41 +79,48 @@ body.dark .toggle-dark {
 
 .btn-primary,
 body.dark .btn-primary {
-  background-color: #24275E;
-  border-color: #24275E;
+  background-color: #24275e;
+  border-color: #24275e;
   color: #fff !important;
 }
-.btn-check:focus + body.dark .btn-primary, body.dark .btn-primary:focus {
+
+.btn-check:focus + body.dark .btn-primary,
+body.dark .btn-primary:focus {
   color: #fff;
   background-color: #5050b9;
   border-color: #5050b9;
   box-shadow: none;
 }
+
 .btn-primary:hover,
 body.dark .btn-primary:hover {
   color: #fff;
-  background-color: #1C1E4A;
-  border-color: #1C1E4A;
+  background-color: #1c1e4a;
+  border-color: #1c1e4a;
 }
 
 .highlight .btn-link {
   color: #fff;
-  background: #6161D6;
+  background: #6161d6;
   padding: 2px 6px;
   top: 0;
   right: 0;
   border-radius: 0 4px 0 0;
 }
+
 body.gatling .highlight .btn-link {
-  background: #F78557;
+  background: #f78557;
 }
+
 body.dark .content .btn-link,
 body.dark .content .btn-link:hover {
   color: #fff;
 }
+
 .highlight .btn-link:hover {
   opacity: 0.8;
 }
-.cloud.single .highlight .btn-link {
-  background: #6161D6;
+
+.cloud.single pre .btn-link {
+  background: #6161d6;
 }
