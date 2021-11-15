@@ -1,4 +1,4 @@
-import FlexSearch, { CreateOptions, Index, SearchOptions } from "flexsearch";
+import FlexSearch, { CreateOptions, SearchOptions } from "flexsearch";
 
 const suggestions = document.getElementById("suggestions");
 const userinput = document.getElementById("userinput");
@@ -34,7 +34,6 @@ const indexOptions: CreateOptions = {
   doc: {
     id: "id",
     field: ["title", "description", "content", "section", "version", "latest"],
-    // @ts-ignore https://github.com/nextapps-de/flexsearch/issues/152
     store: ["title", "description", "href", "section", "version", "latest"],
   },
 };
@@ -44,21 +43,42 @@ const index = FlexSearch.create<FrontMatter>(indexOptions);
 const createSearchEntryElement = (frontMatter: FrontMatter): HTMLDivElement => {
   const entry = document.createElement("div");
 
-  const hyperlink = document.createElement("a");
-  hyperlink.href = frontMatter.href;
+  const suggestion = document.createElement("a");
+  suggestion.classList.add("suggestion");
+  suggestion.href = frontMatter.href;
+
+  const label = document.createElement("div");
 
   const title = document.createElement("span");
   const titleText = document.createTextNode(frontMatter.title);
   title.append(titleText);
+  label.append(title);
+
+  const section = document.createElement("span");
+
+  let sectionText = "";
+  if (frontMatter.section === "gatling") {
+    sectionText = "Gatling OSS";
+  } else if (frontMatter.section === "enterprise") {
+    const subsection = frontMatter.href.split("enterprise")[1].split("/")[1];
+    if (subsection === "self-hosted") {
+      sectionText = "Self-Hosted";
+    } else if (subsection === "cloud") {
+      sectionText = "Cloud";
+    }
+  }
+  sectionText = document.createTextNode(sectionText);
+  section.append(sectionText);
+  label.append(section);
 
   const description = document.createElement("span");
   const descriptionText = document.createTextNode(frontMatter.description);
   description.append(descriptionText);
 
-  hyperlink.append(title);
-  hyperlink.append(description);
+  suggestion.append(label);
+  suggestion.append(description);
+  entry.append(suggestion);
 
-  entry.append(hyperlink);
   return entry;
 };
 

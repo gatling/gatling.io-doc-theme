@@ -3,17 +3,17 @@
 }
 
 #suggestions {
+  margin-top: 0.5rem;
   position: absolute;
   right: 0;
-  margin-top: 0.5rem;
   width: calc(100vw - 3rem);
 }
 
 #suggestions a {
   display: block;
-  text-decoration: none;
-  padding: 0.75rem;
   margin: 0 0.5rem;
+  padding: 0.75rem;
+  text-decoration: none;
 }
 
 #suggestions a:focus {
@@ -21,33 +21,34 @@
   outline: 0;
 }
 
-#suggestions div:not(:first-child) {
-  border-top: 1px dashed $gray-200;
-}
-
-#suggestions div:first-child {
-  margin-top: 0.5rem;
-}
-
-#suggestions div:last-child {
-  margin-bottom: 0.5rem;
-}
-
 #suggestions a:hover {
   background: $gray-100;
 }
 
-#suggestions span {
+#suggestions > div:not(:first-child) {
+  border-top: 1px dashed $gray-200;
+}
+
+#suggestions > div:first-child {
+  margin-top: 0.5rem;
+}
+
+#suggestions > div:last-child {
+  margin-bottom: 0.5rem;
+}
+
+#suggestions .suggestion > div,
+#suggestions .suggestion > span {
   display: flex;
   font-size: $font-size-base;
 }
 
-#suggestions span:first-child {
+#suggestions .suggestion > div span:first-child {
   font-weight: $headings-font-weight;
   color: $black;
 }
 
-#suggestions span:nth-child(2) {
+#suggestions .suggestion > span:nth-child(2) {
   color: $gray-700;
 }
 
@@ -60,16 +61,17 @@
     display: flex;
   }
 
-  #suggestions span:first-child {
-    width: 9rem;
-    padding-right: 1rem;
+  #suggestions .suggestion > div:first-child {
     border-right: 1px solid $gray-200;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    padding-right: 1rem;
     text-align: right;
+    width: 9rem;
   }
 
-  #suggestions span:nth-child(2) {
-    width: 19rem;
+  #suggestions .suggestion > span:nth-child(2) {
     padding-left: 1rem;
+    width: 19rem;
   }
 }
