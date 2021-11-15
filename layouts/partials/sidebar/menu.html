@@ -1,0 +1,52 @@
+{{ $currentNode := . }}
+
+{{ $parts := split (trim .RelPermalink "/") "/" }}
+{{ $sectionName := index $parts 1 }}
+{{ $subsectionName := index $parts 2 }}
+
+{{ $root := .Site.Home }}
+{{ if eq $sectionName "gatling" }}
+  {{ $root = .FirstSection }}
+{{ else if eq $sectionName "enterprise" }}
+  {{ $root = .FirstSection.GetPage $subsectionName }}
+{{ end }}
+
+{{ $version := "current" }}
+{{ if and (isset .Params "version") (in .RelPermalink "reference") }}
+  {{ $withVersion := index (split .RelPermalink "reference/") 1 }}
+  {{ if hasPrefix $withVersion .Params.version }}
+    {{ $version = .Params.version }}
+  {{ end }}
+{{ end }}
+
+{{ range $root.Sections.ByWeight }}
+<ul class="list-unstyled">
+  {{ template "section-tree-nav" dict "currentnode" $currentNode "depth" 0 "section" . "version" $version }}
+</ul>
+{{ end }}
+
+{{ define "section-tree-nav" }}
+  {{ $currentNode := .currentnode }}
+  {{ $depth := .depth }}
+  {{ $version := .version }}
+  {{ with .section }}
+    {{ $splitPermalink := split (trim .RelPermalink "/") "/" }}
+    {{ $sectionName := index (last 1 $splitPermalink) 0 }}
+    {{ if gt $depth 0 }}<li>{{ end }}
+      <a class="docs-link{{ if .IsAncestor $currentNode }} active{{ end }}" title="{{ .Title }}" {{ if and .IsSection (gt $depth 0) }}href="#collapsable-{{ .File.UniqueID }}" data-toggle="collapse" role="button" aria-expanded="{{ .IsAncestor $currentNode }}" aria-controls="collapsable-{{ .File.UniqueID }}"{{ else }}href="{{ .RelPermalink }}"{{ end }}>
+        {{ if eq $depth 0 }}<h3>{{ else }}{{ if and (.IsAncestor $currentNode) (not (eq $currentNode .)) }}<i class="fas fa-chevron-down"></i> {{ else if .IsSection }}<i class="fas fa-chevron-right"></i> {{ end }}{{ end }}{{ .Title }}{{ if eq $depth 0 }}</h3>{{ end }}
+      </a>
+      {{ if .IsSection }}
+        <ul {{ if gt $depth 0 }}id="collapsable-{{ .File.UniqueID }}"{{ end }} class="list-unstyled{{ if and (gt $depth 0) (not (.IsAncestor $currentNode)) }} collapse{{ end }}">
+          {{ $page := . }}
+          {{ if and (eq $sectionName "reference") (isset .Params "versioning") (.Params.versioning) }}
+            {{ $page = .GetPage $version }}
+          {{ end }}
+          {{ range ($page.Pages | union $page.Sections).ByWeight }}
+            {{ template "section-tree-nav" dict "currentnode" $currentNode "depth" (add $depth 1) "section" . "version" $version }}
+          {{ end }}
+        </ul>
+      {{ end }}
+    {{ if gt $depth 0 }}</li>{{ end }}
+  {{ end }}
+{{ end }}

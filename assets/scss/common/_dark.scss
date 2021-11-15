@@ -200,7 +200,7 @@ body.dark *::-webkit-scrollbar-thumb:hover {
   background: $border-dark;
 }
 
-body.dark .docs-links h3:not(:first-child) {
+body.dark .docs-links > ul:not(:first-child) {
   border-top: 1px solid $border-dark;
 }
 

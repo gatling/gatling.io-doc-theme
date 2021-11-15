@@ -2,7 +2,7 @@
 <div class="row flex-xl-nowrap">
   <div class="col-lg-5 col-xl-4 docs-sidebar">
     <nav class="docs-links" aria-label="Main navigation">
-      {{ partial "sidebar/docs-menu.html" . }}
+      {{ partial "sidebar/menu.html" . }}
     </nav>
   </div>
   {{ if ne .Params.toc false -}}
@@ -31,7 +31,7 @@
     {{ if .Site.Params.editPage -}}
       {{ partial "main/edit-page.html" . }}
     {{ end -}}
-    {{ partial "main/docs-navigation.html" . }}
+    {{ partial "main/navigation.html" . }}
   </main>
 </div>
 {{ end }}
