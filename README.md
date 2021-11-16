@@ -25,16 +25,21 @@ Then, go to [http://localhost:1313](http://localhost:1313)
 ## Using the theme
 
 *ref: https://gohugo.io/hugo-modules/use-modules/#use-a-module-for-a-theme*
+
 ```console
 hugo mod init github.com/<your_user>/<your_project>
 ```
+
 Add the module theme to your hugo project configuration:
+
 ```yaml
 module:
   imports:
     - path: github.com/gatling/gatling.io-doc-theme
 ```
+
 Retrieve the node dependencies:
+
 ```console
 hugo mod get -u
 hugo mod npm pack
@@ -46,19 +51,19 @@ Add babel configuration:
 module.exports = {
   presets: [
     [
-      '@babel/preset-env',
+      "@babel/preset-env",
       {
         targets: {
           browsers: [
             // Best practice: https://github.com/babel/babel/issues/7789
-            '>=1%',
-            'not ie 11',
-            'not op_mini all',
+            ">=1%",
+            "not ie 11",
+            "not op_mini all",
           ],
         },
       },
     ],
-    '@babel/preset-typescript',
+    "@babel/preset-typescript",
   ],
 };
 ```
@@ -97,8 +102,6 @@ themeColor: "#fff"
 # Images
 quality: 85
 bgColor: "#fff"
-landscapePhotoWidths: [900, 800, 700, 600, 500]
-portraitPhotoWidths: [800, 700, 600, 500]
 lqipWidth: "20x"
 
 # Alert
@@ -137,6 +140,7 @@ analytics:
 Enabling search require you to add the following content file at `content/search.md`
 
 **search.md**
+
 ```yaml
 ---
 layout: "search"
@@ -148,20 +152,25 @@ noindex: true
 #### Edit page
 
 Enabling edit page require a page parameters `docsRepo` with values:
+
 * **url**: the URL to the content folder of your documentation
 * **rel**: prefix to truncate on the file path
 
 ### menu.yaml
 
 **Main**
+
 Allow you to specify URL you wan't to add in the top bar menu.
+
 ```yaml
 main:
   - name: OSS
     url: /oss/
     weight: 1
 ```
+
 **Social**
+
 ```yaml
 social:
   - name: Twitter
@@ -180,6 +189,7 @@ Content files tree must match the following description for sidebar menu and pag
 Every `content` folder should define a node `_index.md` or a section `index.md` with front-matter parameters `title` and  `description`.
 
 **structure**
+
 ```
 content
 ├── section-1
@@ -194,6 +204,7 @@ content
 └── section-2
     └── ...
 ```
+
 Sidebar menu and pages navigation scope the two closest parents pages.
 
 ### Versioning
@@ -201,6 +212,7 @@ Sidebar menu and pages navigation scope the two closest parents pages.
 Your content may contain multiple versions of a documentation
 
 **structure**
+
 ```
 content
 └── reference
