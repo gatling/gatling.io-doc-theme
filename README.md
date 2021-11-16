@@ -119,7 +119,6 @@ options:
   instantPage: true  # enable https://instant.page/
   flexSearch: true   # enable search (see search requirement)
   darkMode: true     # toggle dark mode
-  bootStrapJs: false # activate Bootstrap JS
   breadCrumb: false  # add bread crumb
 
 includeCode:
