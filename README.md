@@ -122,7 +122,7 @@ options:
   breadCrumb: false  # add bread crumb
 
 includeCode:
-  default: scala
+  default: java
   labels:
     java: Java
     kt: Kotlin
