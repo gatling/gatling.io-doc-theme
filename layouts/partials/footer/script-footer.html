@@ -22,45 +22,33 @@
 {{ $tabs := resources.Get "js/tabs.ts" | babel -}}
 {{ $slice = $slice | append $tabs -}}
 
-{{ if .Site.Params.options.lazySizes -}}
-  {{ $lazySizes := resources.Get "js/lazysizes.ts" | babel -}}
-  {{ $slice = $slice | append $lazySizes -}}
-{{ end -}}
+{{ $lazySizes := resources.Get "js/lazysizes.ts" | babel -}}
+{{ $slice = $slice | append $lazySizes -}}
 
-{{ if .Site.Params.options.instantPage -}}
-  {{ $instantPage := resources.Get "js/instant.page.ts" | babel -}}
-  {{ $slice = $slice | append $instantPage -}}
-{{ end -}}
+{{ $instantPage := resources.Get "js/instant.page.ts" | babel -}}
+{{ $slice = $slice | append $instantPage -}}
 
-{{ if .Site.Params.options.flexSearch -}}
-  {{ $flexSearch := resources.Get "js/vendor/flexsearch/dist/flexsearch.min.js" -}}
-  {{ $flexSearchTs := slice $flexSearch | resources.Concat "flexsearch.ts" -}}
-  {{ $slice = $slice | append $flexSearchTs -}}
-{{ end -}}
+{{ $flexSearch := resources.Get "js/vendor/flexsearch/dist/flexsearch.min.js" -}}
+{{ $flexSearchTs := slice $flexSearch | resources.Concat "flexsearch.ts" -}}
+{{ $slice = $slice | append $flexSearchTs -}}
 
-{{ if .Site.Params.options.darkMode -}}
-  {{ $darkMode := resources.Get "js/darkmode.ts" | babel -}}
-  {{ $slice = $slice | append $darkMode -}}
-{{ end -}}
+{{ $darkMode := resources.Get "js/darkmode.ts" | babel -}}
+{{ $slice = $slice | append $darkMode -}}
 
 {{ $js := $slice | resources.Concat "main.js" | js.Build -}}
 
 {{ if eq (hugo.Environment) "development" -}}
   <script src="{{ $jq.Permalink }}" defer></script>
   <script src="{{ $js.Permalink }}" defer></script>
-  {{ if .Site.Params.options.flexSearch -}}
-    <!-- Not defer as used to update search version -->
-    <script src="{{ $index.Permalink }}"></script>
-  {{ end -}}
+  <!-- Not defer as used to update search version -->
+  <script src="{{ $index.Permalink }}"></script>
 {{ else -}}
   {{ $jq := $jq | minify | fingerprint "sha512" -}}
   <script src="{{ $jq.Permalink }}" integrity="{{ $jq.Data.Integrity }}" crossorigin="anonymous" defer></script>
   {{ $js := $js | minify | fingerprint "sha512" -}}
   <script src="{{ $js.Permalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous" defer></script>
-  {{ if .Site.Params.options.flexSearch -}}
-    {{/* Do not minify the index until you found why there are 2 `f`
-    {{ $index := $index | minify | fingerprint "sha512" -}}
-    */}}
-    <script src="{{ $index.Permalink }}" integrity="{{ $index.Data.Integrity }}" crossorigin="anonymous"></script>
-  {{ end -}}
+  {{/* Do not minify the index until you found why there are 2 `f`
+  {{ $index := $index | minify | fingerprint "sha512" -}}
+  */}}
+  <script src="{{ $index.Permalink }}" integrity="{{ $index.Data.Integrity }}" crossorigin="anonymous"></script>
 {{ end -}}

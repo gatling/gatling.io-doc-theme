@@ -114,13 +114,6 @@ footer: "Powered by Hugo, and fork from Doks theme"
 # Edit Page
 editPage: true # add Github edition links (see editPage requirement)
 
-options:
-  lazySizes: true    # enable https://github.com/aFarkas/lazysizes
-  instantPage: true  # enable https://instant.page/
-  flexSearch: true   # enable search (see search requirement)
-  darkMode: true     # toggle dark mode
-  breadCrumb: false  # add bread crumb
-
 includeCode:
   default: java
   labels:
