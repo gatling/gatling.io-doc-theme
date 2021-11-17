@@ -1,28 +1,6 @@
-{{ $currentNode := . }}
-
-{{ $parts := split (trim .RelPermalink "/") "/" }}
-{{ $sectionName := index $parts 1 }}
-{{ $subsectionName := index $parts 2 }}
-
-{{ $root := .Site.Home }}
-{{ if or (eq $sectionName "gatling") (eq $sectionName "enterprise") }}
-  {{ $root = .FirstSection }}
-  {{ if and (eq $sectionName "enterprise") $subsectionName }}
-    {{ $root = .FirstSection.GetPage $subsectionName }}
-  {{ end }}
-{{ end }}
-
-{{ $version := "current" }}
-{{ if and (isset .Params "version") (in .RelPermalink "reference") }}
-  {{ $withVersion := index (split .RelPermalink "reference/") 1 }}
-  {{ if hasPrefix $withVersion .Params.version }}
-    {{ $version = .Params.version }}
-  {{ end }}
-{{ end }}
-
-{{ range $root.Sections.ByWeight }}
+{{ range (.Scratch.Get "root").Sections.ByWeight }}
 <ul class="list-unstyled">
-  {{ template "section-tree-nav" dict "currentnode" $currentNode "depth" 0 "section" . "version" $version }}
+  {{ template "section-tree-nav" dict "currentnode" $ "depth" 0 "section" . "version" ($.Scratch.Get "version") }}
 </ul>
 {{ end }}
 

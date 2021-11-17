@@ -1,0 +1,48 @@
+
+{{- $parts := split (trim .RelPermalink "/") "/" -}}
+{{- $section := index $parts 1 -}}
+{{- $subsection := index $parts 2 -}}
+
+{{- /*
+  Seeking the most appropriate root to scope all navigation/menus from.
+  The URL is part base url, part content hierarchy.
+  If your base url is http://localhost/docs/gatling/ and the content folder as such:
+    - content/
+      - reference/
+      - guides/
+  .Site.Home will show reference and guides as first sections.
+  You could have http://localhost/docs as a base url and the following content:
+    - content/
+      - gatling/
+        - reference/
+        - guides/
+  In which case .Site.Home will only show gatling as first section, reference, etc. as subsections.
+  We use the former case to mimic production urls in development mode. The gatling.io-doc project have the latter
+  hierarchy model after combining all documentation projects.
+*/ -}}
+{{- $root := .Site.Home -}}
+{{- if or (and (eq $section "gatling") (not (in .Site.BaseURL "gatling"))) (and (eq $section "enterprise") (not (in .Site.BaseURL "enterprise"))) -}}
+  {{- $root = .FirstSection -}}
+  {{- if and (eq $section "enterprise") $subsection -}}
+    {{- $root = .FirstSection.GetPage $subsection -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /*
+  Seeking the most appropriate version to use when cutting through reference documentation in navigation/menus.
+  The only way to do this is to check the url against the provisionned version as a page parameter as:
+  * The real version is only cascaded when inside a reference hierarchy, hence we default to "current".
+  * Even if we are in a "current" reference hierarchy, the provided version is the real one, while the url will contain "current" or not.
+*/ -}}
+{{- $version := "current" -}}
+{{- if and (isset .Params "version") (in .RelPermalink "reference") -}}
+  {{- $withVersion := index (split .RelPermalink "reference/") 1 -}}
+  {{- if hasPrefix $withVersion .Params.version -}}
+    {{- $version = .Params.version -}}
+  {{- end -}}
+{{- end -}}
+
+{{- .Scratch.Set "section" $section -}}
+{{- .Scratch.Set "subsection" $subsection -}}
+{{- .Scratch.Set "root" $root -}}
+{{- .Scratch.Set "version" $version -}}
