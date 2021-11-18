@@ -57,7 +57,7 @@ pre code {
   z-index: 1;
 
   &.active {
-    background-color: #fbf7f0;
+    background-color: #fafafa;
   }
 }
 
@@ -66,8 +66,6 @@ body.dark .tab-button {
 
   &.active {
     background: #1b1f22;
-    border: solid 1px #3c3c3c;
-    border-bottom: solid 1px #1b1f22;
   }
 }
 
