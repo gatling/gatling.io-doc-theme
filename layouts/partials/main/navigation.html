@@ -1,14 +1,7 @@
 
 {{- $pages := slice -}}
-{{- range (.Scratch.Get "root").Sections -}}
-  {{- $splitPermalink := split (trim .RelPermalink "/") "/" -}}
-  {{- $sectionName := index (last 1 $splitPermalink) 0 -}}
-  {{- $section := . -}}
-  {{- if eq $sectionName "reference" -}}
-    {{- $version := $.Scratch.Get "version" -}}
-    {{- $section = .GetPage (printf "%s" $version) -}}
-  {{- end -}}
-  {{- $pages = $pages | append $section.RegularPagesRecursive -}}
+{{- range (.Scratch.Get "sections") -}}
+  {{- $pages = $pages | append .RegularPagesRecursive -}}
 {{- end -}}
 {{- $pages = $pages.ByWeight -}}
 <div class="docs-navigation d-flex justify-content-between">

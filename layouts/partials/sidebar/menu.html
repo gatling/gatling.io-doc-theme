@@ -1,4 +1,4 @@
-{{ range (.Scratch.Get "root").Sections.ByWeight }}
+{{ range .Scratch.Get "sections" }}
 <ul class="list-unstyled">
   {{ template "section-tree-nav" dict "currentnode" $ "depth" 0 "section" . "version" ($.Scratch.Get "version") }}
 </ul>

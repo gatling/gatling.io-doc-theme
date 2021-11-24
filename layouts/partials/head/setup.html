@@ -43,6 +43,23 @@
   {{- end -}}
 {{- end -}}
 
+{{- $sections := slice -}}
+{{- if isset $root.Params "ordering" -}}
+  {{- range $root.Params.ordering -}}
+    {{- $page := $root.GetPage . -}}
+    {{- if not $page -}}
+      {{- errorf "%s: page %s not found in ordering parameter" $root.File . -}}
+    {{- end -}}
+    {{- if and (eq . "reference") (isset $page.Params "versioning") ($page.Params.versioning) -}}
+      {{- $page = $page.GetPage $version -}}
+    {{- end }}
+    {{- $sections = $sections | append $page -}}
+  {{- end -}}
+{{- else -}}
+  {{- $sections = $root.Sections.ByWeight -}}
+{{- end -}}
+
+{{- .Scratch.Set "sections" $sections -}}
 {{- .Scratch.Set "section" $section -}}
 {{- .Scratch.Set "subsection" $subsection -}}
 {{- .Scratch.Set "root" $root -}}
