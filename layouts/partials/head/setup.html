@@ -6,24 +6,25 @@
 {{- /*
   Seeking the most appropriate root to scope all navigation/menus from.
   The URL is part base url, part content hierarchy.
-  If your base url is http://localhost/docs/gatling/ and the content folder as such:
+  If your base url is http://localhost:1313/docs/enterprise/cloud and the content folder as such:
     - content/
-      - reference/
       - guides/
+      - reference/
   .Site.Home will show reference and guides as first sections.
-  You could have http://localhost/docs as a base url and the following content:
+  You could have http://localhost:1313/docs as a base url and the following content:
     - content/
       - gatling/
-        - reference/
         - guides/
+        - reference/
   In which case .Site.Home will only show gatling as first section, reference, etc. as subsections.
   We use the former case to mimic production urls in development mode. The gatling.io-doc project have the latter
   hierarchy model after combining all documentation projects.
 */ -}}
 {{- $root := .Site.Home -}}
-{{- if or (and (eq $section "gatling") (not (in .Site.BaseURL "gatling"))) (and (eq $section "enterprise") (not (in .Site.BaseURL "enterprise"))) -}}
+{{- if eq $section "gatling" -}}
   {{- $root = .FirstSection -}}
-  {{- if and (eq $section "enterprise") $subsection -}}
+{{- else if and (eq $section "enterprise") (not (in .Site.BaseURL "/enterprise/")) -}}
+  {{- if $subsection -}}
     {{- $root = .FirstSection.GetPage $subsection -}}
   {{- end -}}
 {{- end -}}
