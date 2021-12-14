@@ -4,7 +4,7 @@
 <div class="code-toggle">
   <div class="code-toggle-nav">
     {{ range $tools }}
-      <button data-toggle-tab="{{ . }}" class="tab-button {{ cond (eq . "bundle") "active" ""}}">
+      <button data-toggle-key="build-tool" data-toggle-tab="{{ . }}" class="tab-button {{ cond (eq . "bundle") "active" ""}}">
         {{ . }}
       </button>
       &nbsp;

@@ -1,24 +1,29 @@
 {{- if isset .Site.Params.Analytics "universaltrackingid" -}}
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.Analytics.UniversalTrackingId }}"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.analytics.universaltrackingid }}"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', "{{ .Site.Params.Analytics.UniversalTrackingId }}");
-  {{ if isset .Site.Params.Analytics "globaltrackingid" -}}
-  gtag('config', "{{ .Site.Params.Analytics.GlobalTrackingId }}");
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments);}
+  gtag("js",new Date());
+  gtag("config","{{ .Site.Params.analytics.universaltrackingid }}");
+  {{ if isset .Site.Params.analytics "globaltrackingid" -}}
+  gtag("config","{{ .Site.Params.analytics.globaltrackingid }}");
   {{- end }}
+  window.languages={ {{- range $key, $value := .Site.Params.includecode.labels }}{{ $key }}:{{ $value }},{{ end -}} };
+  gtag("event","Language defined on pageview",{
+    "event_category":"Documentation DSL",
+    "event_label":languages[localStorage.hasOwnProperty("language")?localStorage.getItem("language"):"{{ .Site.Params.includecode.default }}"],
+  });
 </script>
 <!-- End Global site tag (gtag.js) - Google Analytics -->
 {{- end -}}
 
-{{- if isset .Site.Params.Analytics "tagmanagertrackingid" -}}
+{{- if isset .Site.Params.analytics "tagmanagertrackingid" -}}
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer',"{{ .Site.Params.Analytics.TagManagerTrackingId }}");</script>
+})(window,document,'script','dataLayer',"{{ .Site.Params.analytics.tagmanagertrackingid }}");</script>
 <!-- End Google Tag Manager -->
 {{- end -}}
