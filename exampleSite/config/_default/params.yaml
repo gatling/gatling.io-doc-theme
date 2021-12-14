@@ -44,7 +44,7 @@ alertText: ""
 editPage: true
 
 includeCode:
-  default: scala
+  default: java
   labels:
     java: Java
     kt: Kotlin

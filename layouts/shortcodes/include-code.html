@@ -98,7 +98,7 @@
 <div class="code-toggle">
   <div class="code-toggle-nav">
     {{- range $language, $content := $code -}}
-    <button data-toggle-tab="{{ $language }}" class="tab-button {{ cond (eq $language $.Site.Params.includecode.default) "active" ""}}">
+    <button data-toggle-key="language" data-toggle-tab="{{ $language }}" class="tab-button {{ cond (eq $language $.Site.Params.includecode.default) "active" ""}}">
       {{- if isset $.Site.Params.includecode.labels $language -}}
         {{- index $.Site.Params.includecode.labels $language -}}
       {{- else -}}
