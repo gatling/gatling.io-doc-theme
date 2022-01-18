@@ -1,7 +1,7 @@
-{{ $path := printf "**%s" (.Get "src") -}}
-{{ $image := .Page.Resources.GetMatch $path -}}
+{{ $path := .Get "src" -}}
+{{ $image := .Page.Resources.GetMatch (printf "**/%s" $path) -}}
 {{ if not $image -}}
-  {{ $image = .Page.Parent.Resources.GetMatch $path -}}
+  {{ $image = .Page.Resources.GetMatch $path -}}
   {{ if not $image -}}
   	{{ errorf "[%s] no image matching %s." .Page.Path $path -}}
   {{ end -}}
