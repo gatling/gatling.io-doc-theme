@@ -2,8 +2,9 @@
   {{- $repoUrl := strings.TrimRight "/" .Params.docsRepo.url -}}
   {{- $editPage := strings.TrimPrefix .Params.docsRepo.rel .File.Path -}}
   {{- $editPage := strings.TrimLeft "/" $editPage -}}
-  {{- if isset .Params "version" -}}
-    {{- $editPage = replace $editPage .Params.version "current" -}}
+  {{- $prefix := printf "reference/%s" (.Params.version) -}}
+  {{- if and (isset .Params "version") (hasPrefix $editPage $prefix) -}}
+    {{- $editPage = replace $editPage .Params.version "current" 1 -}}
   {{- end -}}
   <a href="{{ .Params.docsRepo.url }}/{{ $editPage }}">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2">
