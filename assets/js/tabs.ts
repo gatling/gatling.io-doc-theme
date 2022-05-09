@@ -1,18 +1,9 @@
-const tabs = document.querySelectorAll("[data-toggle-tab]");
-const panes = document.querySelectorAll("[data-pane]");
+const DATA_TOGGLE_KEY = "data-toggle-key";
+const DATA_TOGGLE_VALUE = "data-toggle-value";
 
-const toggleAllTabsOnClick = (event, targetKey) => {
-  const initializing = targetKey !== undefined;
+const ACTIVE_CLASS = "active";
 
-  let targetValue;
-  if (event.target) {
-    event.preventDefault();
-    targetKey = event.currentTarget.getAttribute("data-toggle-key");
-    targetValue = event.currentTarget.getAttribute("data-toggle-tab");
-  } else {
-    targetValue = event;
-  }
-
+const toggleAllTabsOnClick = (targetKey, targetValue, initializing) => {
   // We store the config language selected in users' localStorage
   localStorage.setItem(targetKey, targetValue);
   if (!initializing && targetKey === "language") {
@@ -22,26 +13,23 @@ const toggleAllTabsOnClick = (event, targetKey) => {
     });
   }
 
-  const selectedTabs = document.querySelectorAll(
-    "[data-toggle-tab='" + targetValue + "']"
-  );
-  const selectedPanes = document.querySelectorAll(
-    "[data-pane='" + targetValue + "']"
-  );
-
-  for (let i = 0; i < tabs.length; i++) {
-    tabs[i].classList.remove("active");
-    panes[i].classList.remove("active");
-  }
-
-  for (let i = 0; i < selectedTabs.length; i++) {
-    selectedTabs[i].classList.add("active");
-    selectedPanes[i].classList.add("active");
-  }
+  document.querySelectorAll(`[${DATA_TOGGLE_KEY}='${targetKey}']`).forEach(selected => {
+    selected.classList.remove(ACTIVE_CLASS);
+    if (selected.getAttribute(DATA_TOGGLE_VALUE) === targetValue) {
+      selected.classList.add(ACTIVE_CLASS);
+    }
+  })
 };
 
-for (const tab of tabs) {
-  tab.addEventListener("click", toggleAllTabsOnClick);
+for (const tab of document.querySelectorAll(`button[${DATA_TOGGLE_KEY}]`)) {
+  tab.addEventListener("click", (event) => {
+    event.preventDefault();
+    toggleAllTabsOnClick(
+      event.currentTarget.getAttribute(DATA_TOGGLE_KEY),
+      event.currentTarget.getAttribute(DATA_TOGGLE_VALUE),
+      false
+    )
+  });
 }
 
 // Clean up old items
@@ -49,19 +37,13 @@ if (localStorage.hasOwnProperty("configLangPref")) {
   localStorage.removeItem("configLangPref");
 }
 
-// Set defaults
-for (const [key, value] of [
-  ["build-tool", "bundle"],
-  ["language", "java"],
-]) {
-  if (!localStorage.hasOwnProperty(key)) {
-    localStorage.setItem(key, value);
-  }
+const DEFAULTS_TABS = {
+  "build-tool": "maven",
+  "language": "java"
 }
 
-// Upon page load, if user has a preferred language or build-tool in its localStorage, tabs are set to it.
-for (const key of ["build-tool", "language"]) {
-  if (localStorage.hasOwnProperty(key)) {
-    toggleAllTabsOnClick(localStorage.getItem(key), key);
-  }
+for (const [key, defaultValue] of Object.entries(DEFAULTS_TABS)) {
+  const value = localStorage.hasOwnProperty(key) ? localStorage.getItem(key) : defaultValue;
+  toggleAllTabsOnClick(key, value, true);
 }
+
