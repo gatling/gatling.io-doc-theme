@@ -4,25 +4,15 @@
     {{ .Scratch.Set "class" "home" -}}
   {{ else if eq .Kind "404" -}}
     {{ .Scratch.Set "class" "error404" -}}
-  {{ else if eq .Kind "page" -}}
-    {{- $current := . -}}
-    {{ range .Site.Menus.main -}}
-      {{ if hasPrefix $current.File.Dir .ConfiguredURL -}}
-        {{ $current.Scratch.Set "menu" . -}}
-      {{ end }}
-    {{ end }}
-    {{ .Scratch.Set "class" (or (.Scratch.Get "menu").Identifier .Type) -}}
-    {{ .Scratch.Add "class" " single" -}}
   {{ else -}}
     {{- $current := . -}}
     {{ range .Site.Menus.main -}}
-      {{ if hasPrefix $current.File.Dir .ConfiguredURL -}}
+      {{ if eq $current.Type .Identifier -}}
         {{ $current.Scratch.Set "menu" . -}}
-      {{ end }}
-    {{ end }}
+      {{ end -}}
+    {{ end -}}
     {{ .Scratch.Set "class" .Type -}}
-    {{ .Scratch.Add "class" (printf " %s" (.Scratch.Get "menu").Identifier ) -}}
-    {{ .Scratch.Add "class" " list" -}}
+    {{ .Scratch.Add "class" (cond (eq .Kind "page") " single" " list") -}}
   {{ end -}}
   {{ partial "head/head.html" . }}
   <body class="{{ .Scratch.Get "class" }}">

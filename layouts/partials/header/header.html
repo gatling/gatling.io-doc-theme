@@ -22,8 +22,7 @@
       <ul class="navbar-nav main-nav me-auto order-5 order-md-2">
         {{- $current := . -}}
         {{ range .Site.Menus.main -}}
-          {{- $active := hasPrefix $current.File.Dir .URL -}}
-          <li class="nav-{{ .Identifier }} nav-item{{ if $active }} active{{ end }}">
+          <li class="nav-{{ .Identifier }} nav-item{{ if eq $current.Type .Identifier }} active{{ end }}">
             <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>
           </li>
         {{ end -}}

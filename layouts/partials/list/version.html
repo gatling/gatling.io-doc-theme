@@ -1,14 +1,23 @@
 <div class="card-list">
-  {{ range .Pages }}
-    {{ if not (in .File.Dir "reference/current") }}
-      <div class="card my-3">
-        <div class="card-body">
-          <a class="stretched-link" href="{{ .Permalink }}">
-            {{ .Params.version }}
-            &rarr;
-          </a>
-        </div>
+  <div class="card my-3">
+    <div class="card-body">
+      {{ with .GetPage "current" -}}
+        <a class="stretched-link" href="{{ .Permalink }}">
+          {{ .Params.version }}
+          (latest)
+          &rarr;
+        </a>
+      {{ end }}
+    </div>
+  </div>
+  {{ range where (.Pages.ByParam "version").Reverse "Params.latest" "!=" true }}
+    <div class="card my-3">
+      <div class="card-body">
+        <a class="stretched-link" href="{{ .Permalink }}">
+          {{ .Params.version }}
+          &rarr;
+        </a>
       </div>
-    {{ end }}
+    </div>
   {{ end }}
 </div>
