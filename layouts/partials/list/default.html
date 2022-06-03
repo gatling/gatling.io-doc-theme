@@ -5,9 +5,8 @@
   {{ range .Pages }}
   <div class="card my-4">
     <div class="card-body">
-      {{ $url := strings.TrimSuffix "/" .Permalink }}
       {{ $versioning := cond (isset .Params "versioning") .Params.versioning false }}
-      {{ $url = cond $versioning (printf "%s/current" $url) $url }}
+      {{ $url := cond $versioning (printf "%scurrent/" .Permalink) .Permalink }}
       <a class="stretched-link" href="{{ $url }}">
         {{ .Params.title | title }}
       </a>
