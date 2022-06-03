@@ -41,7 +41,11 @@
 
 {{ if ne .Parent nil -}}
   {{ if (isset .Parent.Params "version") -}}
-    <link rel="canonical" href="{{ replace (.Permalink | absURL) .Parent.Params.version "current" }}">
+    {{- $url := .Permalink | absURL -}}
+    {{- if in $url (printf "reference/%s" .Parent.Params.version) -}}
+      {{- $url = replace $url (.Parent.Params.version) "current" 1 -}}
+    {{- end -}}
+    <link rel="canonical" href="{{ $url }}">
   {{ end -}}
 {{ else -}}
   {{ if $.Scratch.Get "paginator" -}}
