@@ -1,0 +1,2 @@
+{{ $darkModeInit := resources.Get "js/darkmode-init.ts" | babel (dict "minified" true) -}}
+<script>{{ $darkModeInit.Content | safeJS }}</script>

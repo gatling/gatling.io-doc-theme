@@ -1,20 +1,27 @@
-@mixin product($color) {
-  a:hover,
-  &.dark a:hover,
-  .docs-link:hover,
-  .docs-link.active,
-  .page-links a:hover,
-  a.docs-link:hover,
-  &.dark .docs-link:hover,
-  &.dark .docs-link.active,
-  &.dark .page-links a:hover,
-  article a,
-  .docs-content a {
-    color: $color;
+@mixin product($name, $color) {
+  body.#{$name} {
+    a:hover,
+    .docs-link:hover,
+    .docs-link.active,
+    .page-links a:hover,
+    a.docs-link:hover,
+    article a,
+    .docs-content a {
+      color: $color;
+    }
+
+    .navbar-nav .active a {
+      background: $color;
+    }
   }
 
-  .navbar-nav .active a {
-    background: $color;
+  [data-dark-mode] body.#{$name} {
+    a:hover,
+    .docs-link:hover,
+    .docs-link.active,
+    .page-links a:hover {
+      color: $color;
+    }
   }
 }
 
@@ -24,23 +31,13 @@ body .card-list a {
   color: $gray-700 !important;
 }
 
-body.dark .card-list a {
+[data-dark-mode] body .card-list a {
   color: #aaa !important;
 }
 
 /* Gatling */
 
-body {
-  &.gatling {
-    @include product(#f78557);
-  }
-  &.enterprise {
-    @include product(#6161d6);
-  }
-  &.self-hosted {
-    @include product(#6161d6);
-  }
-  &.cloud {
-    @include product(#6161d6);
-  }
-}
+@include product("gatling", #f78557);
+@include product("enterprise", #6161d6);
+@include product("self-hosted", #6161d6);
+@include product("cloud", #6161d6);

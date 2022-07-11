@@ -19,7 +19,7 @@ div#hs-eu-cookie-confirmation {
   line-height: 18px;
 }
 
-body.dark div#hs-eu-cookie-confirmation {
+[data-dark-mode] body div#hs-eu-cookie-confirmation {
   background: #212529;
   border-top: 2px solid #1b1f22;
   color: #dee2e6;
@@ -43,7 +43,7 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner {
   padding: 20px;
 }
 
-body.dark div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner {
+[data-dark-mode] body div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner {
   background: #212529;
   color: #dee2e6;
 }
@@ -141,7 +141,7 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p {
   text-shadow: none !important;
 }
 
-.dark div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p {
+[data-dark-mode] div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p {
   margin: 0 0 12px;
   color: #dee2e6;
 }

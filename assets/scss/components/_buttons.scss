@@ -42,11 +42,11 @@ body .toggle-light {
   display: none;
 }
 
-body.dark .toggle-light {
+[data-dark-mode] body .toggle-light {
   display: block;
 }
 
-body.dark .toggle-dark {
+[data-dark-mode] body .toggle-dark {
   display: none;
 }
 
@@ -80,14 +80,14 @@ body.dark .toggle-dark {
 // THEME UDPATE
 
 .btn-primary,
-body.dark .btn-primary {
+[data-dark-mode] body .btn-primary {
   background-color: #24275e;
   border-color: #24275e;
   color: #fff !important;
 }
 
-.btn-check:focus + body.dark .btn-primary,
-body.dark .btn-primary:focus {
+.btn-check:focus + [data-dark-mode] body .btn-primary,
+[data-dark-mode] body .btn-primary:focus {
   color: #fff;
   background-color: #5050b9;
   border-color: #5050b9;
@@ -95,7 +95,7 @@ body.dark .btn-primary:focus {
 }
 
 .btn-primary:hover,
-body.dark .btn-primary:hover {
+[data-dark-mode] body .btn-primary:hover {
   color: #fff;
   background-color: #1c1e4a;
   border-color: #1c1e4a;
@@ -114,8 +114,8 @@ body.gatling .highlight .btn-link {
   background: #f78557;
 }
 
-body.dark .content .btn-link,
-body.dark .content .btn-link:hover {
+[data-dark-mode] body .content .btn-link,
+[data-dark-mode] body .content .btn-link:hover {
   color: #fff;
 }
 

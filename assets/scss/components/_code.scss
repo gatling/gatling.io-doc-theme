@@ -61,7 +61,7 @@ pre code {
   }
 }
 
-body.dark .tab-button {
+[data-dark-mode] body .tab-button {
   color: #dee2e6;
 
   &.active {

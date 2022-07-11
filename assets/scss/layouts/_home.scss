@@ -12,14 +12,14 @@
 }
 
 .btn-orange,
-body.dark .btn-orange {
+[data-dark-mode] body .btn-orange {
   background-color: #f78557;
   border-color: #f78557;
   color: #fff !important;
 }
 
-.btn-check:focus + body.dark .btn-orange,
-body.dark .btn-orange:focus {
+.btn-check:focus + [data-dark-mode] body .btn-orange,
+[data-dark-mode] body .btn-orange:focus {
   background-color: #cf724c;
   border-color: #cf724c;
   box-shadow: none;
@@ -27,21 +27,21 @@ body.dark .btn-orange:focus {
 }
 
 .btn-orange:hover,
-body.dark .btn-orange:hover {
+[data-dark-mode] body .btn-orange:hover {
   background-color: #cf724c;
   border-color: #cf724c;
   color: #fff;
 }
 
 .btn-purple,
-body.dark .btn-purple {
+[data-dark-mode] body .btn-purple {
   background-color: #6161d6;
   border-color: #6161d6;
   color: #fff !important;
 }
 
-.btn-check:focus + body.dark .btn-purple,
-body.dark .btn-purple:focus {
+.btn-check:focus + [data-dark-mode] body .btn-purple,
+[data-dark-mode] body .btn-purple:focus {
   background-color: #4c4ba9;
   border-color: #4c4ba9;
   box-shadow: none;
@@ -49,7 +49,7 @@ body.dark .btn-purple:focus {
 }
 
 .btn-purple:hover,
-body.dark .btn-purple:hover {
+[data-dark-mode] body .btn-purple:hover {
   color: #fff;
   background-color: #4c4ba9;
   border-color: #4c4ba9;

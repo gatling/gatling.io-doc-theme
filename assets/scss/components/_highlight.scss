@@ -4,7 +4,7 @@
 
 // THEME UPDATE
 
-body.dark pre {
+[data-dark-mode] body pre {
   background: #1b1f22;
   color: #dee2e6;
 }
@@ -181,7 +181,7 @@ body.dark pre {
 .chroma .s {
   color: #f78557;
 }
-body.dark code .s {
+[data-dark-mode] .dark code .s {
   color: #f78557;
 }
 /* LiteralStringAffix */
@@ -348,19 +348,19 @@ body.dark code .s {
 .chroma .w {
 }
 
-.dark .chroma .n,
-.dark .chroma .nb,
-.dark .chroma .bp,
-.dark .chroma .fm,
-.dark .chroma .ni,
-.dark .chroma .nl,
-.dark .chroma .nn,
-.dark .chroma .py,
-.dark .chroma .nv,
-.dark .chroma .p,
-.dark .chroma .vc,
-.dark .chroma .vg,
-.dark .chroma .vi,
-.dark .chroma .vm {
+[data-dark-mode] .chroma .n,
+[data-dark-mode] .chroma .nb,
+[data-dark-mode] .chroma .bp,
+[data-dark-mode] .chroma .fm,
+[data-dark-mode] .chroma .ni,
+[data-dark-mode] .chroma .nl,
+[data-dark-mode] .chroma .nn,
+[data-dark-mode] .chroma .py,
+[data-dark-mode] .chroma .nv,
+[data-dark-mode] .chroma .p,
+[data-dark-mode] .chroma .vc,
+[data-dark-mode] .chroma .vg,
+[data-dark-mode] .chroma .vi,
+[data-dark-mode] .chroma .vm {
   color: #dee2e6;
 }
