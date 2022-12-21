@@ -1,0 +1,27 @@
+{{- $files := .Inner | transform.Unmarshal -}}
+{{- $labels := slice -}}
+{{- range $label, $path := $files -}}
+{{- $labels = $labels | append $label -}}
+{{- end -}}
+<div class="include-file-toggle">
+
+  <div class="include-file-toggle-nav">
+    {{ range $index, $label := $labels }}
+    {{ $active := cond (eq $index 0) "active" "" }}
+    <button data-toggle-key="label" data-toggle-value="{{ $label }}" class="tab-button {{ $active }}">
+      {{ . }}
+    </button>
+    {{ end }}
+  </div>
+
+  {{- $page := .Page -}}
+  <div class="tab-content">
+    {{ range $index, $label := $labels }}
+    {{ $active := cond (eq $index 0) "active" "" }}
+    <div data-toggle-key="label" data-toggle-value="{{ . }}" class="tab-pane {{ $active }}">
+      {{ $content := readFile (printf "%s%s" $page.File.Dir (index $files .)) }}
+      {{ $content | markdownify }}
+    </div>
+    {{ end }}
+  </div>
+</div>
