@@ -63,6 +63,14 @@ minify:
     html:
       keepWhitespace: true
 
+security:
+  enableInlineShortcodes: false
+  exec:
+    allow:
+      - ^babel$
+      - ^go$
+      - ^npx$
+
 sitemap:
   changefreq: weekly
   filename: sitemap.xml

@@ -1,4 +1,4 @@
 ---
-cascade:
-  version: "3.4"
+title: Reference
+version: "3.4"
 ---
