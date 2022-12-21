@@ -27,3 +27,4 @@ package.json
 package-lock.json
 go.sum
 exampleSite/package.hugo.json
+exampleSite/.hugo_build.lock
