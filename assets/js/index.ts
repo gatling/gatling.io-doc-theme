@@ -209,11 +209,15 @@ function initializeSearch(
       // Navigate search
       case KeyCodes.up:
       case KeyCodes.down:
+        const suggestionsHidden = suggestions.classList.contains(displayNoneClass);
+        if (suggestionsHidden) return;
+
+        const focusableSuggestions = [...suggestions.querySelectorAll("a")];
+        if (focusableSuggestions.length === 0) return;
+
         e.preventDefault();
-        const focusableSuggestions = suggestions.querySelectorAll("a") || [];
-        const index: number = Array.from(focusableSuggestions).indexOf(
-          document.activeElement as HTMLAnchorElement
-        );
+
+        const index = focusableSuggestions.indexOf(document.activeElement);
 
         const offset = e.keyCode === KeyCodes.up ? -1 : 1;
         const nextIndex = Math.max(
