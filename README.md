@@ -41,6 +41,7 @@ module:
 Retrieve the node dependencies:
 
 ```console
+hugo mod clean
 hugo mod get -u
 hugo mod npm pack
 npm install
