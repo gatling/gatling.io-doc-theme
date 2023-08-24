@@ -6,6 +6,16 @@
   background-color: var(--bs-info);
 }
 
+.badge-light {
+  background-color: var(--bs-light);
+  color: var(--bs-dark);
+}
+
+.badge-secondary {
+  background-color: var(--bs-secondary);
+}
+
+
 .badge-success {
   background-color: var(--bs-success);
 }
