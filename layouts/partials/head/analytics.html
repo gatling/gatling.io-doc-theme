@@ -1,4 +1,5 @@
-{{- if isset .Site.Params.Analytics "universaltrackingid" -}}
+{{- if isset .Site.Params "analytics" -}}
+{{- if isset .Site.Params.analytics "universaltrackingid" -}}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.analytics.universaltrackingid }}"></script>
 <script>
@@ -26,4 +27,5 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer',"{{ .Site.Params.analytics.tagmanagertrackingid }}");</script>
 <!-- End Google Tag Manager -->
+{{- end -}}
 {{- end -}}
