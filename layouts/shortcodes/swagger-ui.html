@@ -1,0 +1,3 @@
+{{ $original := .Get "src" }}
+<div class="swagger-ui-wrapper" data-openapi-url="{{ $original }}"></div>
+{{ .Page.Scratch.Set "hasOpenApi" true -}}
