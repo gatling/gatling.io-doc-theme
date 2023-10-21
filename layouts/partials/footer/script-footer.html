@@ -52,3 +52,14 @@
   */}}
   <script src="{{ $index.Permalink }}" integrity="{{ $index.Data.Integrity }}" crossorigin="anonymous"></script>
 {{ end -}}
+
+{{ if .Page.Scratch.Get "hasOpenApi" -}}
+  {{ $swaggerUIJS := resources.Get "js/swagger-ui.ts" -}}
+  {{ $swaggerUIJS := $swaggerUIJS | babel | js.Build -}}
+  {{ if eq (hugo.Environment) "development" -}}
+    <script src="{{ $swaggerUIJS.Permalink }}" defer></script>
+  {{ else -}}
+    {{ $swaggerUIJS := $swaggerUIJS | minify | fingerprint "sha512" -}}
+    <script src="{{ $swaggerUIJS.Permalink }}" integrity="{{ $swaggerUIJS.Data.Integrity }}" crossorigin="anonymous" defer></script>
+  {{ end }}
+{{ end -}}

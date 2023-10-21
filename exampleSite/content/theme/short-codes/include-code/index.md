@@ -74,4 +74,4 @@ includeCode:
 ```
 ### Example
 
-{{< include-code "CheckSample.scala#status-is-200" scala java kt >}}
+{{< include-code "CheckSample#status-is-200" scala java kt >}}
