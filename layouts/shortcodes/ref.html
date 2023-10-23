@@ -1,0 +1,3 @@
+{{- $anchoredPath := .Get 0 -}}
+{{- partial "shortcodes/anchor-check" . $anchoredPath -}}
+{{- ref . $anchoredPath -}}
