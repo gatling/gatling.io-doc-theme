@@ -1,0 +1,25 @@
+{{- $anchoredPath := .Get 0 -}}
+{{- if or (not (isset .Page.Params "version")) .Page.Params.latest -}}
+  {{- if strings.Contains $anchoredPath "#" -}}
+    {{- $root := .Page -}}
+    {{- $split := split $anchoredPath "#" -}}
+    {{- $path := index $split 0 -}}
+    {{- $anchor := index $split 1 -}}
+    {{- $page := "" }}
+    {{- if eq $path "" -}}
+      {{- $page = .Page -}}
+    {{- else -}}
+      {{- $page = .Site.GetPage $path -}}
+    {{- end -}}
+    {{- if ne $page.Fragments nil -}}
+      {{- $identifiers := $page.Fragments.Identifiers -}}
+      {{- if not (in $identifiers $anchor) -}}
+        {{- if eq .Parent nil -}}
+          {{- errorf "[%s] REF_NOT_FOUND: Ref %q: %s: anchor not found" $root.Language $anchoredPath .Position -}}
+        {{- else -}}
+          {{- errorf "[%s] REF_NOT_FOUND: Ref %q: %s: anchor not found inside shortcode %s" $root.Language $anchoredPath .Parent.Position .Parent.Name -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
