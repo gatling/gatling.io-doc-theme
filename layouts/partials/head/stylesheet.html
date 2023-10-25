@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ $secureCSS.Permalink }}" integrity="{{ $secureCSS.Data.Integrity }}" crossorigin="anonymous">
 {{ end -}}
 <noscript><style>img.lazyload { display: none; }</style></noscript>
-{{ if .Page.Scratch.Get "hasOpenApi" -}}
+{{ if .Page.Param "swagger-ui" -}}
   {{ if eq (hugo.Environment) "development" -}}
     {{ $options := (dict "targetPath" "swagger-ui.css" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
     {{ $css := resources.Get "scss/swagger-ui.scss" | toCSS $options -}}
