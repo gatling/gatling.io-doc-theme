@@ -53,7 +53,7 @@
   <script src="{{ $index.Permalink }}" integrity="{{ $index.Data.Integrity }}" crossorigin="anonymous"></script>
 {{ end -}}
 
-{{ if .Page.Scratch.Get "hasOpenApi" -}}
+{{ if .Page.Param "swagger-ui" -}}
   {{ $swaggerUIJS := resources.Get "js/swagger-ui.ts" -}}
   {{ $swaggerUIJS := $swaggerUIJS | babel | js.Build -}}
   {{ if eq (hugo.Environment) "development" -}}

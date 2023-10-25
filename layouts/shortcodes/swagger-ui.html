@@ -1,3 +1,6 @@
+{{ if not ( .Page.Param "swagger-ui" ) }}
+  {{ errorf "Cannot use swagger-ui shortcode without swagger-ui parameter in the front matter." }}
+{{ end }}
+
 {{ $original := .Get "src" }}
 <div class="swagger-ui-wrapper" data-openapi-url="{{ $original }}"></div>
-{{ .Page.Scratch.Set "hasOpenApi" true -}}
