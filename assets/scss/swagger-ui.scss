@@ -1,9 +1,51 @@
 @import "swagger-ui-dist/swagger-ui";
+@import "common/colors";
 
-.swagger-ui {
-  min-width: 980px;
-
+body.enterprise .docs-content .swagger-ui {
   pre {
     background: initial;
+  }
+
+  .col-12 {
+    width: 100%;
+  }
+
+  a {
+    color: $black;
+  }
+
+  .info {
+    margin: 0;
+
+
+    & hgroup.main {
+      margin: 0;
+
+      & > .title > span {
+        display: block;
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  .servers .computed-url {
+    margin: 0;
+  }
+
+  h4 {
+    margin: 1rem 0 0 0;
+  }
+
+  table {
+    margin: 0;
+  }
+
+  .scheme-container {
+    padding-top: 0;
+    padding-right: 2px;
+  }
+
+  .auth-wrapper .authorize {
+    margin-right: 0;
   }
 }
