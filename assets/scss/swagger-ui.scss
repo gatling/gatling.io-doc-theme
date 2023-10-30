@@ -1,4 +1,5 @@
 @import "swagger-ui-dist/swagger-ui";
+@import "swagger-ui-dark";
 @import "common/colors";
 
 body.enterprise .docs-content .swagger-ui {
@@ -47,5 +48,28 @@ body.enterprise .docs-content .swagger-ui {
 
   .auth-wrapper .authorize {
     margin-right: 0;
+  }
+}
+
+[data-dark-mode] body.enterprise .docs-content .swagger-ui {
+
+  a, h4 {
+    color: $gray-300;
+  }
+
+  code {
+    background: unset;
+  }
+
+  small {
+    opacity: 0.8;
+  }
+
+  .renderedMarkdown code {
+    color: unset;
+  }
+
+  table {
+    color: $gray-300;
   }
 }
