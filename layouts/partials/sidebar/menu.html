@@ -12,7 +12,7 @@
     {{ $splitPermalink := split (trim .RelPermalink "/") "/" }}
     {{ $sectionName := index (last 1 $splitPermalink) 0 }}
     {{ if gt $depth 0 }}<li>{{ end }}
-      <a class="docs-link{{ if .IsAncestor $currentNode }} active{{ end }}" title="{{ .Title }}" {{ if and .IsSection (gt $depth 0) }}href="#collapsable-{{ .File.UniqueID }}" data-toggle="collapse" role="button" aria-expanded="{{ .IsAncestor $currentNode }}" aria-controls="collapsable-{{ .File.UniqueID }}"{{ else }}href="{{ .RelPermalink }}"{{ end }}>
+      <a class="docs-link{{ if in $currentNode.RelPermalink .RelPermalink }} active{{ end }}" title="{{ .Title }}" {{ if and .IsSection (gt $depth 0) }}href="#collapsable-{{ .File.UniqueID }}" data-toggle="collapse" role="button" aria-expanded="{{ .IsAncestor $currentNode }}" aria-controls="collapsable-{{ .File.UniqueID }}"{{ else }}href="{{ .RelPermalink }}"{{ end }}>
         {{ if eq $depth 0 }}<h3>{{ else }}{{ if and (.IsAncestor $currentNode) (not (eq $currentNode .)) }}<i class="fas fa-chevron-down"></i> {{ else if .IsSection }}<i class="fas fa-chevron-right"></i> {{ end }}{{ end }}{{ .Title }}{{ if eq $depth 0 }}</h3>{{ end }}
       </a>
       {{ if .IsSection }}
