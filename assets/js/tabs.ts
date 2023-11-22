@@ -23,10 +23,12 @@ const toggleAllTabsOnClick = (targetKey: string, targetValue: string) => {
     localStorage.setItem(targetKey, targetValue);
 
     if (targetKey === "language") {
-      window.gtag("event", "Language toggle clicked", {
-        event_category: "Documentation DSL",
-        event_label: window.languages[targetValue],
-      });
+      if (window.gtag !== undefined && window.languages !== undefined && window.languages.hasOwnProperty(targetValue)) {
+        window.gtag("event", "Language toggle clicked", {
+          event_category: "Documentation DSL",
+          event_label: window.languages[targetValue],
+        });
+      }
     }
   }
 
