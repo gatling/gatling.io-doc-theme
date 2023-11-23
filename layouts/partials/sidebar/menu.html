@@ -1,28 +1,48 @@
-{{ range .Scratch.Get "sections" }}
+{{- .Scratch.Set "pagesByOrdering" slice -}}
+{{ range .Scratch.Get "sections" -}}
 <ul class="list-unstyled">
-  {{ template "section-tree-nav" dict "currentnode" $ "depth" 0 "section" . }}
+  {{ template "section-tree-nav" dict "currentPage" $ "depth" 0 "page" . "scratch" $.Scratch }}
 </ul>
-{{ end }}
+{{- end }}
 
 {{ define "section-tree-nav" }}
-  {{ $currentNode := .currentnode }}
-  {{ $depth := .depth }}
-  {{ with .section }}
-    {{ $splitPermalink := split (trim .RelPermalink "/") "/" }}
-    {{ $sectionName := index (last 1 $splitPermalink) 0 }}
+  {{- $currentPage := .currentPage -}}
+  {{- $depth := .depth -}}
+  {{- $scratch := .scratch -}}
+  {{ with .page -}}
+    {{- if .IsPage -}}{{- $scratch.Add "pagesByOrdering" . -}}{{- end -}}
     {{ if gt $depth 0 }}<li>{{ end }}
-      <a class="docs-link{{ if in $currentNode.RelPermalink .RelPermalink }} active{{ end }}" title="{{ .Title }}" {{ if and .IsSection (gt $depth 0) }}href="#collapsable-{{ .File.UniqueID }}" data-toggle="collapse" role="button" aria-expanded="{{ .IsAncestor $currentNode }}" aria-controls="collapsable-{{ .File.UniqueID }}"{{ else }}href="{{ .RelPermalink }}"{{ end }}>
-        {{ if eq $depth 0 }}<h3>{{ else }}{{ if and (.IsAncestor $currentNode) (not (eq $currentNode .)) }}<i class="fas fa-chevron-down"></i> {{ else if .IsSection }}<i class="fas fa-chevron-right"></i> {{ end }}{{ end }}{{ .Title }}{{ with .Params.badge }} <span class="badge badge-{{ .type }}">{{ .label }}</span>{{ end }}{{ if eq $depth 0 }}</h3>{{ end }}
+      <a class="docs-link{{ if in $currentPage.RelPermalink .RelPermalink }} active{{ end }}" title="{{ .Title }}" {{ if and .IsSection (gt $depth 0) }}href="#collapsable-{{ .File.UniqueID }}" data-toggle="collapse" role="button" aria-expanded="{{ .IsAncestor $currentPage }}" aria-controls="collapsable-{{ .File.UniqueID }}"{{ else }}href="{{ .RelPermalink }}"{{ end }}>
+        {{ if eq $depth 0 }}<h3>{{ else }}{{ if and (.IsAncestor $currentPage) (not (eq $currentPage .)) }}<i class="fas fa-chevron-down"></i> {{ else if .IsSection }}<i class="fas fa-chevron-right"></i> {{ end }}{{ end }}{{ .Title }}{{ if eq $depth 0 }}</h3>{{ end }}
       </a>
-      {{ if .IsSection }}
-        <ul {{ if gt $depth 0 }}id="collapsable-{{ .File.UniqueID }}"{{ end }} class="list-unstyled{{ if and (gt $depth 0) (not (.IsAncestor $currentNode)) }} collapse{{ end }}">
-          {{ range (.Pages | union .Sections).ByWeight }}
-            {{ if ne .Params.private true }}
-              {{ template "section-tree-nav" dict "currentnode" $currentNode "depth" (add $depth 1) "section" . }}
-            {{ end }}
-          {{ end }}
+      {{ if .IsSection -}}
+        <ul {{ if gt $depth 0 }}id="collapsable-{{ .File.UniqueID }}"{{ end }} class="list-unstyled{{ if and (gt $depth 0) (not (.IsAncestor $currentPage)) }} collapse{{ end }}">
+          {{- $page := . -}}
+          {{- $children := $page.Pages | union $page.Sections -}}
+          {{- $ordering := slice -}}
+          {{- if isset .Params "ordering" -}}
+            {{- range .Params.ordering -}}
+              {{- if or (eq . nil) (eq . "") -}}
+                {{- errorf "[%s] REF_NOT_FOUND: ordering propery has a nil or empty value in file %s" $page.Language $page.File -}}
+              {{- end -}}
+              {{- $child := $page.GetPage . -}}
+              {{- if eq $child.Parent nil -}}
+                {{- errorf "[%s] REF_NOT_FOUND: %q is referenced in the ordering property of the page %q but was not found" $page.Language . $page.File -}}
+              {{ else }}
+                {{- $ordering = $ordering | append $child -}}
+              {{ end }}
+            {{- end -}}
+            {{- range (complement $ordering $children) -}}
+              {{- errorf "[%s] REF_NOT_FOUND: %q is not referenced in the ordering property of its parent page in file %q" $page.Language .File.ContentBaseName .Parent.File -}}
+            {{- end -}}
+            {{- range $ordering -}}
+              {{- template "section-tree-nav" dict "currentPage" $currentPage "depth" (add $depth 1) "page" . "scratch" $scratch -}}
+            {{- end -}}
+          {{- else -}}
+            {{- errorf "[%s] REF_NOT_FOUND: missing ordering property in file %q" $page.Language $page.File -}}
+          {{- end -}}
         </ul>
-      {{ end }}
+      {{- end }}
     {{ if gt $depth 0 }}</li>{{ end }}
   {{ end }}
 {{ end }}

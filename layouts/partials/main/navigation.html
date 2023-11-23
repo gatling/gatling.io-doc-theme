@@ -1,9 +1,5 @@
 
-{{- $pages := slice -}}
-{{- range (.Scratch.Get "sections") -}}
-  {{- $pages = $pages | append (where .RegularPagesRecursive "Params.private" "ne" true) -}}
-{{- end -}}
-{{- $pages = $pages.ByWeight -}}
+{{- $pages := .Scratch.Get "pagesByOrdering" -}}
 <div class="docs-navigation d-flex justify-content-between">
   {{ with $pages.Next . -}}
   <a href="{{ .Permalink }}">
