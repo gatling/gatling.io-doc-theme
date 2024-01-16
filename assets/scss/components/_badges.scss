@@ -1,9 +1,7 @@
+// normal badges
+
 .badge-danger {
   background-color: var(--bs-danger);
-}
-
-.badge-enterprise {
-  background-color: #6161d6;
 }
 
 .badge-info {
@@ -26,6 +24,26 @@
 .badge-warning {
   background-color: var(--bs-warning);
 }
+
+// brand badges
+
+.badge-oss {
+  background-color: #f15b4f;
+}
+
+.badge-self-hosted {
+  background-color: #8888d0;
+}
+
+.badge-cloud {
+  background-color: #6161d6;
+}
+
+.badge-enterprise {
+  background-color: #c4c4ed;
+}
+
+// overrides
 
 h1,
 h2,
