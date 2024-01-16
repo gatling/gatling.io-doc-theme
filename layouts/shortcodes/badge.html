@@ -1,1 +1,5 @@
+{{- if eq (strings.Chomp .Inner) "" -}}
+<span class="badge badge-{{ .Get 0 }}">{{ .Get 1 }}</span>
+{{- else -}}
 <span class="badge badge-{{ .Get 0 }}">{{ .Inner }}</span>
+{{- end -}}
