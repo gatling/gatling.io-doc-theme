@@ -32,7 +32,10 @@ Or using self-closed form:
 ### Example 1 {{%/* badge success "self closed" /*/%}} {#example-2}
 ```
 
-Note: you want to override the default anchor when using a badge, otherwise the header link will be "weird", e.g: #example-2-span-classbadge-badge-successself-closedspan 
+{{< alert warning >}}
+You want to override the default anchor when using a badge inside a title
+If not, the header link will be "weird", e.g: #example-2-span-classbadge-badge-successself-closedspan
+{{< /alert >}}
 
 ## Available badges
 
