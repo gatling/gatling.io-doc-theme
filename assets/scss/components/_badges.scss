@@ -45,6 +45,10 @@
 
 // overrides
 
+.badge {
+  vertical-align: text-bottom;
+}
+
 h1,
 h2,
 h3,
@@ -55,8 +59,4 @@ h6 {
     font-size: 0.5em;
     vertical-align: middle;
   }
-}
-
-#TableOfContents .badge {
-  vertical-align: text-bottom;
 }

@@ -1,5 +1,8 @@
 ---
 title: Badge
+badge:
+  type: enterprise
+  label: example
 ---
 
 ## Description
@@ -14,6 +17,17 @@ Or even a self-closed form:
 
 ```
 {{</* badge success "New" /*/>}}
+```
+
+Or in the navigation left menu, by adding metadata to the front matter of a page:
+
+```yaml
+---
+title: Badge
+badge:
+  type: enterprise
+  label: example
+---
 ```
 
 ### Example 1 {{% badge success %}}closed{{% /badge %}} {#example-1}
