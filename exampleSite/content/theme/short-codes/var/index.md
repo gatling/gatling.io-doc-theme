@@ -8,7 +8,7 @@ Substitution with a global variable.
 
 Variables needs to be cascaded from the section root inside the front matter for it to work properly:
 
-```markdown
+```go-html-template
 {{</* youtube dQw4w9WgXcQ */>}}
 ```
 

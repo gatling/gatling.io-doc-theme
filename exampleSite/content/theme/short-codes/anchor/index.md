@@ -8,13 +8,13 @@ Add an invisible link with `id="jsonPath"`.
 
 It is NOT recommended to use it for titles as they are automatically anchored. If you want to rename or shorten the anchor of a title, you can do it this way:
 
-```markdown
+```go-html-template
 {{</* anchor test */>}}
 ```
 
 Then referenced with:
 
-```markdown
+```go-html-template
 {{</* ref path/to/file#test */>}}
 ```
 

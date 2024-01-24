@@ -11,7 +11,7 @@ Expected types:
 - warning
 - danger
 
-```markdown
+```go-html-template
 {{</* alert tip */>}}
 If the value is a `[String]`, Gatling will try to parse it into a value of the expected type.
 {{</* /alert */>}}

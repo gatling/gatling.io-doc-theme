@@ -19,7 +19,7 @@ cascade:
 ```
 
 
-```markdown
+```go-html-template
 {{</* var revnumber */>}}
 ```
 
