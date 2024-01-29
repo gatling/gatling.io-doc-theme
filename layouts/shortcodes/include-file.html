@@ -21,7 +21,7 @@
     {{- $label := replaceRE "(?:[0-9]+-)?(.*)" "$1" $label -}}
     <div data-toggle-key="{{ $key }}" data-toggle-value="{{ $label }}" class="tab-pane {{ $active }}">
       {{- $content := readFile (printf "%s%s" $page.File.Dir (index $files .)) -}}
-      {{- $content | markdownify -}}
+      {{- $content | $page.RenderString -}}
     </div>
     {{- end -}}
   </div>
