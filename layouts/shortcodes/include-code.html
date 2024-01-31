@@ -45,7 +45,7 @@
       {{- $split := split $path "." -}}
       {{- $path = index $split 0 -}}
     {{- end -}}
-    {{- $pathWithExt := printf "**%s.%s" $path . -}}
+    {{- $pathWithExt := printf "**%s*.%s" $path . -}}
     {{- $page = $.Page.Resources.GetMatch $pathWithExt -}}
     {{- if not $page -}}
       {{- $tag = $path -}}
