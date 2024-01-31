@@ -22,7 +22,9 @@
             {{ $page = .GetPage $version }}
           {{ end }}
           {{ range ($page.Pages | union $page.Sections).ByWeight }}
-            {{ template "section-tree-nav" dict "currentnode" $currentNode "depth" (add $depth 1) "section" . "version" $version }}
+            {{ if ne .Params.private true }}
+              {{ template "section-tree-nav" dict "currentnode" $currentNode "depth" (add $depth 1) "section" . "version" $version }}
+            {{ end }}
           {{ end }}
         </ul>
       {{ end }}

@@ -1,7 +1,7 @@
 
 {{- $pages := slice -}}
 {{- range (.Scratch.Get "sections") -}}
-  {{- $pages = $pages | append .RegularPagesRecursive -}}
+  {{- $pages = $pages | append (where .RegularPagesRecursive "Params.private" "ne" "true") -}}
 {{- end -}}
 {{- $pages = $pages.ByWeight -}}
 <div class="docs-navigation d-flex justify-content-between">
