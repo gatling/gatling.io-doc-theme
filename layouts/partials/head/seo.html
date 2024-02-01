@@ -4,7 +4,7 @@
   {{ with .Params.robots -}}
   <meta name="robots" content="{{ . }}">
   {{ else -}}
-    {{ if eq .Params.sitemap_exclude true -}}
+    {{ if or (eq .Params.private true) (eq .Params.sitemap_exclude true) -}}
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
     <meta name="bingbot" content="noindex, nofollow">

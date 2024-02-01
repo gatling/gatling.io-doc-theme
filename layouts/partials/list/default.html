@@ -2,7 +2,7 @@
 <div class="text-left">{{ .Content }}</div>
 <div class="card-list">
   {{ partial "version/deprecation-warning" . }}
-  {{ range .Pages }}
+  {{ range where .Pages ".Params.private" "ne" true }}
   <div class="card my-4">
     <div class="card-body">
       {{ $versioning := cond (isset .Params "versioning") .Params.versioning false }}
