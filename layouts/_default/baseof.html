@@ -17,7 +17,7 @@
   {{ partial "head/head.html" . }}
   <body class="{{ .Scratch.Get "class" }}">
     {{ partial "header/header.html" . }}
-    <div class="wrap container" role="document">
+    <div class="wrap container-fluid" role="document">
       <div class="content">
         {{ block "main" . }}{{ end }}
       </div>
