@@ -2,8 +2,7 @@
 @import "swagger-ui-dark";
 @import "common/colors";
 
-body.cloud .docs-content .swagger-ui,
-body.enterprise .docs-content .swagger-ui {
+.docs-content .swagger-ui {
   small > pre {
     background: initial;
   }
@@ -52,8 +51,7 @@ body.enterprise .docs-content .swagger-ui {
   }
 }
 
-[data-dark-mode] body.cloud .docs-content .swagger-ui,
-[data-dark-mode] body.enterprise .docs-content .swagger-ui {
+[data-dark-mode] .docs-content .swagger-ui {
 
   a, h4 {
     color: $gray-300;

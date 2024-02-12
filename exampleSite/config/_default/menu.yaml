@@ -1,16 +1,3 @@
-main:
-  - name: Theme
-    url: theme/
-    weight: 10
-  - name: Gatling
-    url: gatling/
-    identifier: gatling
-    weight: 20
-  - name: Cloud
-    weight: 30
-    identifier: enterprise
-    url: enterprise/cloud/
-
 social:
   - name: Twitter
     pre: >-

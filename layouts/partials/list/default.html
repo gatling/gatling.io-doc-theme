@@ -1,24 +1,13 @@
 <h1 class="text-left">{{ .Title }}</h1>
 <div class="text-left">{{ .Content }}</div>
 <div class="card-list">
-  {{ partial "version/deprecation-warning" . }}
   {{ range where .Pages ".Params.private" "ne" true }}
   <div class="card my-4">
     <div class="card-body">
-      {{ $versioning := cond (isset .Params "versioning") .Params.versioning false }}
-      {{ $url := cond $versioning (printf "%scurrent/" .Permalink) .Permalink }}
-      <a class="stretched-link" href="{{ $url }}">
+      <a class="stretched-link" href="{{ .Permalink }}">
         {{ .Params.title | title }}
       </a>
-      {{ if eq .Params.title "Tutorials" -}}
-        <small>Getting started step-by-step articles</small>
-      {{- else if eq .Params.title "Guides" -}}
-        <small>How-to guides</small>
-      {{- else if eq .Params.title "Reference" -}}
-        <small>Technical material and descriptions</small>
-      {{- else if eq .Params.title "Explanation" -}}
-        <small>Discussions on particuliar topics</small>
-      {{- else if isset .Params "lead" -}}
+      {{ if isset .Params "lead" -}}
         <small>{{ .Params.lead }}</small>
       {{- end }}
     </div>

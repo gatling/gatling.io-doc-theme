@@ -199,22 +199,3 @@ content
 ```
 
 Sidebar menu and pages navigation scope the two closest parents pages.
-
-### Versioning
-
-Your content may contain multiple versions of a documentation
-
-**structure**
-
-```
-content
-└── reference
-    ├── _index.md
-    ├── current
-    ├── 2.0.0
-    └── 1.0.0
-```
-
-If so, in reference `_index.md` set the parameter `versionning` to `true`.
-Each version folder should cascade a `version` to their childs through their root `_index.md`.
-Latest version must set `latest` to `true` and reflect the `current` folder

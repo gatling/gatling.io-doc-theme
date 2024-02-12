@@ -1,0 +1,34 @@
+body {
+  a:hover,
+  .docs-link:hover,
+  .docs-link.active,
+  .page-links a:hover,
+  a.docs-link:hover,
+  article a,
+  .docs-content a {
+    color: #f78557;
+  }
+
+  .navbar-nav .active a {
+    background: #f78557;
+  }
+}
+
+[data-dark-mode] body {
+  a:hover,
+  .docs-link:hover,
+  .docs-link.active,
+  .page-links a:hover {
+    color: #f78557;
+  }
+}
+
+/* Default */
+
+body .card-list a {
+  color: $gray-700 !important;
+}
+
+[data-dark-mode] body .card-list a {
+  color: #aaa !important;
+}
