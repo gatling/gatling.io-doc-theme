@@ -12,8 +12,6 @@ type FrontMatter = {
   description: string;
   content: string;
   href: string;
-  version: string;
-  latest: string;
   section: string;
 };
 
@@ -33,8 +31,8 @@ const indexOptions: CreateOptions = {
   tokenize: "strict",
   doc: {
     id: "id",
-    field: ["title", "description", "content", "section", "version", "latest"],
-    store: ["title", "description", "href", "section", "version", "latest"],
+    field: ["title", "description", "content", "section"],
+    store: ["title", "description", "href", "section"],
   },
 };
 
@@ -55,19 +53,7 @@ const createSearchEntryElement = (frontMatter: FrontMatter): HTMLDivElement => {
   label.append(title);
 
   const section = document.createElement("span");
-
-  let sectionText = "";
-  if (frontMatter.section === "gatling") {
-    sectionText = "Gatling OSS";
-  } else if (frontMatter.section === "enterprise") {
-    const subsection = frontMatter.href.split("enterprise")[1].split("/")[1];
-    if (subsection === "self-hosted") {
-      sectionText = "Self-Hosted";
-    } else if (subsection === "cloud") {
-      sectionText = "Cloud";
-    }
-  }
-  sectionText = document.createTextNode(sectionText);
+  const sectionText = document.createTextNode(frontMatter.section);
   section.append(sectionText);
   label.append(section);
 
@@ -80,30 +66,6 @@ const createSearchEntryElement = (frontMatter: FrontMatter): HTMLDivElement => {
   entry.append(suggestion);
 
   return entry;
-};
-
-type SearchConfiguration = {
-  section: string;
-  version?: string;
-  latest?: string;
-};
-
-let searchConfiguration: SearchConfiguration = {
-  section: "",
-  version: undefined,
-  latest: undefined,
-};
-
-const updateSearchOptions = (
-  section: string,
-  version?: string,
-  latest?: boolean
-): void => {
-  searchConfiguration = {
-    section,
-    version,
-    latest: `${latest === undefined ? version === undefined : latest}`, // Filter on latest when version isn't set
-  };
 };
 
 const whileResultsInferiorSearchLimit =
@@ -130,56 +92,10 @@ const searchOptionsQueryFields = (query: string): SearchQuery[] =>
     })
   );
 
-const search = (query: string): Promise<FrontMatter[]> => {
-  if (searchConfiguration.version) {
-    return index
-      .search({
-        query,
-        limit: searchLimit,
-        where: {
-          section: searchConfiguration.section,
-          version: searchConfiguration.version,
-        },
-      })
-      .then(
-        whileResultsInferiorSearchLimit((limit) =>
-          index.search({
-            query,
-            limit,
-            where: {
-              version: "null",
-            },
-          })
-        )
-      )
-      .then(
-        whileResultsInferiorSearchLimit(() =>
-          // @ts-ignore
-          index.search([
-            ...searchOptionsQueryFields(query),
-            {
-              field: "latest",
-              query: "false",
-              bool: "not", // boolean condition must be inverse for it to work
-            },
-            {
-              field: "section",
-              query: searchConfiguration.section,
-              bool: "not",
-            },
-          ])
-        )
-      );
-  } else {
-    return index.search({
-      query,
-      limit: searchLimit,
-      where: {
-        latest: "true",
-      },
-    });
-  }
-};
+const search = (query: string): Promise<FrontMatter[]> => index.search({
+  query,
+  limit: searchLimit,
+});
 
 const displayNoneClass = "d-none";
 const hideElement = (element: HTMLElement, hide: boolean): void => {
@@ -279,8 +195,3 @@ fetch("{{ .Site.BaseURL }}/search/index.json")
   });
 
 // FIXME: js.Build import all dependencies inside concatenated file, in a self-called function preventing the export
-window.updateSearchVersion = (
-  section: string,
-  version?: string,
-  latest?: boolean
-): void => updateSearchOptions(section, version, latest);

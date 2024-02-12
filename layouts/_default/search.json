@@ -1,13 +1,4 @@
-{{- $pages := slice -}}
-
-{{- $latestPages := where .Site.Pages ".Params.latest" true -}}
-{{- range $latestPages }}
-  {{- if (in .Permalink "current") -}}
-    {{- $pages = $pages | append . -}}
-  {{- end -}}
-{{- end -}}
-
-{{- $pages = $pages | append (where .Site.Pages ".Params.latest" "ne" true) -}}
+{{- $pages := .Site.Pages -}}
 {{- $pages = where $pages ".Params.private" "ne" true -}}
 {{- $pages = where $pages ".Params.search" "ne" false -}}
 
@@ -19,9 +10,7 @@
       "title" .Title
       "description" (cond (isset .Params "description") (.Params.description) (.Plain | truncate 100))
       "content" (.Content | plainify)
-      "version" (.Params.version | string)
-      "latest" (cond (isset .Params "version") (.Params.latest | string) ("true"))
-      "section" .Section
+      "section" .FirstSection.Title
   -}}
   {{- $indexes = $indexes | append $entry -}}
 {{- end -}}

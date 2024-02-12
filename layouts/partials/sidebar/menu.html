@@ -1,13 +1,12 @@
 {{ range .Scratch.Get "sections" }}
 <ul class="list-unstyled">
-  {{ template "section-tree-nav" dict "currentnode" $ "depth" 0 "section" . "version" ($.Scratch.Get "version") }}
+  {{ template "section-tree-nav" dict "currentnode" $ "depth" 0 "section" . }}
 </ul>
 {{ end }}
 
 {{ define "section-tree-nav" }}
   {{ $currentNode := .currentnode }}
   {{ $depth := .depth }}
-  {{ $version := .version }}
   {{ with .section }}
     {{ $splitPermalink := split (trim .RelPermalink "/") "/" }}
     {{ $sectionName := index (last 1 $splitPermalink) 0 }}
@@ -17,13 +16,9 @@
       </a>
       {{ if .IsSection }}
         <ul {{ if gt $depth 0 }}id="collapsable-{{ .File.UniqueID }}"{{ end }} class="list-unstyled{{ if and (gt $depth 0) (not (.IsAncestor $currentNode)) }} collapse{{ end }}">
-          {{ $page := . }}
-          {{ if and (eq $sectionName "reference") (isset .Params "versioning") (.Params.versioning) }}
-            {{ $page = .GetPage $version }}
-          {{ end }}
-          {{ range ($page.Pages | union $page.Sections).ByWeight }}
+          {{ range (.Pages | union .Sections).ByWeight }}
             {{ if ne .Params.private true }}
-              {{ template "section-tree-nav" dict "currentnode" $currentNode "depth" (add $depth 1) "section" . "version" $version }}
+              {{ template "section-tree-nav" dict "currentnode" $currentNode "depth" (add $depth 1) "section" . }}
             {{ end }}
           {{ end }}
         </ul>

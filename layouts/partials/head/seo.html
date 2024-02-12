@@ -45,28 +45,6 @@
   <meta name="description" content="{{ .Site.Params.description }}">
 {{ end -}}
 
-{{ if ne .Parent nil -}}
-  {{ if (isset .Parent.Params "version") -}}
-    {{- $url := .Permalink | absURL -}}
-    {{- if in $url (printf "reference/%s" .Parent.Params.version) -}}
-      {{- $url = replace $url (.Parent.Params.version) "current" 1 -}}
-    {{- end -}}
-    <link rel="canonical" href="{{ $url }}">
-  {{ end -}}
-{{ else -}}
-  {{ if $.Scratch.Get "paginator" -}}
-      <link rel="canonical" href="{{ .Paginator.URL | absURL }}">
-    {{ if .Paginator.HasPrev -}}
-      <link rel="prev" href="{{ .Paginator.Prev.URL | absURL }}">
-    {{ end -}}
-    {{ if .Paginator.HasNext -}}
-      <link rel="next" href="{{ .Paginator.Next.URL | absURL }}">
-    {{ end -}}
-  {{ else -}}
-    <link rel="canonical" href="{{ .Permalink }}">
-  {{ end -}}
-{{ end }}
-
 {{ partial "head/twitter_cards.html" . }}
 <meta name="twitter:site" content="@{{ .Site.Params.twitterSite }}">
 <meta name="twitter:creator" content="@{{ .Site.Params.twitterCreator }}">
