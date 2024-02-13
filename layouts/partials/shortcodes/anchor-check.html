@@ -8,7 +8,7 @@
   {{- if eq $path "" -}}
     {{- $page = .Page -}}
   {{- else -}}
-    {{- $page = .Site.GetPage $path -}}
+    {{- $page = .Page.GetPage $path -}}
   {{- end -}}
   {{- if ne $page.Fragments nil -}}
     {{- $identifiers := $page.Fragments.Identifiers -}}
