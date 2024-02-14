@@ -29,6 +29,8 @@
               {{- $child := $page.GetPage . -}}
               {{- if eq $child.Parent nil -}}
                 {{- errorf "[%s] REF_NOT_FOUND: %q is referenced in the ordering property of the page %q but was not found" $page.Language . $page.File -}}
+              {{- else if eq $child.Params.private true }}
+                {{- errorf "[%s] PRIVATE_REF_FOUND: %q is referenced in the ordering property of the page %q but is supposed to be private" $page.Language . $page.File -}}
               {{ else }}
                 {{- $ordering = $ordering | append $child -}}
               {{ end }}
