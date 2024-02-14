@@ -65,7 +65,7 @@
         {{- $extract := index (split ($page.Content) $anchor) 1 -}}
         {{- $trimmed := trim $extract "\r\n" -}}
         {{- if $content -}}
-          {{- $content = printf "%s\n%s" $content $trimmed -}}
+          {{- $content = printf "%s\n\n%s" $content $trimmed -}}
         {{- else -}}
           {{- $content = $trimmed -}}
         {{- end -}}
