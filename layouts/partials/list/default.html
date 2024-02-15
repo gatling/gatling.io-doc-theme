@@ -1,4 +1,4 @@
-<h1 class="text-left">{{ .Title }}</h1>
+<h1 class="text-left">{{ .Title | title }}</h1>
 <div class="text-left">{{ .Content }}</div>
 <div class="card-list">
   {{- $page := . -}}
