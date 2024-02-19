@@ -12,7 +12,7 @@
   {{ with .page -}}
     {{- if .IsPage -}}{{- $scratch.Add "pagesByOrdering" . -}}{{- end -}}
     {{ if gt $depth 0 }}<li>{{ end }}
-      {{- $title := default .Title .Params.menutitle | title -}}
+      {{- $title := default .Title .Params.menutitle -}}
       <a class="docs-link{{ if in $currentPage.RelPermalink .RelPermalink }} active{{ end }}" title="{{ $title }}" {{ if and .IsSection (gt $depth 0) }}href="#collapsable-{{ .File.UniqueID }}" data-toggle="collapse" role="button" aria-expanded="{{ .IsAncestor $currentPage }}" aria-controls="collapsable-{{ .File.UniqueID }}"{{ else }}href="{{ .RelPermalink }}"{{ end }}>
         {{ if eq $depth 0 }}<h3>{{ else }}{{ if and (.IsAncestor $currentPage) (not (eq $currentPage .)) }}<i class="fas fa-chevron-down"></i> {{ else if .IsSection }}<i class="fas fa-chevron-right"></i> {{ end }}{{ end }}{{ $title }}{{ with .Params.badge }} <span class="badge badge-{{ .type }}">{{ .label }}</span>{{ end }}{{ if eq $depth 0 }}</h3>{{ end }}
       </a>
