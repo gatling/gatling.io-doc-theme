@@ -1,0 +1,5 @@
+<p style="text-align:center">
+  <a class="btn btn-orange" href="{{ trim .Inner "\r\n" | safeURL }}" role="button">
+    {{ .Get "title" | safeHTML }}
+  </a>
+</p>
