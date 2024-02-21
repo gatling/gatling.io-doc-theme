@@ -27,6 +27,8 @@
   <meta name="description" content="{{ .Site.Params.description }}">
 {{ end -}}
 
+<link rel="canonical" href="{{ .Permalink }}">
+
 {{ partial "head/twitter_cards.html" . }}
 <meta name="twitter:site" content="@{{ .Site.Params.twitterSite }}">
 <meta name="twitter:creator" content="@{{ .Site.Params.twitterCreator }}">
