@@ -16,10 +16,14 @@
   {{ end -}}
 {{ end -}}
 
-{{- if not (isset .Params "title" ) -}}
-  {{- errorf "[%s] TITLE_NOT_FOUND: title not found in file %q" .Language .File.Path -}}
-{{- end -}}
-<title>{{ default .Title .Params.seotitle }}</title>
+{{ if eq .Kind "404" -}}
+  <title>404 Page not found - Gatling Documentation</title>
+{{ else -}}
+  {{- if not (isset .Params "title" ) -}}
+    {{- errorf "[%s] TITLE_NOT_FOUND: title not found in file %q" .Language .File.Path -}}
+  {{- end -}}
+  <title>{{ default .Title .Params.seotitle }}</title>
+{{- end }}
 
 {{ with .Description -}}
   <meta name="description" content="{{ . }}">
