@@ -1,9 +1,6 @@
-version: "3.9"
-
 services:
-
   hugo:
-    image: klakegg/hugo:0.82.0-ext-alpine
+    image: klakegg/hugo:0.123.1.0-ext-alpine
     ports:
      - 1313:1313
     volumes:
