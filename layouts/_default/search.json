@@ -1,4 +1,5 @@
 {{- $pages := .Site.Pages -}}
+{{- $pages = where $pages ".IsPage" "eq" true }}
 {{- $pages = where $pages ".Params.private" "ne" true -}}
 {{- $pages = where $pages ".Params.search" "ne" false -}}
 
@@ -10,7 +11,7 @@
       "title" .Title
       "description" (cond (isset .Params "description") (.Params.description) (.Plain | truncate 100))
       "content" (.Content | plainify)
-      "section" .FirstSection.Title
+      "section" (default .FirstSection.Title .FirstSection.Params.menutitle)
   -}}
   {{- $indexes = $indexes | append $entry -}}
 {{- end -}}
