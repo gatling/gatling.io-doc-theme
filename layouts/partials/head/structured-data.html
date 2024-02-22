@@ -33,10 +33,11 @@
 {{ $dot.Scratch.Set "path" "" -}}
 {{ $dot.Scratch.Set "breadcrumb" slice -}}
 
-{{ $url := replace .Permalink ( printf "%s" .Site.BaseURL) "" -}}
-{{ $.Scratch.Add "path" .Site.BaseURL -}}
+{{ $baseUrl := strings.TrimRight "/" .Site.BaseURL -}}
+{{ $url := replace .Permalink (printf "%s" $baseUrl) "" -}}
+{{ $.Scratch.Add "path" $baseUrl -}}
 
-{{ $.Scratch.Add "breadcrumb" (slice (dict "url" .Site.BaseURL "name" "home" "position" 1 )) -}}
+{{ $.Scratch.Add "breadcrumb" (slice (dict "url" $baseUrl "name" "home" "position" 1)) -}}
 {{ range $index, $element := split $url "/" -}}
   {{ $dot.Scratch.Add "path" $element -}}
   {{ $.Scratch.Add "path" "/" -}}

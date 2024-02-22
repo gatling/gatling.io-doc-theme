@@ -1,4 +1,4 @@
-$baseUrl: "{{ .Site.BaseURL }}";
+$baseUrl: "{{ strings.TrimRight "/" .Site.BaseURL }}";
 
 /** Import Bootstrap functions */
 @import "bootstrap/scss/functions";

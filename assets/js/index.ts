@@ -183,7 +183,7 @@ function initializeSearch(
   );
 }
 
-fetch("{{ .Site.BaseURL }}/search/index.json")
+fetch("{{ strings.TrimRight "/" .Site.BaseURL }}/search/index.json")
   .then((response) => response.json())
   .then(({ exported, indexes }) => {
     if (exported) {
