@@ -29,32 +29,36 @@
   {{ end -}}
 {{ end -}}
 
-{{ $dot := . -}}
-{{ $dot.Scratch.Set "path" "" -}}
-{{ $dot.Scratch.Set "breadcrumb" slice -}}
+{{- /* Source: https://bullaki.com/projects/web-design/seo-with-hugo-5-breadcrumbs/ */}}
+{{- $scratch := newScratch -}}
+{{- $scratch.Set "count" 1 -}}
 
-{{ $baseUrl := strings.TrimRight "/" .Site.BaseURL -}}
-{{ $url := replace .Permalink (printf "%s" $baseUrl) "" -}}
-{{ $.Scratch.Add "path" $baseUrl -}}
+{{- define "partials/inline/breadcrumbData" -}}
+  {{- $scratchCtx := .scratch -}}
+  {{- with .parent }}
+    {{ partial "inline/breadcrumbData" (dict "scratch" $scratchCtx "parent" .Parent) }}
+    {{- $scratchCtx.Add "listItem" (slice (dict 
+      "@type" "ListItem"
+      "position" ($scratchCtx.Get "count")
+      "name" (default .Title .Params.menutitle)
+      "item" .Permalink
+    )) -}}
+    {{- $scratchCtx.Add "count" 1 -}}
+  {{- end }}
+{{- end -}}
 
-{{ $.Scratch.Add "breadcrumb" (slice (dict "url" $baseUrl "name" "home" "position" 1)) -}}
-{{ range $index, $element := split $url "/" -}}
-  {{ $dot.Scratch.Add "path" $element -}}
-  {{ $.Scratch.Add "path" "/" -}}
-  {{ if ne $element "" -}}
-    {{ $.Scratch.Add "breadcrumb" (slice (dict "url" ($.Scratch.Get "path") "name" . "position" (add $index 2))) -}}
-  {{ end -}}
-{{ end -}}
+{{ partial "inline/breadcrumbData" (dict "scratch" $scratch "parent" .Parent) }}
+
+{{- $scratch.Add "listItem" (slice (dict 
+  "@type" "ListItem"
+  "position" ($scratch.Get "count")
+  "name" (default .Title .Params.menutitle)
+)) -}}
+
+{{- $scratch.SetInMap "breadcrumb" "@context" "https://schema.org" -}}
+{{- $scratch.SetInMap "breadcrumb" "@type" "BreadcrumbList" -}}
+{{- $scratch.SetInMap "breadcrumb" "itemListElement" ($scratch.Get "listItem") -}}
 
 <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{{ range $.Scratch.Get "breadcrumb" }}{{ if ne .position 1 }},{{ end }}{
-        "@type": "ListItem",
-        "position": {{ .position }},
-        "name": {{ .name | humanize | title }},
-        "item": {{ .url  }}
-    }{{ end }}]
-}
+  {{- $scratch.Get "breadcrumb" | jsonify (dict "prefix" " " "indent" "  ") | safeJS -}}
 </script>

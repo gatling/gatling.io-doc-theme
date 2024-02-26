@@ -19,15 +19,6 @@
     <main class="docs-content col-lg-10 col-xl-8 mx-xl-auto">
     {{ end -}}
   {{ end -}}
-    {{ if .Site.Params.options.breadCrumb -}}
-      <!-- https://discourse.gohugo.io/t/breadcrumb-navigation-for-highly-nested-content/27359/6 -->
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          {{ partial "main/breadcrumb" . -}}
-          <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-        </ol>
-      </nav>
-    {{ end }}
     <h1>{{ .Title }}</h1>
     <p class="lead">{{ .Params.lead | safeHTML }}</p>
     {{ partial "main/headline-hash.html" .Content }}
