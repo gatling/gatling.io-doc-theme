@@ -200,10 +200,6 @@ $navbar-dark-active-color: $link-color-dark;
   background: $border-dark;
 }
 
-[data-dark-mode] body .docs-links > ul:not(:first-child) {
-  border-top: 1px solid $border-dark;
-}
-
 [data-dark-mode] body a.docs-link {
   color: $body-color-dark;
 }
