@@ -12,11 +12,9 @@
     <nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
       {{ partial "sidebar/toc.html" . }}
     </nav>
-    {{ end -}}
-    {{ if .Params.toc -}}
-    <main class="docs-content col-lg-10 col-xl-8">
-    {{ else -}}
     <main class="docs-content col-lg-10 col-xl-8 mx-xl-auto">
+    {{ else -}}
+    <main class="docs-content col-lg-10 col-xl-11 mx-xl-auto">
     {{ end -}}
   {{ end -}}
     <h1>{{ .Title }}</h1>
