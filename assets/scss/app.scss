@@ -41,6 +41,10 @@ $fa-font-path: $baseUrl + "/webfonts";
 @import "components/tables";
 @import "components/youtube";
 
+@import "docsearch/variables";
+@import "@docsearch/css/dist/modal";
+@import "docsearch/overrides";
+
 @import "layouts/footer";
 @import "layouts/header";
 @import "layouts/home";

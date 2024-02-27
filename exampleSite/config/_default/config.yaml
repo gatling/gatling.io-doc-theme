@@ -86,7 +86,5 @@ module:
       target: assets
     - source: ../static
       target: static
-    - source: node_modules/flexsearch
-      target: assets/js/vendor/flexsearch
     - source: node_modules/@fortawesome/fontawesome-free/webfonts
       target: static/webfonts

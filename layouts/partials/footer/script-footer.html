@@ -1,56 +1,35 @@
-{{ $indexTemplate := resources.Get "js/index.ts" }}
-{{ $index := $indexTemplate | resources.ExecuteAsTemplate "index.ts" . | babel | js.Build -}}
 
 {{ $jq := resources.Get "js/jquery.ts" -}}
 {{ $jq := $jq | babel | js.Build -}}
 
-{{ $app := resources.Get "js/app.ts" | babel -}}
-{{ $slice := slice $app -}}
+{{ $templates := slice -}}
+{{ $templates = $templates | append "clipboard" -}}
+{{ $templates = $templates | append "cookies" -}}
+{{ $templates = $templates | append "darkmode" -}}
+{{ $templates = $templates | append "docsearch" -}}
+{{ $templates = $templates | append "instant.page" -}}
+{{ $templates = $templates | append "lazysizes" -}}
+{{ $templates = $templates | append "lightbox" -}}
+{{ $templates = $templates | append "menu" -}}
+{{ $templates = $templates | append "tabs" -}}
 
-{{ $clipboard := resources.Get "js/clipboard.ts" | babel -}}
-{{ $slice = $slice | append $clipboard -}}
-
-{{ $cookies := resources.Get "js/cookies.ts" | babel -}}
-{{ $slice = $slice | append $cookies -}}
-
-{{ $lightbox := resources.Get "js/lightbox.ts" | babel -}}
-{{ $slice = $slice | append $lightbox -}}
-
-{{ $menu := resources.Get "js/menu.ts" | babel -}}
-{{ $slice = $slice | append $menu -}}
-
-{{ $tabs := resources.Get "js/tabs.ts" | babel -}}
-{{ $slice = $slice | append $tabs -}}
-
-{{ $lazySizes := resources.Get "js/lazysizes.ts" | babel -}}
-{{ $slice = $slice | append $lazySizes -}}
-
-{{ $instantPage := resources.Get "js/instant.page.ts" | babel -}}
-{{ $slice = $slice | append $instantPage -}}
-
-{{ $flexSearch := resources.Get "js/vendor/flexsearch/dist/flexsearch.min.js" -}}
-{{ $flexSearchTs := slice $flexSearch | resources.Concat "flexsearch.ts" -}}
-{{ $slice = $slice | append $flexSearchTs -}}
-
-{{ $darkMode := resources.Get "js/darkmode.ts" | babel -}}
-{{ $slice = $slice | append $darkMode -}}
-
-{{ $js := $slice | resources.Concat "main.js" | js.Build -}}
+{{ $context := . -}}
+{{ $resources := slice -}}
+{{ range $templates -}}
+  {{ $template := resources.Get (printf "js/%s.ts" .) -}}
+  {{ $resource := $template | resources.ExecuteAsTemplate "main.js" $context | babel -}}
+  {{ $resources = $resources | append $resource -}}
+{{ end -}}
+{{ $main := $resources | resources.Concat "main.js" | js.Build -}}
 
 {{ if eq (hugo.Environment) "development" -}}
   <script src="{{ $jq.Permalink }}" defer></script>
-  <script src="{{ $js.Permalink }}" defer></script>
-  <!-- Not defer as used to update search version -->
-  <script src="{{ $index.Permalink }}"></script>
+  <script src="{{ $main.Permalink }}" defer></script>
 {{ else -}}
   {{ $jq := $jq | minify | fingerprint "sha512" -}}
   <script src="{{ $jq.Permalink }}" integrity="{{ $jq.Data.Integrity }}" crossorigin="anonymous" defer></script>
-  {{ $js := $js | minify | fingerprint "sha512" -}}
-  <script src="{{ $js.Permalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous" defer></script>
-  {{/* Do not minify the index until you found why there are 2 `f`
-  {{ $index := $index | minify | fingerprint "sha512" -}}
-  */}}
-  <script src="{{ $index.Permalink }}" integrity="{{ $index.Data.Integrity }}" crossorigin="anonymous"></script>
+  {{ $main := $main | minify | fingerprint "sha512" -}}
+  <script src="{{ $main.Permalink }}" integrity="{{ $main.Data.Integrity }}" crossorigin="anonymous" defer></script>
 {{ end -}}
 
 {{ if .Page.Param "swagger-ui" -}}

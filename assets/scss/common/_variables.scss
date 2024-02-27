@@ -111,7 +111,10 @@ $spacer: 1rem;
 $navbar-padding-y: $spacer / 2;
 $navbar-padding-x: null;
 
-$navbar-nav-link-padding-x: 0.5rem;
+$navbar-nav-link-padding-x: 0;
+
+$nav-link-padding-x: 0;
+$nav-link-padding-y: 0;
 
 $navbar-light-color: $black;
 $navbar-light-hover-color: $primary;
