@@ -1,12 +1,21 @@
-{{- if isset .Site.Params "includecode" -}}
-  {{- if not (isset .Site.Params.includecode "default") -}}
-    {{- errorf "%s: missing parameter includeCode.default, check params.yml" .Position -}}
+{{- if isset .Site.Params "languages" -}}
+  {{- if not (isset .Site.Params.languages "default") -}}
+    {{- errorf "%s: missing parameter languages.default, check params.yml" .Position -}}
   {{- end -}}
-  {{- if not (isset .Site.Params.includecode "labels") -}}
-    {{- errorf "%s: missing parameter includeCode.labels, check params.yml" .Position -}}
+  {{- if not (isset .Site.Params.languages "labels") -}}
+    {{- errorf "%s: missing parameter languages.labels, check params.yml" .Position -}}
   {{- end -}}
 {{- else -}}
-  {{- errorf "%s: missing parameter includeCode, check params.yml" .Position -}}
+  {{- errorf "%s: missing parameter languages, check params.yml" .Position -}}
+{{- end -}}
+
+{{- $labels := dict -}}
+{{- $ordering := slice -}}
+{{- range .Site.Params.languages.labels -}}
+  {{- range $language, $label := . -}}
+    {{- $labels = merge $labels (dict $language $label) -}}
+    {{- $ordering = $ordering | append $language -}}
+  {{- end -}}
 {{- end -}}
 
 {{- $pathWithAnchorTag := (.Get 0) -}}
@@ -27,7 +36,7 @@
 
 {{- $languages := slice -}}
 {{- if eq (len .Params) 1 -}}
-  {{- $languages = $languages | append .Site.Params.includecode.default }}
+  {{- $languages = append $languages $ordering -}}
 {{- else -}}
   {{- if and (in $path ".") (gt (len .Params) 2) -}}
     {{- warnf "%s: shouldn't specify file extension with multiple languages" .Position -}}
@@ -91,16 +100,18 @@
 {{- end -}}
 
 {{- if eq (len $code) 1 -}}
-{{- range $language, $content := $code -}}
-{{- highlight $content $language "" -}}
-{{- end -}}
+  {{- range $language, $content := $code -}}
+    {{- highlight $content $language "" -}}
+  {{- end -}}
 {{- else -}}
 <div class="code-toggle">
   <div class="code-toggle-nav">
-    {{- range $language, $content := $code -}}
-    <button data-toggle-key="language" data-toggle-value="{{ $language }}" class="tab-button">
-      {{- if isset $.Site.Params.includecode.labels $language -}}
-        {{- index $.Site.Params.includecode.labels $language -}}
+    {{- range $languages -}}
+    {{- $language := . -}}
+    {{- $content := index $code . -}}
+    <button data-toggle-key="language" data-toggle-value="{{ $language }}" class="tab-button{{ if eq $content "NOT SUPPORTED" }} warning{{ end}}">
+      {{- if isset $labels $language -}}
+        {{- index $labels $language -}}
       {{- else -}}
         {{- $language -}}
       {{- end -}}
@@ -109,9 +120,17 @@
     {{- end -}}
   </div>
   <div class="tab-content">
-    {{- range $language, $content := $code -}}
+    {{- range $languages -}}
+    {{- $language := . -}}
+    {{- $content := index $code . -}}
     <div data-toggle-key="language" data-toggle-value="{{ $language }}" class="tab-pane">
-      {{ highlight $content $language "" }}
+      {{- if eq $content "NOT SUPPORTED" -}}
+      <div class="alert alert-warning" style="margin-top:0">
+        <div class="w-100">Not supported by Gatling JS.</div>
+      </div>
+      {{- else -}}
+      {{- highlight $content $language "" -}}
+      {{- end -}}
     </div>
     {{- end -}}
   </div>
