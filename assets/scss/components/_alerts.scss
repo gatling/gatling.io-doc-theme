@@ -167,6 +167,10 @@
   border-left: 0.3em solid #ffc919;
 }
 
+.code-toggle-nav .tab-button.warning.active {
+  background-color: #ffc9191a;
+}
+
 .alert-warning::before {
   background-color: #ffc919;
   background-image: url($baseUrl + "/images/alerts/exclamation-solid.svg");
