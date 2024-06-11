@@ -4,7 +4,7 @@
   {{ with .Params.robots -}}
   <meta name="robots" content="{{ . }}">
   {{ else -}}
-    {{ if or (eq .Params.private true) (eq .Params.sitemap_exclude true) -}}
+    {{ if or (eq .Site.Params.private true) (eq .Params.private true) (eq .Params.sitemap_exclude true) -}}
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
     <meta name="bingbot" content="noindex, nofollow">
@@ -46,4 +46,6 @@
   <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
 {{ end -}}
 
+{{ if ne .Site.Params.private true -}}
 {{ partial "head/structured-data.html" . }}
+{{- end }}
