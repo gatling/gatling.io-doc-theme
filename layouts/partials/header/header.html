@@ -10,6 +10,9 @@
     {{ if isset .Site.Params "product" -}}
     <span class="vr d-none d-md-block order-md-1"></span>
     <div class="navbar-text d-none d-md-block order-md-1 me-md-auto">{{ .Site.Params.product }}</div>
+    <a target="_blank" class="navbar-link order-md-1 me-md-auto" href="/">
+      docs.gatling.io <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </a>
     {{- end }}
     {{ if .Site.Params.docSearch -}}
     <div id="docSearch" class="d-none" tabindex="-1" aria-disabled="true"></div>
