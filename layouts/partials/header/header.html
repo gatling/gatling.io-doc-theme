@@ -3,13 +3,17 @@
   <div class="container-fluid">
     <input class="menu-btn order-0" type="checkbox" id="menu-btn">
     <label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
-    <a class="navbar-brand order-1 order-md-0 me-auto" href="/">
+    <a class="navbar-brand order-1 order-md-0 me-auto" href="{{ .Site.BaseURL }}">
       <img class="dark-logo logo" src="{{ strings.TrimRight "/" .Site.BaseURL }}/{{ .Site.Params.Logos.Black }}" />
       <img class="light-logo logo" src="{{ strings.TrimRight "/" .Site.BaseURL }}/{{ .Site.Params.Logos.White }}" />
     </a>
+    {{ if isset .Site.Params "product" -}}
+    <span class="vr d-none d-md-block order-md-1"></span>
+    <div class="navbar-text d-none d-md-block order-md-1 me-md-auto">{{ .Site.Params.product }}</div>
+    {{- end }}
     {{ if .Site.Params.docSearch -}}
     <div id="docSearch" class="d-none" tabindex="-1" aria-disabled="true"></div>
-    <button type="button" id="docSearchToggle" class="btn btn-link order-2 order-md-3" aria-label="Search website">
+    <button type="button" id="docSearchToggle" class="btn btn-link order-2 order-md-2" aria-label="Search website">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
         <circle cx="10" cy="10" r="7"></circle>
@@ -17,19 +21,20 @@
       </svg>
     </button>
     {{ end -}}
-    <button id="mode" class="btn btn-link order-3 order-md-4" type="button" aria-label="Toggle user interface mode">
+    <button id="mode" class="btn btn-link order-3 order-md-3" type="button" aria-label="Toggle user interface mode">
       <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
       <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
     </button>
-    <ul class="navbar-nav social-nav order-4 order-md-5">
+    <span class="vr order-4 order-md-5 ms-2 me-2"></span>
+    <ul class="navbar-nav social-nav order-5 order-md-6">
       {{ range .Site.Menus.social -}}
         <li class="nav-item">
           <a class="nav-link" href="{{ .URL | absURL }}">{{ .Pre | safeHTML }}<span class="ms-2 visually-hidden">{{ .Name | safeHTML }}</span></a>
         </li>
       {{ end -}}
     </ul>
-    <div class="collapse navbar-collapse order-5 order-md-1">
-      <ul class="navbar-nav main-nav me-auto order-6 order-md-2">
+    <div class="collapse navbar-collapse order-6 order-md-1">
+      <ul class="navbar-nav main-nav me-auto order-7 order-md-2">
         {{- $current := . -}}
         {{ range .Site.Menus.main -}}
           <li class="nav-{{ .Identifier }} nav-item{{ if eq $current.Type .Identifier }} active{{ end }}">
@@ -37,7 +42,7 @@
           </li>
         {{ end -}}
       </ul>
-      <div class="break order-7 d-md-none"></div>
+      <div class="break order-8 d-md-none"></div>
     </div>
   </div>
 </header>
