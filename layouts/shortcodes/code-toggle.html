@@ -1,24 +1,30 @@
-{{- $syntax := .Get 0 -}}
 {{- $code := .Inner | transform.Unmarshal -}}
-{{- $tools := slice -}}
+{{- $values := slice -}}
 {{- range $key, $value := $code -}}
-  {{- $tools = $tools | append $key -}}
+  {{- $values = $values | append $key -}}
 {{- end -}}
+
+{{- $key := "undefined" }}
+{{- if .Get "key" -}}
+  {{- $key = .Get "key" -}}
+{{- else -}}
+  {{- .Page.Scratch.Add "code-toggle" 1 -}}
+  {{- $n := .Page.Scratch.Get "code-toggle" -}}
+  {{- $key = printf "code-toggle-%03d" $n -}}
+{{- end -}}
+
 <div class="code-toggle">
-
   <div class="code-toggle-nav">
-  {{ range $tools }}
-    <button data-toggle-key="build-tool" data-toggle-value="{{ . }}" class="tab-button">
-      {{ . }}
-    </button>
-  {{ end }}
+  {{ range $index, $value := $values -}}
+    <button data-toggle-key="{{ $key }}" data-toggle-value="{{ $value }}" class="tab-button{{ if eq $index 0 }} active{{ end }}">{{ $value }}</button>
+    &nbsp;
+  {{- end }}
   </div>
-
   <div class="tab-content">
-  {{ range $tools }}
-    <div data-toggle-key="build-tool" data-toggle-value="{{ . }}" class="tab-pane">
-      {{- highlight (index $code .) $syntax "" -}}
+  {{ range $index, $value := $values -}}
+    <div data-toggle-key="{{ $key }}" data-toggle-value="{{ $value }}" class="tab-pane{{ if eq $index 0 }} active {{ end }}">
+      {{- highlight (index $code .) "console" "" -}}
     </div>
-  {{ end }}
+  {{- end }}
   </div>
 </div>
