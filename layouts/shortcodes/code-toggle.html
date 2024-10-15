@@ -1,9 +1,3 @@
-{{- $code := .Inner | transform.Unmarshal -}}
-{{- $values := slice -}}
-{{- range $key, $value := $code -}}
-  {{- $values = $values | append $key -}}
-{{- end -}}
-
 {{- $key := "undefined" }}
 {{- if .Get "key" -}}
   {{- $key = .Get "key" -}}
@@ -13,18 +7,4 @@
   {{- $key = printf "code-toggle-%03d" $n -}}
 {{- end -}}
 
-<div class="code-toggle">
-  <div class="code-toggle-nav">
-  {{ range $index, $value := $values -}}
-    <button data-toggle-key="{{ $key }}" data-toggle-value="{{ $value }}" class="tab-button{{ if eq $index 0 }} active{{ end }}">{{ $value }}</button>
-    &nbsp;
-  {{- end }}
-  </div>
-  <div class="tab-content">
-  {{ range $index, $value := $values -}}
-    <div data-toggle-key="{{ $key }}" data-toggle-value="{{ $value }}" class="tab-pane{{ if eq $index 0 }} active {{ end }}">
-      {{- highlight (index $code .) "console" "" -}}
-    </div>
-  {{- end }}
-  </div>
-</div>
+{{- partial "shortcodes/code-toggle" (dict "inner" .InnerDeindent "key" $key) -}}
