@@ -1,15 +1,12 @@
 {{- if isset .Site.Params "analytics" -}}
-{{- if isset .Site.Params.analytics "universaltrackingid" -}}
+{{- if isset .Site.Params.analytics "globaltrackingid" -}}
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.analytics.universaltrackingid }}"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.analytics.globaltrackingid }}"></script>
 <script>
   window.dataLayer=window.dataLayer||[];
   window.gtag=function(){dataLayer.push(arguments);}
   gtag("js",new Date());
-  gtag("config","{{ .Site.Params.analytics.universaltrackingid }}");
-  {{ if isset .Site.Params.analytics "globaltrackingid" -}}
   gtag("config","{{ .Site.Params.analytics.globaltrackingid }}");
-  {{- end }}
   window.languages={ {{- range $key, $value := .Site.Params.includecode.labels }}{{ $key }}:{{ $value }},{{ end -}} };
   gtag("event","Language defined on pageview",{
     "event_category":"Documentation DSL",
