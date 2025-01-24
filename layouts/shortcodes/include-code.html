@@ -95,7 +95,13 @@
   {{- if gt $indent 0 -}}
     {{- $reindent = apply $split "substr" "." $indent -}}
   {{- end -}}
-  {{- $content = delimit $reindent "\n" -}}
+  {{- $cleaned := slice -}}
+  {{- range $reindent -}}
+    {{- if not (strings.Contains . "@ts-ignore") -}}
+      {{- $cleaned = $cleaned | append . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $content = delimit $cleaned "\n" -}}
   {{- $code = merge $code (dict . $content) -}}
 {{- end -}}
 
