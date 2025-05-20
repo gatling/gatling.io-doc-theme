@@ -109,11 +109,13 @@
 .alert-danger,
 .alert-info,
 .alert-tip,
-.alert-warning {
+.alert-warning
+.alert-enterprise {
   color: inherit;
 }
 
 .alert-danger::before,
+.alert-enterprise::before,
 .alert-info::before,
 .alert-tip::before,
 .alert-warning::before {
@@ -177,5 +179,16 @@
 }
 
 .alert-enterprise {
+  background-color: #6161d61a;
+  border-left: 0.3em solid #6161d6;
+}
+
+.alert-enterprise::before {
   background-color: #6161d6;
+  background-image:url($baseUrl + "/images/alerts/gatling-ent-logo.svg");
+  background-size: 90%;
+  // border-color: #6161d6;
+  // border-width: 0.1em;
+  // border-style: solid
+  //padding: 1rem;
 }
