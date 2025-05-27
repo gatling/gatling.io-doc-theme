@@ -1,19 +1,22 @@
 <h1 class="text-left">{{ .Title }}</h1>
 <div class="text-left">{{ .Content }}</div>
-<div class="card-list">
-  {{- $page := . -}}
-  {{ range .Params.ordering -}}
-    {{- with ($page.GetPage .) -}}
-    <div class="card my-4">
-      <div class="card-body">
-        <a class="stretched-link" href="{{ .Permalink }}">
-          {{ .Params.title }}
-        </a>
-        {{ if isset .Params "lead" -}}
-          <small>{{ .Params.lead }}</small>
-        {{- end }}
-      </div>
-    </div>
-    {{- end -}}
-  {{- end }}
-</div>
+{{ if not .IsHome }}
+  <div class="card-list">
+    {{- $page := . -}}
+    {{ range .Params.ordering -}}
+      {{- with ($page.GetPage .) -}}
+        <div class="card my-4">
+          <div class="card-body">
+            <a class="stretched-link" href="{{ .Permalink }}">
+              {{ .Params.title }}
+            </a>
+            {{ if isset .Params "lead" -}}
+              <small>{{ .Params.lead }}</small>
+            {{- end }}
+          </div>
+        </div>
+      {{- end -}}
+    {{- end }}
+  </div>
+{{ end }}
+
