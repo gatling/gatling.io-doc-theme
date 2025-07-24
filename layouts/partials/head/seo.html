@@ -31,6 +31,11 @@
   <meta name="description" content="{{ .Site.Params.description }}">
 {{ end -}}
 
+{{ with .Keywords -}}
+  {{ $keywords := delimit . ", " -}}
+  <meta name="keywords" content="{{ $keywords }}">
+{{ end -}}
+
 <link rel="canonical" href="{{ .Permalink }}">
 
 {{ partial "head/twitter_cards.html" . }}
