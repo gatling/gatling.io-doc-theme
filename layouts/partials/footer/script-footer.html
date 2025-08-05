@@ -42,3 +42,26 @@
     <script src="{{ $swaggerUIJS.Permalink }}" integrity="{{ $swaggerUIJS.Data.Integrity }}" crossorigin="anonymous" defer></script>
   {{ end }}
 {{ end -}}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const activeLink = document.querySelector(".docs-link.active");
+    const scrollContainer = document.querySelector("nav.docs-links");
+
+    if (activeLink && scrollContainer && typeof activeLink.scrollIntoView === "function") {
+      // Check if the active link is *not* currently visible within the scroll container
+      const activeRect = activeLink.getBoundingClientRect();
+      const containerRect = scrollContainer.getBoundingClientRect();
+
+      const isOutOfView =
+        activeRect.top < containerRect.top || activeRect.bottom > containerRect.bottom;
+
+      if (isOutOfView) {
+        // Scroll so that the active item is centered within the container
+        activeLink.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+    }
+  });
+</script>
