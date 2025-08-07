@@ -42,3 +42,8 @@
     <script src="{{ $swaggerUIJS.Permalink }}" integrity="{{ $swaggerUIJS.Data.Integrity }}" crossorigin="anonymous" defer></script>
   {{ end }}
 {{ end -}}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".docs-link.active")?.scrollIntoView({ behavior: "instant", block: "center" });
+});
+</script>
