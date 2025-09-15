@@ -1,5 +1,5 @@
 {{ with .Site.Params.docSearch }}
-import docsearch from "@docsearch/js";
+import docsearch from '@docsearch/js';
 
 // https://docsearch.algolia.com/docs/api/#transformsearchclient
 function debounce(func, wait) {
@@ -28,7 +28,13 @@ docsearch({
   transformSearchClient: (searchClient: any) => ({
     ...searchClient,
     search: debounce(searchClient.search, 200)
-  })
+  }),
+  askAi: {
+    indexName: "{{ .askAi.indexName }}",
+    apiKey: "{{ .askAi.apiKey }}",
+    appId: "{{ .askAi.appId }}",
+    assistantId: "{{ .askAi.assistantId }}",
+  }
 });
 
 const onClick = function() {
