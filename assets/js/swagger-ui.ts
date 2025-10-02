@@ -8,6 +8,7 @@ document.querySelectorAll<HTMLElement>(".swagger-ui-wrapper").forEach((swaggerEl
     presets: [
       SwaggerUIBundle.presets.apis,
       SwaggerUIStandalonePreset
-    ]
+    ],
+    defaultModelsExpandDepth: -1
   });
 });
