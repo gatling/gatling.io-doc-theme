@@ -114,8 +114,14 @@
   <div class="code-toggle-nav">
     {{- range $languages -}}
     {{- $language := . -}}
-    {{- $content := index $code . -}}
-    <button data-toggle-key="language" data-toggle-value="{{ $language }}" class="tab-button{{ if eq $content "NOT SUPPORTED" }} warning{{ end}}">
+    {{- $content := index $code . | strings.TrimSpace -}}
+    {{- $alert := "" -}}
+    {{- if eq $content "NOT SUPPORTED" -}}
+      {{- $alert = " warning" -}}
+    {{- else if strings.HasPrefix $content "INFO:" -}}
+      {{- $alert = " info" -}}
+    {{- end -}}
+    <button data-toggle-key="language" data-toggle-value="{{ $language }}" class="tab-button{{ $alert }}">
       {{- if isset $labels $language -}}
         {{- index $labels $language -}}
       {{- else -}}
@@ -128,11 +134,16 @@
   <div class="tab-content">
     {{- range $languages -}}
     {{- $language := . -}}
-    {{- $content := index $code . -}}
+    {{- $content := index $code . | strings.TrimSpace -}}
     <div data-toggle-key="language" data-toggle-value="{{ $language }}" class="tab-pane">
       {{- if eq $content "NOT SUPPORTED" -}}
       <div class="alert alert-warning" style="margin-top:0">
         <div class="w-100">Not supported by Gatling JS.</div>
+      </div>
+      {{- else if strings.HasPrefix $content "INFO:" -}}
+      {{- $content = strings.TrimLeft "INFO:" $content -}}
+      <div class="alert alert-info" style="margin-top:0">
+        <div class="w-100">{{- markdownify $content -}}</div>
       </div>
       {{- else -}}
       {{- highlight $content $language "" -}}

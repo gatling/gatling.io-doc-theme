@@ -148,6 +148,10 @@
   border-left: 0.3em solid #4a9fe5;
 }
 
+.code-toggle-nav .tab-button.info.active {
+  background-color: #4a9fe51a;
+}
+
 .alert-info::before {
   background-color: #4a9fe5;
   background-image: url($baseUrl + "/images/alerts/info-solid.svg");
