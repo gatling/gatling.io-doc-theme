@@ -1,5 +1,5 @@
 {{ with .Site.Params.docSearch }}
-import docsearch from '@docsearch/js';
+import docsearch from "@docsearch/js";
 
 // https://docsearch.algolia.com/docs/api/#transformsearchclient
 function debounce(func, wait) {
@@ -21,7 +21,7 @@ function debounce(func, wait) {
 docsearch({
   appId: "{{ .appId }}",
   apiKey: "{{ .apiKey }}",
-  container: '#docSearch',
+  container: "#docSearch",
   debug: false, // Set debug to true if you want to inspect the modal
   indexName: "{{ .indexName }}",
   insights: true, // Optional, automatically send insights when user interacts with search results
@@ -37,7 +37,7 @@ docsearch({
   }
 });
 
-const onClick = function() {
+const onClick = function () {
   document.getElementsByClassName("DocSearch-Button")[0].click();
 }
 

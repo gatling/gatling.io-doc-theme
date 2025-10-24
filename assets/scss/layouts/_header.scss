@@ -36,19 +36,13 @@
 }
 
 .nav-item {
-  margin-left: 1.25rem;
+  margin-left: 0.75rem;
   text-align: center;
 }
 
-@include media-breakpoint-up(md) {
+@include media-breakpoint-down(sm) {
   .nav-item {
     margin-left: 0.5rem;
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .nav-item:first-child {
-    margin-left: 0;
   }
 }
 
