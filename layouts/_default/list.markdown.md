@@ -1,6 +1,6 @@
 # {{ .Title }}
 
-{{ .Content | plainify }}
+{{ .RawContent }}
 
 ## Pages in this section
 
