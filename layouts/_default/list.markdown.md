@@ -1,9 +1,9 @@
 # {{ .Title }}
 
-{{ .Content }}
+{{ .Content | plainify }}
 
 ## Pages in this section
 
 {{- range .Pages }}
-- [{{ .Title }}]({{ .RelPermalink }}index.md){{ with .Description }}: {{ . }}{{ end }}
+- [{{ .Title }}]({{ .Permalink }}index.md){{ with .Description }}: {{ . }}{{ end }}
 {{- end }}

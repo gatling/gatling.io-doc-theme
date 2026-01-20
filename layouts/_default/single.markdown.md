@@ -1,1 +1,3 @@
-{{- .RawContent -}}
+{{- .Title -}}
+{{ "\n" }}
+{{- .Content | plainify -}}
