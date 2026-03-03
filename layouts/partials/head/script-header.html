@@ -1,2 +1,6 @@
 {{ $darkModeInit := resources.Get "js/darkmode-init.ts" | babel (dict "minified" true) -}}
 <script>{{ $darkModeInit.Content | safeJS }}</script>
+{{ if and (.Store.Get "hasMermaid") (isset .Site.Params "mermaid") (isset .Site.Params.mermaid "moduleurl") -}}
+{{- $mermaidInit := resources.Get "js/mermaid-init.js" | resources.ExecuteAsTemplate "mermaid-init.js" . -}}
+<script type="module">{{ $mermaidInit.Content | safeJS }}</script>
+{{- end }}

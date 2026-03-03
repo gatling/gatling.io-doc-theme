@@ -1,0 +1,10 @@
+.mermaid {
+  background: #fafafa;
+  margin: 2rem 0;
+  overflow: auto;
+  padding: 1.25rem 1.5rem;
+}
+
+[data-dark-mode] .mermaid {
+  background: $body-overlay-dark;
+}
