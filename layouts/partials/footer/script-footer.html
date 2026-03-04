@@ -32,6 +32,11 @@
   <script src="{{ $main.Permalink }}" integrity="{{ $main.Data.Integrity }}" crossorigin="anonymous" defer></script>
 {{ end -}}
 
+{{ if and (.Store.Get "hasMermaid") (isset .Site.Params "mermaid") (isset .Site.Params.mermaid "moduleurl") -}}
+{{- $mermaidInit := resources.Get "js/mermaid-init.js" | resources.ExecuteAsTemplate "mermaid-init.js" . -}}
+<script type="module">{{ $mermaidInit.Content | safeJS }}</script>
+{{- end }}
+
 {{ if .Page.Param "swagger-ui" -}}
   {{ $swaggerUIJS := resources.Get "js/swagger-ui.ts" -}}
   {{ $swaggerUIJS := $swaggerUIJS | babel | js.Build -}}
