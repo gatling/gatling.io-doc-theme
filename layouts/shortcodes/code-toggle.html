@@ -7,4 +7,9 @@
   {{- $key = printf "code-toggle-%03d" $n -}}
 {{- end -}}
 
-{{- partial "shortcodes/code-toggle" (dict "inner" .InnerDeindent "key" $key) -}}
+{{- $lang := "console" -}}
+{{- if .Get "lang" -}}
+  {{- $lang = .Get "lang" -}}
+{{- end -}}
+
+{{- partial "shortcodes/code-toggle" (dict "inner" .InnerDeindent "key" $key "lang" $lang) -}}

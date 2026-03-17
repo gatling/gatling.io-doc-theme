@@ -1,4 +1,5 @@
 {{- $key := .key }}
+{{- $lang := .lang | default "console" -}}
 {{- $code := .inner | transform.Unmarshal -}}
 {{- $values := slice -}}
 {{- range $key, $value := $code -}}
@@ -15,7 +16,7 @@
   <div class="tab-content">
   {{ range $index, $value := $values -}}
     <div data-toggle-key="{{ $key }}" data-toggle-value="{{ $value }}" class="tab-pane{{ if eq $index 0 }} active {{ end }}">
-      {{- highlight (index $code .) "console" "" -}}
+      {{- highlight (index $code .) $lang "" -}}
     </div>
   {{- end }}
   </div>
