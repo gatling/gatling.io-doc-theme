@@ -1,9 +1,8 @@
-.youtube-embed {
+.embed {
   height: 0;
-  margin-bottom: 1rem;
-  overflow: hidden;
-  padding-bottom: 56.25%;
+  padding-bottom: calc(52.23068552774755% + 41px);
   position: relative;
+  width: 100%;
 
   & > iframe {
     border: 0;
@@ -14,3 +13,6 @@
     width: 100%;
   }
 }
+
+
+

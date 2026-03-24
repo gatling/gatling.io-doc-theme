@@ -1,0 +1,13 @@
+{{- $id := .Get "id" -}}
+{{- if not $id -}}
+{{- errorf "%s: missing id" .Position -}}
+{{- end -}}
+
+{{- $title := .Get "title" -}}
+{{- if not $title -}}
+{{- errorf "%s: missing title" .Position -}}
+{{- end -}}
+
+<div class="embed">
+  <iframe src="https://demo.arcade.software/{{ $id }}?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="{{ $title }}" frameborder="0" loading="lazy" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="clipboard-write"></iframe>
+</div>
