@@ -31,6 +31,7 @@ $fa-font-path: $baseUrl + "/webfonts";
 @import "components/colors";
 @import "components/cookies";
 @import "components/comments";
+@import "components/embed";
 @import "components/forms";
 @import "components/highlight";
 @import "components/images";
@@ -39,7 +40,6 @@ $fa-font-path: $baseUrl + "/webfonts";
 @import "components/mermaid";
 @import "components/search";
 @import "components/syntax";
-@import "components/youtube";
 
 @import "docsearch/variables";
 @import "@docsearch/css/dist/modal";
