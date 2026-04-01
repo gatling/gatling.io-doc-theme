@@ -1,6 +1,6 @@
 services:
   hugo:
-    image: klakegg/hugo:0.123.1.0-ext-alpine
+    image: floryn90/hugo:0.159.1-ext-alpinee
     ports:
      - 1313:1313
     volumes:

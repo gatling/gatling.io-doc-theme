@@ -39,11 +39,15 @@
 
 {{ if .Page.Param "swagger-ui" -}}
   {{ $swaggerUIJS := resources.Get "js/swagger-ui.ts" -}}
-  {{ $swaggerUIJS := $swaggerUIJS | babel | js.Build -}}
-  {{ if eq (hugo.Environment) "development" -}}
+  {{ $options := dict
+    "minify" (cond hugo.IsDevelopment false true)
+    "targetPath" (cond hugo.IsDevelopment "swagger-ui.js" "swagger-ui.min.js")
+  -}}
+  {{ $swaggerUIJS := $swaggerUIJS | babel | js.Build $options -}}
+  {{ if hugo.IsDevelopment -}}
     <script src="{{ $swaggerUIJS.Permalink }}" defer></script>
   {{ else -}}
-    {{ $swaggerUIJS := $swaggerUIJS | minify | fingerprint "sha512" -}}
+    {{ $swaggerUIJS := $swaggerUIJS | fingerprint "sha512" -}}
     <script src="{{ $swaggerUIJS.Permalink }}" integrity="{{ $swaggerUIJS.Data.Integrity }}" crossorigin="anonymous" defer></script>
   {{ end }}
 {{ end -}}
