@@ -15,16 +15,9 @@
 .metals
 
 # Theme
-functions
 node_modules
 public
 resources
 
-.directory
-
-# Example Site
-package.json
-package-lock.json
-go.sum
-exampleSite/package.hugo.json
-exampleSite/.hugo_build.lock
+# Hugo
+.hugo_build.lock

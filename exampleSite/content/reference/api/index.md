@@ -6,4 +6,4 @@ swagger-ui: true
 ---
 
 PART-1 CONTENT
-{{< swagger-ui src="https://gatling.github.io/gatling-enterprise-api/openapi/openapi.yaml" >}}
+{{< swagger-ui src="https://gatling.github.io/gatling-enterprise-api/openapi/openapi.json" >}}
