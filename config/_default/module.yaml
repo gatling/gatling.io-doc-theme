@@ -1,0 +1,18 @@
+hugoVersion:
+  min: 0.160.0
+
+mounts:
+  - source: node_modules
+    target: assets
+  - source: assets
+    target: assets
+  - source: archetypes
+    target: archetypes
+  - source: content
+    target: content
+  - source: data
+    target: data
+  - source: layouts
+    target: layouts
+  - source: static
+    target: static
