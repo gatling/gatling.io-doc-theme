@@ -10,8 +10,9 @@ $baseUrl: "{{ strings.TrimRight "/" .Site.BaseURL }}";
 @import "bootstrap/scss/bootstrap";
 
 /** Import Font Awesome */
-$fa-font-path: $baseUrl + "/webfonts";
-
+@use '@fortawesome/fontawesome-free/scss/variables' with (
+  $font-path: $baseUrl + "/webfonts"
+);
 @import "@fortawesome/fontawesome-free/scss/fontawesome";
 @import "@fortawesome/fontawesome-free/scss/brands";
 @import "@fortawesome/fontawesome-free/scss/regular";
