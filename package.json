@@ -12,7 +12,7 @@
     "@babel/preset-typescript": "7.28.5",
     "@docsearch/js": "4.6.3",
     "@docsearch/css": "4.6.3",
-    "@fortawesome/fontawesome-free": "7.2.0",
+    "@fortawesome/fontawesome-free": "6.7.2",
     "@fullhuman/postcss-purgecss": "8.0.0",
     "autoprefixer": "10.5.0",
     "bootstrap": "5.3.8",
