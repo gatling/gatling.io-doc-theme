@@ -13,3 +13,8 @@ updates:
       # It's probably better to wait to handle this with the future upgrade of the base theme.
       - dependency-name: "@fortawesome/fontawesome-free"
         update-types: [ "version-update:semver-major" ]
+      # Upgrade to v4 causes "Could not resolve "jquery/dist/jquery.min.js" error during site generation (but apparently
+      # not when running the dev server?). Possibly something to do with jQuery migrating to ESM.
+      # It's probably better to wait to handle this with the future upgrade of the base theme.
+      - dependency-name: "jquery"
+        update-types: [ "version-update:semver-major" ]
