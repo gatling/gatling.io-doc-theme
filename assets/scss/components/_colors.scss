@@ -22,13 +22,3 @@ body {
     color: #f78557;
   }
 }
-
-/* Default */
-
-body .card-list a {
-  color: $gray-700 !important;
-}
-
-[data-dark-mode] body .card-list a {
-  color: #aaa !important;
-}
