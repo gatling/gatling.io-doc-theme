@@ -35,3 +35,11 @@
     }
   }
 }
+
+.card {
+  --bs-card-color: $gray-700;
+}
+
+[data-dark-mode] .card {
+  --bs-card-color: #aaa;
+}
