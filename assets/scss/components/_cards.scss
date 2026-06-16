@@ -43,3 +43,8 @@
 [data-dark-mode] .card {
   --bs-card-color: #aaa;
 }
+
+.docs-navigation .card,
+[data-dark-mode] .docs-navigation .card {
+  --bs-card-color: #f78557;
+}
