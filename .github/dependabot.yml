@@ -4,10 +4,10 @@ updates:
     directory: "/"
     labels:
       - "dependencies"
-    schedule:
-      interval: "weekly"
-      day: "monday" # explicit, even though it's the weekly default
-      time: "07:00" # UTC
+    groups:
+      babel:
+        patterns:
+          - "@babel/*"
     ignore:
       # Upgrade to v7 is non-trivial, including changing the Sass compiler required (see https://docs.fontawesome.com/upgrade/scss).
       # It's probably better to wait to handle this with the future upgrade of the base theme.
@@ -18,3 +18,7 @@ updates:
       # It's probably better to wait to handle this with the future upgrade of the base theme.
       - dependency-name: "jquery"
         update-types: [ "version-update:semver-major" ]
+    schedule:
+      interval: "weekly"
+      day: "monday" # explicit, even though it's the weekly default
+      time: "07:00" # UTC
