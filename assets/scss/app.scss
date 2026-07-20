@@ -5,6 +5,7 @@ $baseUrl: "{{ strings.TrimRight "/" .Site.BaseURL }}";
 
 /** Import theme variables */
 @import "common/variables";
+@import "themes/root";
 
 /** Import Bootstrap */
 @import "bootstrap/scss/bootstrap";
