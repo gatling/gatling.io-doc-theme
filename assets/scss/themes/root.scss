@@ -1,0 +1,17 @@
+@import "commons";
+@import "light";
+@import "dark";
+
+:root {
+  --gatling-color-button-primary-background: #{$color-white};
+  --gatling-color-button-primary-background-hover: #{$light-color-brand-horizontal-gradient-10};
+  --gatling-color-button-primary-border: #{$color-brand-horizontal-gradient};
+  --gatling-color-button-primary-prefix-icon: #{$color-brand-accent-1};
+  --gatling-color-button-primary-text: #{$color-black};
+}
+
+:root[data-dark-mode] {
+  --gatling-color-button-primary-background: #1b1f22;
+  --gatling-color-button-primary-background-hover: #{$dark-color-brand-horizontal-gradient-60};
+  --gatling-color-button-primary-text: #{$color-white};
+}

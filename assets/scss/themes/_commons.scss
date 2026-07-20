@@ -1,0 +1,11 @@
+// Black color
+$color-black: #1f2024;
+
+// White color
+$color-white: #fff;
+
+// Gradient
+$color-brand-accent-1: #fd6f7a;
+$color-brand-accent-2: #f861ee;
+$color-brand-accent-3: #4457dd;
+$color-brand-horizontal-gradient: linear-gradient(90deg, $color-brand-accent-1 0%, $color-brand-accent-2 30%, $color-brand-accent-3 80%, $color-brand-accent-3 100%);

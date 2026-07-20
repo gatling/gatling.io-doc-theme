@@ -5,27 +5,24 @@
 }
 
 #docSearchToggle {
-  background-color: #f8f9fa;
-  border-color: #dee2e6;
+  background: linear-gradient(0deg, var(--gatling-color-button-primary-background), var(--gatling-color-button-primary-background)) padding-box, var(--gatling-color-button-primary-border) border-box;
+  border: 1px solid transparent;
+  color: var(--gatling-color-button-primary-text);
+  position: relative;
 
   &:hover {
-    border-color: #aaa;
-    color: #aaa;
+    background: var(--gatling-color-button-primary-background-hover) padding-box, var(--gatling-color-button-primary-border) border-box;
+  }
+
+  svg {
+    color: var(--gatling-color-button-primary-prefix-icon);
   }
 
   .docsearch-ask-ai {
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(90deg, #4557dd, #f861ee 50%, #ff763c);
-    background-clip: text;
-
     svg {
-      color: #ff763c;
+      fill: var(--gatling-color-button-primary-prefix-icon);
     }
   }
-}
-
-[data-dark-mode] #docSearchToggle {
-  background-color: #1b1f22;
 }
 
 .btn-link:focus {
