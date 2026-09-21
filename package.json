@@ -6,9 +6,9 @@
     "defaults"
   ],
   "devDependencies": {
-    "@babel/cli": "8.0.4",
-    "@babel/core": "8.0.1",
-    "@babel/preset-env": "8.0.2",
+    "@babel/cli": "8.0.5",
+    "@babel/core": "8.0.5",
+    "@babel/preset-env": "8.0.5",
     "@babel/preset-typescript": "8.0.1",
     "@docsearch/js": "4.7.0",
     "@docsearch/css": "4.7.0",
