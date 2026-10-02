@@ -1,0 +1,11 @@
+<section class="gh gh-section">
+  {{ if or (.Get "title") (.Get "text") }}
+    <div class="gh-section-head">
+      {{ with .Get "title" }}<h2 class="gh-section-title">{{ . }}</h2>{{ end }}
+      {{ with .Get "text" }}<p class="gh-section-text">{{ . }}</p>{{ end }}
+    </div>
+  {{ end }}
+  <div class="gh-grid gh-cols-{{ .Get "cols" | default "4" }}">
+    {{ .Inner }}
+  </div>
+</section>

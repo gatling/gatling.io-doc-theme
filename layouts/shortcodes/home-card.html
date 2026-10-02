@@ -1,0 +1,10 @@
+{{- $url := .Get "url" -}}
+{{- $external := hasPrefix $url "http" -}}
+<a class="gh-card" href="{{ if $external }}{{ $url }}{{ else }}{{ $url | relURL }}{{ end }}"{{ if $external }} target="_blank" rel="noopener"{{ end }}>
+  {{ with .Get "logo" }}<span class="gh-icon" aria-hidden="true"><img src="{{ . }}" alt="" loading="lazy"></span>
+  {{ else }}{{ with $.Get "icon" }}<span class="gh-icon material-icons-outlined" aria-hidden="true">{{ . }}</span>{{ end }}{{ end }}
+  <h3 class="gh-card-title">{{ .Get "title" }}</h3>
+  {{ with .Get "subtitle" }}<p class="gh-card-subtitle">{{ . }}</p>{{ end }}
+  <p class="gh-card-text">{{ strings.TrimSpace .Inner | markdownify }}</p>
+  {{ with .Get "cta" }}<span class="gh-card-cta">{{ . }}<span class="gh-arrow material-icons-outlined" aria-hidden="true">arrow_forward</span></span>{{ end }}
+</a>
