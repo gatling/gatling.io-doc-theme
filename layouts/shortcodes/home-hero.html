@@ -1,0 +1,14 @@
+<section class="gh gh-hero">
+  {{ with .Get "eyebrow" }}<span class="gh-eyebrow"><span class="gh-dot" aria-hidden="true"></span>{{ . }}</span>{{ end }}
+  {{ $title := .Get "title" }}
+  {{ with .Get "highlight" }}{{ $title = replace $title . (printf "<span class=\"gh-title-accent\">%s</span>" .) }}{{ end }}
+  <h1 class="gh-title">{{ $title | safeHTML }}</h1>
+  {{ with .Get "tagline" }}<p class="gh-tagline">{{ . }}</p>{{ end }}
+  {{ with strings.TrimSpace .Inner }}<p class="gh-lead">{{ . | markdownify }}</p>{{ end }}
+  {{ with .Get "search" }}
+    <button type="button" class="gh-search" aria-label="Search the documentation"
+            onclick="var t=document.getElementById('docSearchToggle'); if(t){t.click();}">
+      <span class="material-icons-outlined" aria-hidden="true">search</span><span>{{ . }}</span>
+    </button>
+  {{ end }}
+</section>

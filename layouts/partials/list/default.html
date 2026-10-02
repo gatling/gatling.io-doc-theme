@@ -1,4 +1,4 @@
-<h1 class="text-left">{{ .Title }}</h1>
+{{ if not (.HasShortcode "home-hero") }}<h1 class="text-left">{{ .Title }}</h1>{{ end }}
 <div class="text-left">{{ .Content }}</div>
 {{ if not .IsHome }}
   <div class="card-list">
