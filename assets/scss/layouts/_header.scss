@@ -248,3 +248,38 @@
 .navbar .menu-btn:checked ~ .menu-icon:not(.steps) .navicon::after {
   top: 0;
 }
+
+.nav-cta {
+  background: #0d0d0d;
+  color: #fff;
+  border: 1px solid #0d0d0d;
+  border-radius: 40px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    color: #fff;
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #ff6742;
+    outline-offset: 2px;
+  }
+
+  [data-dark-mode] & {
+    background: #fff;
+    color: #0d0d0d;
+    border-color: #fff;
+
+    &:hover {
+      color: #0d0d0d;
+    }
+  }
+}
