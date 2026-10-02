@@ -1,0 +1,17 @@
+// Markdown tables: code highlighting line numbers and Swagger UI keep their own styles
+.docs-content table:not(.lntable, .swagger-ui table) {
+  @extend .table;
+
+  --bs-table-bg: transparent;
+  --bs-table-color: currentcolor;
+  --bs-table-border-color: color-mix(in srgb, currentcolor 30%, transparent);
+
+  > thead > tr > * {
+    color: #1f2024;
+    border-bottom-color: color-mix(in srgb, currentcolor 60%, transparent);
+  }
+}
+
+[data-dark-mode] .docs-content table:not(.lntable, .swagger-ui table) > thead > tr > * {
+  color: #fff;
+}

@@ -41,6 +41,7 @@ $fa-font-path: $baseUrl + "/webfonts";
 @import "components/mermaid";
 @import "components/search";
 @import "components/syntax";
+@import "components/tables";
 
 @import "docsearch/variables";
 @import "@docsearch/css/dist/modal";
