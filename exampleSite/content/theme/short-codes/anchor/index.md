@@ -14,13 +14,13 @@ It is NOT recommended to use it for titles as they are automatically anchored. I
 
 Then referenced with:
 
-```go-html-template
-{{</* ref path/to/file#test */>}}
+```markdown
+[text]({{</* ref path/to/file */>}}#test)
 ```
 
 ### Example
 
-[logs]({{< ref "./anchor#test" >}})
+[logs]({{< ref "./anchor" >}}#test)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Etiam a lacus dolor. Pellentesque luctus, odio quis commodo euismod, odio est euismod ex, eu dictum diam sem pharetra lacus.

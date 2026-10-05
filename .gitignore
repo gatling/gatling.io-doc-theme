@@ -21,3 +21,4 @@ resources
 
 # Hugo
 .hugo_build.lock
+assets/jsconfig.json
