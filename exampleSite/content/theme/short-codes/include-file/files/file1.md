@@ -1,3 +1,5 @@
 File 1 content
 
-{{< gist spf13 7896402 >}}
+{{< alert tip >}}
+Short codes work in included files.
+{{< /alert >}}

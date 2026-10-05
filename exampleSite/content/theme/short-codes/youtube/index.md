@@ -1,28 +1,15 @@
 ---
 title: Youtube
-variables:
-  test: my custom variable
 ---
 
 ### Description
 
-Substitution with a global variable.
-
-Variables needs to be cascaded from the section root inside the front matter for it to work properly:
-
-```yaml
----
-cascade:
-  variables:
-    revnumber: 1.2.3
----
-```
-
+Embed a YouTube video from its id:
 
 ```go-html-template
-{{</* var revnumber */>}}
+{{</* youtube dQw4w9WgXcQ */>}}
 ```
 
 ### Example
 
-{{< var test >}}
+{{< youtube 6SN9jfE_d1Q >}}

@@ -4,15 +4,16 @@ title: Var
 
 ### Description
 
-Substitution with a global variable.
+Substitution with a global variable, defined in `data/variables.toml`:
 
-Variables needs to be cascaded from the section root inside the front matter for it to work properly:
+```toml
+revnumber = "1.2.3"
+```
 
 ```go-html-template
-{{</* youtube dQw4w9WgXcQ */>}}
+{{</* var revnumber */>}}
 ```
 
 ### Example
 
-{{< youtube 6SN9jfE_d1Q >}}
-
+{{< var test >}}

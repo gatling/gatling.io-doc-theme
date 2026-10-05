@@ -4,7 +4,7 @@ theme: "gatling.io-doc-theme"
 themesDir: "../.."
 resourceDir: "../resources"
 
-disableKinds: ["404"]
+disableKinds: ["404", "taxonomy"]
 disableHugoGeneratorInject: true
 enableEmoji: true
 enableGitInfo: false
@@ -68,8 +68,16 @@ security:
   exec:
     allow:
       - ^babel$
+      - ^git$
       - ^go$
+      - ^node$
       - ^npx$
+      - ^postcss$
+  node:
+    permissions:
+      allowRead:
+        - .
+        - .. # theme root, where babel looks for .babelrc up to package.json
 
 sitemap:
   changefreq: weekly
