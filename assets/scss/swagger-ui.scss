@@ -1,3 +1,10 @@
+// LibSass evaluates min() as its own function and fails on mixed units (swagger-ui-dist 5.33.0: min(60vh,800px)),
+// so pass it through as the CSS function
+@function min($values...) {
+  @return unquote("min(#{$values})");
+}
+
+@import "swagger-ui-dist/swagger-ui";
 @import "swagger-ui-dark";
 @import "common/colors";
 
