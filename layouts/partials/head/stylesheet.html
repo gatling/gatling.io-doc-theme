@@ -14,13 +14,16 @@
 {{ end -}}
 <noscript><style>img.lazyload { display: none; }</style></noscript>
 {{ if .Page.Param "swagger-ui" -}}
+  {{- /* swagger-ui-dist ships plain CSS that LibSass cannot compile (CSS min() with mixed units), so it is concatenated, not imported */ -}}
+  {{ $vendor := resources.Get "swagger-ui-dist/swagger-ui.css" -}}
   {{ if eq (hugo.Environment) "development" -}}
     {{ $options := (dict "targetPath" "swagger-ui.css" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
     {{ $css := resources.Get "scss/swagger-ui.scss" | toCSS $options -}}
+    {{ $css = slice $vendor $css | resources.Concat "swagger-ui.css" -}}
     <link rel="stylesheet" href="{{ $css.Permalink }}">
   {{ else -}}
     {{ $options := (dict "targetPath" "swagger-ui.css" "outputStyle" "compressed" "includePaths" (slice "node_modules")) -}}
-    {{ $css := resources.Get "scss/swagger-ui.scss" | toCSS $options | postCSS (dict "config" "config/postcss.config.js") -}}
+    {{ $css := slice $vendor (resources.Get "scss/swagger-ui.scss" | toCSS $options) | resources.Concat "swagger-ui.css" | postCSS (dict "config" "config/postcss.config.js") -}}
     {{ $secureCSS := $css | resources.Fingerprint "sha512" -}}
     <link rel="stylesheet" href="{{ $secureCSS.Permalink }}" integrity="{{ $secureCSS.Data.Integrity }}" crossorigin="anonymous">
   {{ end -}}
