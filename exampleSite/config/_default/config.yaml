@@ -94,5 +94,5 @@ module:
       target: assets
     - source: ../static
       target: static
-    - source: node_modules/@fortawesome/fontawesome-free/webfonts
+    - source: ../node_modules/@fortawesome/fontawesome-free/webfonts
       target: static/webfonts
