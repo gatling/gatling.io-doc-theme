@@ -13,6 +13,8 @@ Then, go to [http://localhost:1313](http://localhost:1313)
 
 ### Local
 
+See prerequisites from [the gatling.io-doc repository](https://github.com/gatling/gatling.io-doc#prerequisites).
+
 ```console
 cd exampleSite
 hugo mod npm pack

@@ -1,6 +1,7 @@
 services:
   hugo:
-    image: floryn90/hugo:0.161.1-ext-alpine
+    build: .
+    user: root:root
     ports:
      - 1313:1313
     volumes:
