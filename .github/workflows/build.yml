@@ -38,9 +38,10 @@ jobs:
           echo "$GITHUB_WORKSPACE/node_modules/.bin" >> "$GITHUB_PATH"
 
       - name: Setup Hugo
-        uses: gatling/gatling.io-doc/.github/actions/setup-hugo@f3dac394181bf645bffa511e37b05dc843310f02 # main
+        uses: gatling/gatling.io-doc/.github/actions/setup-hugo@d256f9b45e32eaa02a65440f3b1958388988de9d # main
         with:
-          hugo-version: '0.161.1'
+          hugo-version: '0.170.1'
+          dart-sass-version: '1.108.2'
 
       - name: Build example site
         working-directory: exampleSite

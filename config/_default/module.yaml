@@ -1,5 +1,5 @@
 hugoVersion:
-  min: 0.160.0
+  min: 0.170.1
 
 mounts:
   - source: node_modules

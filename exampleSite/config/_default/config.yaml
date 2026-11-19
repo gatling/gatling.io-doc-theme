@@ -67,6 +67,7 @@ security:
   enableInlineShortcodes: false
   exec:
     allow:
+      - ^(dart-)?sass$
       - ^babel$
       - ^git$
       - ^go$
